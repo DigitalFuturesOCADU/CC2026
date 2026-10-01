@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Creation &amp; Computation Examples · Fall 2026</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 24px 16px;
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      color: #1a1a1a;
+      background: #ffffff;
+    }
+    main { max-width: 720px; margin: 0 auto; }
+    h1 { margin: 0; font-size: 28px; }
+    .sub { margin: 6px 0 0; color: #666666; }
+    header { padding-bottom: 12px; border-bottom: 3px solid #000000; margin-bottom: 24px; }
+    h2 { font-size: 18px; padding-bottom: 6px; border-bottom: 2px solid #000000; margin: 28px 0 8px; }
+    ul { list-style: none; padding: 0; margin: 0; }
+    li { padding: 12px 0; border-bottom: 1px solid #dddddd; }
+    a { color: #000000; font-weight: 600; }
+    .what { display: block; color: #666666; font-size: 14px; margin-top: 2px; }
+    .code { font-size: 13px; font-weight: 400; color: #666666; }
+    .intro { color: #444444; font-size: 15px; margin: 0 0 8px; }
+    li ul { margin-top: 6px; }
+    li li { padding: 4px 0 4px 16px; border-bottom: 0; }
+  </style>
+</head>
+<body>
+  <main>
+    <header>
+      <h1>Creation &amp; Computation Examples</h1>
+      <p class="sub">Fall 2026 · p5.js 2.x with <a href="https://npuckett.github.io/p5-phone/examples/homepage/">p5-phone</a>. Open these on your phone.</p>
+    </header>
+
+    <h2 id="experiment-2">Experiment 2 · One Phone, More People</h2>
+    <p class="intro">Eight examples. Motion, touch and sound go in. The screen, sound and the flashlight come out. Each one has a version for 1, 2 and 3 people sharing one phone. The output is the same in all three. Only the number of people changes, so try all three and compare. On a laptop, each sketch shows a QR code to open it on a phone.</p>
+    <ul>
+      <li><strong>01 Tilt to Draw</strong><span class="what">Motion → screen. In turn: the phone is passed every 15 seconds, and each person draws in their own colour.</span>
+        <ul>
+          <li><a href="experiment-2/01-tilt-to-draw/1-person/">1 person</a> <a class="code" href="https://github.com/DigitalFuturesOCADU/CC2026/tree/main/experiment-2/01-tilt-to-draw/1-person">code</a><span class="what">Tip the phone to steer the pen. One line, one colour.</span></li>
+          <li><a href="experiment-2/01-tilt-to-draw/2-people/">2 people</a> <a class="code" href="https://github.com/DigitalFuturesOCADU/CC2026/tree/main/experiment-2/01-tilt-to-draw/2-people">code</a><span class="what">Draw for 15 seconds, then pass the phone when the colour changes. Two colours build up on one drawing.</span></li>
+          <li><a href="experiment-2/01-tilt-to-draw/3-people/">3 people</a> <a class="code" href="https://github.com/DigitalFuturesOCADU/CC2026/tree/main/experiment-2/01-tilt-to-draw/3-people">code</a><span class="what">The phone goes around three people, 15 seconds each. Three colours on one drawing.</span></li>
+        </ul>
+      </li>
+      <li><strong>02 Tilt to Speed</strong><span class="what">Motion → sound. In turn: one recording loops, and each person gets their own copy of it, their own voice.</span>
+        <ul>
+          <li><a href="experiment-2/02-tilt-to-speed/1-person/">1 person</a> <a class="code" href="https://github.com/DigitalFuturesOCADU/CC2026/tree/main/experiment-2/02-tilt-to-speed/1-person">code</a><span class="what">Tilt to bend the speed of the loop. Flat is slow, upright is fast.</span></li>
+          <li><a href="experiment-2/02-tilt-to-speed/2-people/">2 people</a> <a class="code" href="https://github.com/DigitalFuturesOCADU/CC2026/tree/main/experiment-2/02-tilt-to-speed/2-people">code</a><span class="what">Set a speed and pass the phone. Your voice keeps playing while the second person bends a second voice against it.</span></li>
+          <li><a href="experiment-2/02-tilt-to-speed/3-people/">3 people</a> <a class="code" href="https://github.com/DigitalFuturesOCADU/CC2026/tree/main/experiment-2/02-tilt-to-speed/3-people">code</a><span class="what">Three voices at three speeds. When the phone comes back around, you change your own voice again.</span></li>
+        </ul>
+      </li>
+      <li><strong>03 Still for Light</strong><span class="what">Motion → flashlight. Together: the light comes on when the phone has been still for a second. The code is the same in all three.</span>
+        <ul>
+          <li><a href="experiment-2/03-still-for-light/1-person/">1 person</a> <a class="code" href="https://github.com/DigitalFuturesOCADU/CC2026/tree/main/experiment-2/03-still-for-light/1-person">code</a><span class="what">Rest the phone face down on your palm. Hold still and the light comes on.</span></li>
+          <li><a href="experiment-2/03-still-for-light/2-people/">2 people</a> <a class="code" href="https://github.com/DigitalFuturesOCADU/CC2026/tree/main/experiment-2/03-still-for-light/2-people">code</a><span class="what">Two people hold the phone up together on their fingertips. It stays lit only while both are steady.</span></li>
+          <li><a href="experiment-2/03-still-for-light/3-people/">3 people</a> <a class="code" href="https://github.com/DigitalFuturesOCADU/CC2026/tree/main/experiment-2/03-still-for-light/3-people">code</a><span class="what">Three people on their fingertips. The light shows how still three people can be together.</span></li>
+        </ul>
+      </li>
+      <li><strong>04 Hold to Reveal</strong><span class="what">Touch → screen. Side by side: one strip of the screen for each person. A finger on your strip shows your part of the picture.</span>
+        <ul>
+          <li><a href="experiment-2/04-hold-to-reveal/1-person/">1 person</a> <a class="code" href="https://github.com/DigitalFuturesOCADU/CC2026/tree/main/experiment-2/04-hold-to-reveal/1-person">code</a><span class="what">Hold a finger anywhere and the whole picture fades in.</span></li>
+          <li><a href="experiment-2/04-hold-to-reveal/2-people/">2 people</a> <a class="code" href="https://github.com/DigitalFuturesOCADU/CC2026/tree/main/experiment-2/04-hold-to-reveal/2-people">code</a><span class="what">One half each. The whole picture shows only when both of you are touching.</span></li>
+          <li><a href="experiment-2/04-hold-to-reveal/3-people/">3 people</a> <a class="code" href="https://github.com/DigitalFuturesOCADU/CC2026/tree/main/experiment-2/04-hold-to-reveal/3-people">code</a><span class="what">One strip each. Each person shows a third. The whole picture needs all three.</span></li>
+        </ul>
+      </li>
+      <li><strong>05 Hold a Note</strong><span class="what">Touch → sound. Side by side: one strip for each person, one note for each strip. Slide up for higher, down for lower.</span>
+        <ul>
+          <li><a href="experiment-2/05-hold-a-note/1-person/">1 person</a> <a class="code" href="https://github.com/DigitalFuturesOCADU/CC2026/tree/main/experiment-2/05-hold-a-note/1-person">code</a><span class="what">One strip, one note. Hold to play it, slide to change it.</span></li>
+          <li><a href="experiment-2/05-hold-a-note/2-people/">2 people</a> <a class="code" href="https://github.com/DigitalFuturesOCADU/CC2026/tree/main/experiment-2/05-hold-a-note/2-people">code</a><span class="what">Two notes. Each person moves their own, and you both hear the two together.</span></li>
+          <li><a href="experiment-2/05-hold-a-note/3-people/">3 people</a> <a class="code" href="https://github.com/DigitalFuturesOCADU/CC2026/tree/main/experiment-2/05-hold-a-note/3-people">code</a><span class="what">Three notes: a chord made by three people.</span></li>
+        </ul>
+      </li>
+      <li><strong>06 Hands for Light</strong><span class="what">Touch → flashlight. Together: the light blinks faster with each finger on the screen, and stays on when everyone is touching.</span>
+        <ul>
+          <li><a href="experiment-2/06-hands-for-light/1-person/">1 person</a> <a class="code" href="https://github.com/DigitalFuturesOCADU/CC2026/tree/main/experiment-2/06-hands-for-light/1-person">code</a><span class="what">Touch the screen and the light turns on. Let go and it turns off.</span></li>
+          <li><a href="experiment-2/06-hands-for-light/2-people/">2 people</a> <a class="code" href="https://github.com/DigitalFuturesOCADU/CC2026/tree/main/experiment-2/06-hands-for-light/2-people">code</a><span class="what">One finger makes a slow blink. It stays on only when both of you are touching.</span></li>
+          <li><a href="experiment-2/06-hands-for-light/3-people/">3 people</a> <a class="code" href="https://github.com/DigitalFuturesOCADU/CC2026/tree/main/experiment-2/06-hands-for-light/3-people">code</a><span class="what">One finger: a slow blink. Two: faster. All three: steady on.</span></li>
+        </ul>
+      </li>
+      <li><strong>07 Hum to Play</strong><span class="what">Sound → screen. Together: the robot runs while there is sound and freezes in silence. The code is the same in all three.</span>
+        <ul>
+          <li><a href="experiment-2/07-hum-to-play/1-person/">1 person</a> <a class="code" href="https://github.com/DigitalFuturesOCADU/CC2026/tree/main/experiment-2/07-hum-to-play/1-person">code</a><span class="what">Hum and it runs. When you stop for breath, it freezes.</span></li>
+          <li><a href="experiment-2/07-hum-to-play/2-people/">2 people</a> <a class="code" href="https://github.com/DigitalFuturesOCADU/CC2026/tree/main/experiment-2/07-hum-to-play/2-people">code</a><span class="what">Two people hum, overlapping their breaths so it keeps running.</span></li>
+          <li><a href="experiment-2/07-hum-to-play/3-people/">3 people</a> <a class="code" href="https://github.com/DigitalFuturesOCADU/CC2026/tree/main/experiment-2/07-hum-to-play/3-people">code</a><span class="what">Three people hum in a relay. With three, it never has to stop.</span></li>
+        </ul>
+      </li>
+      <li><strong>08 Quiet for Light</strong><span class="what">Sound → flashlight. Together: the light comes on after three seconds of silence, and any sound turns it off. The code is the same in all three.</span>
+        <ul>
+          <li><a href="experiment-2/08-quiet-for-light/1-person/">1 person</a> <a class="code" href="https://github.com/DigitalFuturesOCADU/CC2026/tree/main/experiment-2/08-quiet-for-light/1-person">code</a><span class="what">Be quiet for three seconds and the light comes on.</span></li>
+          <li><a href="experiment-2/08-quiet-for-light/2-people/">2 people</a> <a class="code" href="https://github.com/DigitalFuturesOCADU/CC2026/tree/main/experiment-2/08-quiet-for-light/2-people">code</a><span class="what">The light needs both of you to be quiet.</span></li>
+          <li><a href="experiment-2/08-quiet-for-light/3-people/">3 people</a> <a class="code" href="https://github.com/DigitalFuturesOCADU/CC2026/tree/main/experiment-2/08-quiet-for-light/3-people">code</a><span class="what">The light comes on only when all three of you agree to be silent.</span></li>
+        </ul>
+      </li>
+    </ul>
+
+  </main>
+
+</body>
+</html>

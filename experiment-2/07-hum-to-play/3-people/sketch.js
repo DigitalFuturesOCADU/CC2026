@@ -1,0 +1,139 @@
+// 07 · Hum to Play · 3 people
+// Sound → screen. Together: everyone makes sound for the same phone.
+// The GIF plays while there is sound, and freezes when it is quiet.
+// The code is the same in the 1, 2 and 3 person versions. Only these two lines change,
+// and the code never uses people. The difference is the people.
+let people = 3; // how many people share the phone: 1, 2 or 3
+let howTo = 'Hum together, all three. Take turns to breathe so the robot never stops.';
+
+// The GIF is loaded by its full web address, so this sketch has no file to upload.
+// To use your own, upload it to the sketch and put its file name here, like 'myGif.gif'.
+let gifFile = 'https://digitalfuturesocadu.github.io/CC2026/experiment-2/media/jogBot.gif';
+
+// the feel of the piece. change these before you change anything else.
+let margin = 0.1;       // how much louder than the quiet room counts as sound
+let listenSeconds = 2;  // how long to listen to the quiet room at the start
+let boost = 5;          // phones hear quietly. this turns the level up
+
+let mic;                // the microphone
+let meter;              // measures how loud the microphone is
+let roomLevel = 0;      // the loudest the quiet room got while the sketch listened
+let listenUntil = -1;   // when the listening to the room ends, in milliseconds
+let gif;
+
+async function setup() {
+  createCanvas(windowWidth, windowHeight);
+  lockGestures();
+
+  // on a laptop, show a QR code of this page so a phone can open it.
+  // it only shows on a public https address, like the examples site.
+  if (location.protocol === 'https:' && window.self === window.top) {
+    showDesktopQr();
+  }
+
+  imageMode(CENTER);
+  setupMic();
+  enableMicTap('Tap to start');
+
+  gif = await loadImage(gifFile);
+  gif.pause();
+}
+
+function draw() {
+  background(20);
+  let level = getMicLevel();
+
+  // 1. the first seconds the microphone is on: listen to the quiet room
+  if (window.micOpen && listenUntil < 0) {
+    listenUntil = millis() + listenSeconds * 1000;
+  }
+  let listening = millis() < listenUntil;
+  if (listening) {
+    roomLevel = max(roomLevel, level);
+  }
+  let threshold = roomLevel + margin;
+
+  // 2. sound plays the GIF. quiet freezes it
+  if (!listening && level > threshold) {
+    gif.play();
+  } else {
+    gif.pause();
+  }
+
+  // the GIF, as big as fits below the band at the top
+  let s = min(width / gif.width, (height - 150) / gif.height);
+  image(gif, width / 2, 110 + (height - 140) / 2, gif.width * s, gif.height * s);
+
+  drawLevel(level, threshold);
+  drawHowTo(micNote(listening));
+}
+
+// what the microphone is doing, for the band at the top
+function micNote(listening) {
+  if (listening) {
+    return 'Stay quiet for a moment: listening to the room.';
+  }
+  if (window.micOpen) {
+    return '';
+  }
+  if (window.micEnabled) {
+    return 'Waiting for the microphone.';
+  }
+  return 'Tap to start.';
+}
+
+// the band across the top: what to do, and a note when there is one
+function drawHowTo(note) {
+  noStroke();
+  fill(0, 180);
+  rect(0, 0, width, 110);
+  fill(255);
+  textSize(16);
+  textAlign(LEFT, TOP);
+  text(howTo, 16, 14, width - 32);
+  if (note) {
+    fill(255, 200, 0);
+    text(note, 16, 80, width - 32);
+  }
+}
+
+function windowResized() {
+  resizeCanvas(windowWidth, windowHeight);
+}
+
+// ---------- the microphone. this part is the same in every sound sketch. ----------
+
+// call this once in setup
+function setupMic() {
+  mic = new p5.AudioIn(); // p5-phone looks for a variable with exactly this name
+  meter = new p5.Amplitude();
+  routeMic();
+}
+
+// p5.sound sends the microphone straight to the speaker unless you stop it.
+// this unplugs it from the speaker and plugs it into the level meter.
+function routeMic() {
+  mic.disconnect();
+  mic.connect(meter);
+}
+
+// how loud it is right now, from 0 to 1. it is 0 when there is no microphone.
+// window.micOpen is true only while sound is really arriving.
+function getMicLevel() {
+  if (!window.micOpen) {
+    return 0;
+  }
+  routeMic();
+  return constrain(meter.getLevel() * boost, 0, 1);
+}
+
+// the level as a bar along the bottom, with a white line where sound starts to count
+function drawLevel(level, threshold) {
+  noStroke();
+  fill(60);
+  rect(0, height - 16, width, 16);
+  fill(100, 200, 255);
+  rect(0, height - 16, width * level, 16);
+  fill(255);
+  rect(width * threshold - 2, height - 24, 4, 24);
+}

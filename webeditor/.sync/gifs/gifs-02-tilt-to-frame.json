@@ -1,0 +1,36 @@
+{
+  "slug": "gifs-02-tilt-to-frame",
+  "title": "GIFs 02 · Tilt to Frame",
+  "name": "C&C F26 · GIFs 02 · Tilt to Frame",
+  "projectId": "GIdLyf2wl",
+  "contentHash": "sha256:8af73043d9da89d06cc1c47743b715541f14bc026072bca828fcf8ac873fa9b1",
+  "files": [
+    {
+      "name": "root",
+      "id": "d3b00368c5cfee8d6548fd1a",
+      "_id": "d3b00368c5cfee8d6548fd1a",
+      "fileType": "folder",
+      "children": [
+        "aede792c19f929f773fa7d86",
+        "ceae68dc797d27f8771979d4"
+      ]
+    },
+    {
+      "name": "index.html",
+      "content": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n  <title>GIFs 02 · Tilt to Frame</title>\n  <style>\n    body {\n      margin: 0;\n      padding: 0;\n      overflow: hidden;\n      background: #141414;\n    }\n    canvas {\n      touch-action: none; /* a finger on the canvas never scrolls the page */\n    }\n  </style>\n\n  <!-- a laptop has no tilt sensor but still sends one empty reading. ignore it, so rotationX stays a number -->\n  <script>\n    window.addEventListener('deviceorientation', function (e) {\n      if (e.beta === null) e.stopImmediatePropagation();\n    }, true);\n  </script>\n\n  <!-- p5.js 2.x -->\n  <script src=\"https://cdn.jsdelivr.net/npm/p5@2.2.3/lib/p5.js\"></script>\n\n  <!-- p5-phone: the permission tap, the gesture lock, the sensors and the flashlight -->\n  <script src=\"https://cdn.jsdelivr.net/npm/p5-phone@1.15.0/dist/p5-phone.min.js\"></script>\n\n  <!-- on a laptop, a QR code of this page, to open it on a phone. only on the https examples site -->\n  <script>\n    if (location.protocol === 'https:' && window.self === window.top) {\n      addEventListener('load', function () { showDesktopQr(); });\n    }\n  </script>\n</head>\n<body>\n  <script src=\"sketch.js\"></script>\n</body>\n</html>\n",
+      "id": "aede792c19f929f773fa7d86",
+      "_id": "aede792c19f929f773fa7d86",
+      "fileType": "file",
+      "children": []
+    },
+    {
+      "name": "sketch.js",
+      "content": "// GIFs 02 · Tilt to Frame\n// The GIF never plays on its own. rotationY, the tilt left and right, picks the frame\n// with setFrame(). Tip the phone slowly from side to side and the fingers move with it.\n\n// change these\nlet range = 45; // degrees of tilt, each way, that reach the first and the last frame\n\nlet gifImage; // the GIF, once it has loaded\n\nasync function setup() {\n  createCanvas(windowWidth, windowHeight);\n  lockGestures();\n  angleMode(DEGREES); // tilt in degrees. p5.js uses radians unless you say so\n  enableSensorTap('Tap to start');\n  imageMode(CENTER);\n  gifImage = await loadImage('https://digitalfuturesocadu.github.io/CC2026/media/gifs/hand.gif');\n  gifImage.pause(); // the tilt picks the frame, not the clock\n}\n\nfunction draw() {\n  background(20);\n  if (!window.sensorsEnabled) return;\n\n  // tipped left is the first frame (0), tipped right is the last (numFrames() - 1)\n  let index = round(map(rotationY, -range, range, 0, gifImage.numFrames() - 1, true));\n  gifImage.setFrame(index);\n\n  // as big as fits the screen, as in Images 01\n  let fit = min(width / gifImage.width, height / gifImage.height);\n  image(gifImage, width / 2, height / 2, gifImage.width * fit, gifImage.height * fit);\n\n  fill(255);\n  textSize(18);\n  text('rotationY ' + round(rotationY) + '   frame ' + index, 20, 40);\n}\n\nfunction windowResized() {\n  resizeCanvas(windowWidth, windowHeight);\n}\n",
+      "id": "ceae68dc797d27f8771979d4",
+      "_id": "ceae68dc797d27f8771979d4",
+      "fileType": "file",
+      "children": [],
+      "isSelectedFile": true
+    }
+  ]
+}

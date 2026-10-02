@@ -45,3 +45,23 @@ domain). The GIFs are from the Atelier 1 GIF library.
 
 07 and 08 listen to the room for two seconds when the microphone turns on. Stay quiet then:
 anything louder than that counts as sound.
+
+## Reference examples
+
+Short examples, one idea each, short enough to type. Each folder matches a Canvas page.
+
+| Folder | Canvas page | Examples |
+| --- | --- | --- |
+| `p5-phone/` | p5-phone Basics | Start Here, Debug Panel, One Tap Many Permissions |
+| `motion/` | Input · Motion | Tilt, Shake, How Much Movement |
+| `sound-in/` | Input · Sound | Level, Clap, High and Low |
+| `touch/` | Input · Touch | Where, How Many, Zones |
+| `drawing/` | Output · Drawing | Shapes, Trails, Repeat |
+| `images/` | Output · Images | Load and Fit, Tilt to Scale, Shake for the Next |
+| `gifs/` | Output · GIFs | Play and Pause, Tilt to Frame, Speed |
+| `sound-out/` | Output · Sound | Play a Recording, Make a Tone, Start a Loop, Play an Instrument, Say Something |
+| `flashlight/` | Output · Flashlight | Tap for Light, Slow Blink |
+| `connecting/` | Connecting Input to Output | Map, Smooth, Threshold, Fade, Combine |
+
+Their media is in `media/`. For instructors: `tools/examples.py` lists them and writes each
+folder's `index.html` and the index page's lists; `tools/STYLE.md` is how they are written.

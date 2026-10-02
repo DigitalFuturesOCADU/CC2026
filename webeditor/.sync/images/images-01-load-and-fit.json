@@ -1,0 +1,36 @@
+{
+  "slug": "images-01-load-and-fit",
+  "title": "Images 01 · Load and Fit",
+  "name": "C&C F26 · Images 01 · Load and Fit",
+  "projectId": "D7F6i9ftl",
+  "contentHash": "sha256:78d47290cd6fb8156b0617704dba2d8540d6b5d7c3499398300c85c1f8cb4bd0",
+  "files": [
+    {
+      "name": "root",
+      "id": "0c80896206dad09bf37aaa08",
+      "_id": "0c80896206dad09bf37aaa08",
+      "fileType": "folder",
+      "children": [
+        "cde41649f8ce8c6e85071140",
+        "9837494429bbce4e8ac7bb1c"
+      ]
+    },
+    {
+      "name": "index.html",
+      "content": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n  <title>Images 01 · Load and Fit</title>\n  <style>\n    body {\n      margin: 0;\n      padding: 0;\n      overflow: hidden;\n      background: #141414;\n    }\n    canvas {\n      touch-action: none; /* a finger on the canvas never scrolls the page */\n    }\n  </style>\n\n  <!-- a laptop has no tilt sensor but still sends one empty reading. ignore it, so rotationX stays a number -->\n  <script>\n    window.addEventListener('deviceorientation', function (e) {\n      if (e.beta === null) e.stopImmediatePropagation();\n    }, true);\n  </script>\n\n  <!-- p5.js 2.x -->\n  <script src=\"https://cdn.jsdelivr.net/npm/p5@2.2.3/lib/p5.js\"></script>\n\n  <!-- p5-phone: the permission tap, the gesture lock, the sensors and the flashlight -->\n  <script src=\"https://cdn.jsdelivr.net/npm/p5-phone@1.15.0/dist/p5-phone.min.js\"></script>\n\n  <!-- on a laptop, a QR code of this page, to open it on a phone. only on the https examples site -->\n  <script>\n    if (location.protocol === 'https:' && window.self === window.top) {\n      addEventListener('load', function () { showDesktopQr(); });\n    }\n  </script>\n</head>\n<body>\n  <script src=\"sketch.js\"></script>\n</body>\n</html>\n",
+      "id": "cde41649f8ce8c6e85071140",
+      "_id": "cde41649f8ce8c6e85071140",
+      "fileType": "file",
+      "children": []
+    },
+    {
+      "name": "sketch.js",
+      "content": "// Images 01 · Load and Fit\n// p5.js 2 loads a file with await, inside an async setup(). setup() waits on that line\n// until the file arrives. Then the picture is drawn as big as fits, without stretching.\n// Turn the phone sideways to see it fit again.\n\nlet picture; // the image, once it has loaded\n\nasync function setup() {\n  createCanvas(windowWidth, windowHeight);\n  lockGestures();\n  imageMode(CENTER); // image() now places the picture by its centre\n  picture = await loadImage('https://digitalfuturesocadu.github.io/CC2026/media/images/spaceSuit.png');\n}\n\nfunction draw() {\n  background(20);\n\n  // how much to grow the picture to fill the width, and to fill the height.\n  // the smaller of the two fits both ways. the same number for both sides keeps its shape\n  let fit = min(width / picture.width, height / picture.height);\n  image(picture, width / 2, height / 2, picture.width * fit, picture.height * fit);\n\n  // how many times its own size the picture is drawn\n  fill(255);\n  textSize(18);\n  text('fit ' + nf(fit, 1, 2), 20, 40);\n}\n\nfunction windowResized() {\n  resizeCanvas(windowWidth, windowHeight);\n}\n",
+      "id": "9837494429bbce4e8ac7bb1c",
+      "_id": "9837494429bbce4e8ac7bb1c",
+      "fileType": "file",
+      "children": [],
+      "isSelectedFile": true
+    }
+  ]
+}

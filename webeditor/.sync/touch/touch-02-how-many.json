@@ -1,0 +1,36 @@
+{
+  "slug": "touch-02-how-many",
+  "title": "Touch 02 · How Many",
+  "name": "C&C F26 · Touch 02 · How Many",
+  "projectId": "0ktIOcnf9",
+  "contentHash": "sha256:bf7e7ce148a6272fdf4d0b8710b64e0bda8f200650be662a8322d23f4a718588",
+  "files": [
+    {
+      "name": "root",
+      "id": "3b5398b8a9e57030788b8b76",
+      "_id": "3b5398b8a9e57030788b8b76",
+      "fileType": "folder",
+      "children": [
+        "ad3cf518a82746d10706480f",
+        "b4625a50f102c443a61eb0c0"
+      ]
+    },
+    {
+      "name": "index.html",
+      "content": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n  <title>Touch 02 · How Many</title>\n  <style>\n    body {\n      margin: 0;\n      padding: 0;\n      overflow: hidden;\n      background: #141414;\n    }\n    canvas {\n      touch-action: none; /* a finger on the canvas never scrolls the page */\n    }\n  </style>\n\n  <!-- a laptop has no tilt sensor but still sends one empty reading. ignore it, so rotationX stays a number -->\n  <script>\n    window.addEventListener('deviceorientation', function (e) {\n      if (e.beta === null) e.stopImmediatePropagation();\n    }, true);\n  </script>\n\n  <!-- p5.js 2.x -->\n  <script src=\"https://cdn.jsdelivr.net/npm/p5@2.2.3/lib/p5.js\"></script>\n\n  <!-- p5-phone: the permission tap, the gesture lock, the sensors and the flashlight -->\n  <script src=\"https://cdn.jsdelivr.net/npm/p5-phone@1.15.0/dist/p5-phone.min.js\"></script>\n\n  <!-- on a laptop, a QR code of this page, to open it on a phone. only on the https examples site -->\n  <script>\n    if (location.protocol === 'https:' && window.self === window.top) {\n      addEventListener('load', function () { showDesktopQr(); });\n    }\n  </script>\n</head>\n<body>\n  <script src=\"sketch.js\"></script>\n</body>\n</html>\n",
+      "id": "ad3cf518a82746d10706480f",
+      "_id": "ad3cf518a82746d10706480f",
+      "fileType": "file",
+      "children": []
+    },
+    {
+      "name": "sketch.js",
+      "content": "// Touch 02 · How Many\n// touches is a list with one entry for each finger on the screen. Each has an x and a y.\n// touches.length is how many fingers there are. Try one finger, then two, then five.\n// The mouse is not in touches, so try this one on a phone.\n\n// change these\nlet diameter = 120; // how big each circle is\n\nfunction setup() {\n  createCanvas(windowWidth, windowHeight);\n  lockGestures(); // no scrolling, zooming or pull to refresh. touch needs no permission\n}\n\nfunction draw() {\n  background(20);\n  noStroke();\n\n  // one circle for each finger. see-through, so circles that overlap still show\n  fill(255, 150);\n  for (let i = 0; i < touches.length; i++) {\n    circle(touches[i].x, touches[i].y, diameter);\n  }\n\n  // the raw value\n  fill(255);\n  textSize(18);\n  text('touches.length ' + touches.length, 20, 40);\n}\n\nfunction windowResized() {\n  resizeCanvas(windowWidth, windowHeight);\n}\n",
+      "id": "b4625a50f102c443a61eb0c0",
+      "_id": "b4625a50f102c443a61eb0c0",
+      "fileType": "file",
+      "children": [],
+      "isSelectedFile": true
+    }
+  ]
+}

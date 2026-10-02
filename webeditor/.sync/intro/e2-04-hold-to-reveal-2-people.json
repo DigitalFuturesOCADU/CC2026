@@ -2,32 +2,32 @@
   "slug": "e2-04-hold-to-reveal-2-people",
   "title": "04 Hold to Reveal · 2 people",
   "name": "C&C F26 · 04 Hold to Reveal · 2 people",
-  "projectId": null,
-  "contentHash": "sha256:2eb2931bdb0d96dc8208b7224e6938aa526d8906d2e55a0774bef410e2ebaf5a",
+  "projectId": "zqhVR6AvF",
+  "contentHash": "sha256:0532e4a2307bc4dd500d3b388f16b339fc6f385ad3964cb22b972f4e1c971f8e",
   "files": [
     {
       "name": "root",
-      "id": "01dcfbf3a746fe846e257720",
-      "_id": "01dcfbf3a746fe846e257720",
+      "id": "782733e93f96b5b0db8ab6a1",
+      "_id": "782733e93f96b5b0db8ab6a1",
       "fileType": "folder",
       "children": [
-        "7774ee5acfe95e24e9d3454c",
-        "5b06ebe1a1233a37c55c2705"
+        "dd7e51a2876b7858dc1808e1",
+        "618c633ded3877bc0336cb79"
       ]
     },
     {
       "name": "index.html",
-      "content": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n  <title>04 Hold to Reveal · 2 people</title>\n  <style>\n    body {\n      margin: 0;\n      padding: 0;\n      overflow: hidden;\n      background: #141414;\n    }\n    canvas {\n      touch-action: none; /* a finger on the canvas never scrolls the page */\n    }\n  </style>\n\n  <!-- p5.js 2.x -->\n  <script src=\"https://cdn.jsdelivr.net/npm/p5@2.2.3/lib/p5.js\"></script>\n\n  <!-- p5-phone: the permission tap, the gesture lock, the flashlight and the QR code -->\n  <script src=\"https://cdn.jsdelivr.net/npm/p5-phone@1.15.0/dist/p5-phone.min.js\"></script>\n</head>\n<body>\n  <script src=\"sketch.js\"></script>\n</body>\n</html>\n",
-      "id": "7774ee5acfe95e24e9d3454c",
-      "_id": "7774ee5acfe95e24e9d3454c",
+      "content": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n  <title>04 Hold to Reveal · 2 people</title>\n  <style>\n    body {\n      margin: 0;\n      padding: 0;\n      overflow: hidden;\n      background: #141414;\n    }\n    canvas {\n      touch-action: none; /* a finger on the canvas never scrolls the page */\n    }\n  </style>\n\n  <!-- a laptop has no tilt sensor but still sends one empty reading. ignore it, so rotationX stays a number -->\n  <script>\n    window.addEventListener('deviceorientation', function (e) {\n      if (e.beta === null) e.stopImmediatePropagation();\n    }, true);\n  </script>\n\n  <!-- p5.js 2.x -->\n  <script src=\"https://cdn.jsdelivr.net/npm/p5@2.2.3/lib/p5.js\"></script>\n\n  <!-- p5-phone: the permission tap, the gesture lock, the flashlight and the QR code -->\n  <script src=\"https://cdn.jsdelivr.net/npm/p5-phone@1.15.0/dist/p5-phone.min.js\"></script>\n</head>\n<body>\n  <script src=\"sketch.js\"></script>\n</body>\n</html>\n",
+      "id": "dd7e51a2876b7858dc1808e1",
+      "_id": "dd7e51a2876b7858dc1808e1",
       "fileType": "file",
       "children": []
     },
     {
       "name": "sketch.js",
       "content": "// 04 · Hold to Reveal · 2 people\n// Touch → screen. Side by side: the screen is split into one strip for each person.\n// Hold a finger on your strip and your part of the picture fades in.\n// Let go and it fades away. The whole picture needs everyone.\n// The 1, 2 and 3 person versions are the same sketch. Only these two lines change:\nlet people = 2; // how many people share the phone: 1, 2 or 3\nlet howTo = 'One half each. Hold a finger on your half to show it.';\n\n// The GIF is loaded by its full web address, so this sketch has no file to upload.\n// To use your own, upload it to the sketch and put its file name here, like 'myGif.gif'.\nlet gifFile = 'https://digitalfuturesocadu.github.io/CC2026/experiment-2/media/gifScene.gif';\n\n// the feel of the piece\nlet fadeSpeed = 0.08; // how quickly a strip fades in and out. 1 is at once\nlet colours = ['#ff8c1a', '#2ab7ff', '#ff4fa3']; // one colour for each person\n\nlet gif;\nlet shown = [];       // how much of each strip is showing, from 0 to 1\n\nasync function setup() {\n  createCanvas(windowWidth, windowHeight);\n  lockGestures();\n\n  // on a laptop, show a QR code of this page so a phone can open it.\n  // it only shows on a public https address, like the examples site.\n  if (location.protocol === 'https:' && window.self === window.top) {\n    showDesktopQr();\n  }\n\n  gif = await loadImage(gifFile);\n  for (let i = 0; i < people; i++) {\n    shown[i] = 0;\n  }\n}\n\nfunction draw() {\n  background(0);\n\n  // the picture, as wide as the screen, in the middle\n  let h = gif.height * width / gif.width;\n  image(gif, 0, (height - h) / 2, width, h);\n\n  let stripWidth = width / people;\n  for (let i = 0; i < people; i++) {\n    let left = i * stripWidth;\n\n    // 1. is a finger on this strip?\n    let touched = fingerIn(left, left + stripWidth);\n\n    // 2. fade toward showing (1) or hidden (0)\n    if (touched) {\n      shown[i] = lerp(shown[i], 1, fadeSpeed);\n    } else {\n      shown[i] = lerp(shown[i], 0, fadeSpeed);\n    }\n\n    // 3. cover the strip in black. the more it shows, the more see-through the cover\n    noStroke();\n    fill(0, 255 * (1 - shown[i]));\n    rect(left, 0, stripWidth, height);\n\n    // this person's colour along the bottom of their strip\n    fill(colours[i]);\n    if (touched) {\n      rect(left + 4, height - 20, stripWidth - 8, 20);\n    } else {\n      rect(left + 4, height - 8, stripWidth - 8, 8);\n    }\n  }\n\n  drawHowTo();\n}\n\n// is a finger between left and right? on a laptop, the mouse counts as one finger\nfunction fingerIn(left, right) {\n  for (let i = 0; i < touches.length; i++) {\n    if (touches[i].x >= left && touches[i].x < right) {\n      return true;\n    }\n  }\n  if (touches.length === 0 && mouseIsPressed && mouseX >= left && mouseX < right) {\n    return true;\n  }\n  return false;\n}\n\n// the band across the top: what to do, and a note when there is one\nfunction drawHowTo(note) {\n  noStroke();\n  fill(0, 180);\n  rect(0, 0, width, 110);\n  fill(255);\n  textSize(16);\n  textAlign(LEFT, TOP);\n  text(howTo, 16, 14, width - 32);\n  if (note) {\n    fill(255, 200, 0);\n    text(note, 16, 80, width - 32);\n  }\n}\n\nfunction windowResized() {\n  resizeCanvas(windowWidth, windowHeight);\n}\n",
-      "id": "5b06ebe1a1233a37c55c2705",
-      "_id": "5b06ebe1a1233a37c55c2705",
+      "id": "618c633ded3877bc0336cb79",
+      "_id": "618c633ded3877bc0336cb79",
       "fileType": "file",
       "children": [],
       "isSelectedFile": true

@@ -1,0 +1,36 @@
+{
+  "slug": "flashlight-02-slow-blink",
+  "title": "Flashlight 02 · Slow Blink",
+  "name": "C&C F26 · Flashlight 02 · Slow Blink",
+  "projectId": "92ZdmSbdD",
+  "contentHash": "sha256:ad35878fd94b18de66ad086da467336d0778b60b5fd122c5002d91f7757eca56",
+  "files": [
+    {
+      "name": "root",
+      "id": "84ddba8e034bd89e6a0f6e93",
+      "_id": "84ddba8e034bd89e6a0f6e93",
+      "fileType": "folder",
+      "children": [
+        "314d3cd7f48b0acfbc5360e5",
+        "ed1a4936a3083f5da9456f66"
+      ]
+    },
+    {
+      "name": "index.html",
+      "content": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n  <title>Flashlight 02 · Slow Blink</title>\n  <style>\n    body {\n      margin: 0;\n      padding: 0;\n      overflow: hidden;\n      background: #141414;\n    }\n    canvas {\n      touch-action: none; /* a finger on the canvas never scrolls the page */\n    }\n  </style>\n\n  <!-- a laptop has no tilt sensor but still sends one empty reading. ignore it, so rotationX stays a number -->\n  <script>\n    window.addEventListener('deviceorientation', function (e) {\n      if (e.beta === null) e.stopImmediatePropagation();\n    }, true);\n  </script>\n\n  <!-- p5.js 2.x -->\n  <script src=\"https://cdn.jsdelivr.net/npm/p5@2.2.3/lib/p5.js\"></script>\n\n  <!-- p5-phone: the permission tap, the gesture lock, the sensors and the flashlight -->\n  <script src=\"https://cdn.jsdelivr.net/npm/p5-phone@1.15.0/dist/p5-phone.min.js\"></script>\n\n  <!-- on a laptop, a QR code of this page, to open it on a phone. only on the https examples site -->\n  <script>\n    if (location.protocol === 'https:' && window.self === window.top) {\n      addEventListener('load', function () { showDesktopQr(); });\n    }\n  </script>\n</head>\n<body>\n  <script src=\"sketch.js\"></script>\n</body>\n</html>\n",
+      "id": "314d3cd7f48b0acfbc5360e5",
+      "_id": "314d3cd7f48b0acfbc5360e5",
+      "fileType": "file",
+      "children": []
+    },
+    {
+      "name": "sketch.js",
+      "content": "// Flashlight 02 · Slow Blink\n// A millis() timer blinks the light. Tilt sets the time between switches:\n// flat is slow, upright is quick. Point the light at a wall.\n\n// change these\nlet slowest = 2000; // milliseconds between switches with the phone flat\nlet fastest = 300;  // milliseconds between switches with the phone upright\n\nlet lightOn = false; // should the light be on?\nlet lastSwitch = 0;  // when it last switched, in milliseconds\n\nfunction setup() {\n  createCanvas(windowWidth, windowHeight);\n  lockGestures();\n  angleMode(DEGREES); // tilt in degrees. p5.js uses radians unless you say so\n  enablePermissionsTap(['motion', 'torch'], 'Tap to start');\n}\n\nfunction draw() {\n  background(20);\n  if (!window.sensorsEnabled) return;\n\n  let wait = map(rotationX, 0, 90, slowest, fastest, true); // tilt sets the time\n  wait = max(wait, 300); // never quicker than 300: fast flashing can trigger seizures\n\n  // when the time is up, switch. setTorch() runs only here, when the light changes\n  if (millis() - lastSwitch > wait) {\n    lightOn = !lightOn;\n    lastSwitch = millis();\n    if (window.torchEnabled) {\n      setTorch(lightOn);\n    }\n  }\n\n  // the screen shows what the light is doing. torchActive is true while it is on\n  if (window.torchActive) {\n    background(255);\n  }\n\n  // the numbers on a dark band, then any flashlight problem\n  fill(0);\n  rect(0, 0, width, 60);\n  fill(255);\n  textSize(18);\n  text('rotationX ' + round(rotationX) + '   wait ' + round(wait), 20, 38);\n  if (window.torchError) {\n    text('flashlight problem: ' + window.torchError, 20, 90, width - 40);\n  }\n}\n\nfunction windowResized() {\n  resizeCanvas(windowWidth, windowHeight);\n}\n",
+      "id": "ed1a4936a3083f5da9456f66",
+      "_id": "ed1a4936a3083f5da9456f66",
+      "fileType": "file",
+      "children": [],
+      "isSelectedFile": true
+    }
+  ]
+}

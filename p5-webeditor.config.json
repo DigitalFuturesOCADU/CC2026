@@ -38,6 +38,59 @@
       "e2-08-quiet-for-light-1-person",
       "e2-08-quiet-for-light-2-people",
       "e2-08-quiet-for-light-3-people"
+    ],
+    "p5-phone": [
+      "p5-phone-01-start-here",
+      "p5-phone-02-debug-panel",
+      "p5-phone-03-one-tap-many-permissions"
+    ],
+    "motion": [
+      "motion-01-tilt",
+      "motion-02-shake",
+      "motion-03-how-much-movement"
+    ],
+    "sound-in": [
+      "sound-in-01-level",
+      "sound-in-02-clap",
+      "sound-in-03-high-and-low"
+    ],
+    "touch": [
+      "touch-01-where",
+      "touch-02-how-many",
+      "touch-03-zones"
+    ],
+    "drawing": [
+      "drawing-01-shapes",
+      "drawing-02-trails",
+      "drawing-03-repeat"
+    ],
+    "images": [
+      "images-01-load-and-fit",
+      "images-02-tilt-to-scale",
+      "images-03-shake-for-the-next"
+    ],
+    "gifs": [
+      "gifs-01-play-and-pause",
+      "gifs-02-tilt-to-frame",
+      "gifs-03-speed"
+    ],
+    "sound-out": [
+      "sound-out-01-play-a-recording",
+      "sound-out-02-make-a-tone",
+      "sound-out-03-start-a-loop",
+      "sound-out-04-play-an-instrument",
+      "sound-out-05-say-something"
+    ],
+    "flashlight": [
+      "flashlight-01-tap-for-light",
+      "flashlight-02-slow-blink"
+    ],
+    "connecting": [
+      "connecting-01-map",
+      "connecting-02-smooth",
+      "connecting-03-threshold",
+      "connecting-04-fade",
+      "connecting-05-combine"
     ]
   }
 }

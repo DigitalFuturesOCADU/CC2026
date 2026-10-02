@@ -1,0 +1,36 @@
+{
+  "slug": "flashlight-01-tap-for-light",
+  "title": "Flashlight 01 · Tap for Light",
+  "name": "C&C F26 · Flashlight 01 · Tap for Light",
+  "projectId": "TmtMjzgBP",
+  "contentHash": "sha256:058709135aea96e5b92545b7a70e1171a53a6bd882b21f093f732ec48184a5d8",
+  "files": [
+    {
+      "name": "root",
+      "id": "c385ecc652d00090d8bbda7b",
+      "_id": "c385ecc652d00090d8bbda7b",
+      "fileType": "folder",
+      "children": [
+        "33c94836a81a14e7caac053d",
+        "47b7366cbfa612d03cd22889"
+      ]
+    },
+    {
+      "name": "index.html",
+      "content": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n  <title>Flashlight 01 · Tap for Light</title>\n  <style>\n    body {\n      margin: 0;\n      padding: 0;\n      overflow: hidden;\n      background: #141414;\n    }\n    canvas {\n      touch-action: none; /* a finger on the canvas never scrolls the page */\n    }\n  </style>\n\n  <!-- a laptop has no tilt sensor but still sends one empty reading. ignore it, so rotationX stays a number -->\n  <script>\n    window.addEventListener('deviceorientation', function (e) {\n      if (e.beta === null) e.stopImmediatePropagation();\n    }, true);\n  </script>\n\n  <!-- p5.js 2.x -->\n  <script src=\"https://cdn.jsdelivr.net/npm/p5@2.2.3/lib/p5.js\"></script>\n\n  <!-- p5-phone: the permission tap, the gesture lock, the sensors and the flashlight -->\n  <script src=\"https://cdn.jsdelivr.net/npm/p5-phone@1.15.0/dist/p5-phone.min.js\"></script>\n\n  <!-- on a laptop, a QR code of this page, to open it on a phone. only on the https examples site -->\n  <script>\n    if (location.protocol === 'https:' && window.self === window.top) {\n      addEventListener('load', function () { showDesktopQr(); });\n    }\n  </script>\n</head>\n<body>\n  <script src=\"sketch.js\"></script>\n</body>\n</html>\n",
+      "id": "33c94836a81a14e7caac053d",
+      "_id": "33c94836a81a14e7caac053d",
+      "fileType": "file",
+      "children": []
+    },
+    {
+      "name": "sketch.js",
+      "content": "// Flashlight 01 · Tap for Light\n// The flashlight is the camera's light, so the first tap asks for the camera.\n// After that, each tap switches the light on or off. The screen shows what the light is doing.\n\nfunction setup() {\n  createCanvas(windowWidth, windowHeight);\n  lockGestures();\n  enableTorchTap('Tap to start');\n}\n\nfunction draw() {\n  // torchActive is true while the light is on\n  if (window.torchActive) {\n    background(255);\n  } else {\n    background(20);\n  }\n\n  // the raw value, on a dark band so it shows on white\n  fill(0);\n  rect(0, 0, width, 60);\n  fill(255);\n  textSize(18);\n  text('torchActive ' + window.torchActive, 20, 38);\n\n  // some phones and browsers have no flashlight. this says why\n  if (window.torchError) {\n    text('flashlight problem: ' + window.torchError, 20, 90, width - 40);\n  }\n}\n\nfunction mousePressed() {\n  if (!window.torchEnabled) return; // the first tap only asks for the camera\n  toggleTorch();\n}\n\nfunction windowResized() {\n  resizeCanvas(windowWidth, windowHeight);\n}\n",
+      "id": "47b7366cbfa612d03cd22889",
+      "_id": "47b7366cbfa612d03cd22889",
+      "fileType": "file",
+      "children": [],
+      "isSelectedFile": true
+    }
+  ]
+}

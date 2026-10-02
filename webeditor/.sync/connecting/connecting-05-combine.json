@@ -1,0 +1,36 @@
+{
+  "slug": "connecting-05-combine",
+  "title": "Connecting 05 · Combine",
+  "name": "C&C F26 · Connecting 05 · Combine",
+  "projectId": "b1up1nrp7",
+  "contentHash": "sha256:ab917187a473406b758dc505368610ccf2fceda6cb33a4b262952c70c6ffe903",
+  "files": [
+    {
+      "name": "root",
+      "id": "0e66850bffd5c8e1d94902d1",
+      "_id": "0e66850bffd5c8e1d94902d1",
+      "fileType": "folder",
+      "children": [
+        "dc5dac6dee8eafdc36a291ee",
+        "b583835943b8fc0cb05b49d6"
+      ]
+    },
+    {
+      "name": "index.html",
+      "content": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n  <title>Connecting 05 · Combine</title>\n  <style>\n    body {\n      margin: 0;\n      padding: 0;\n      overflow: hidden;\n      background: #141414;\n    }\n    canvas {\n      touch-action: none; /* a finger on the canvas never scrolls the page */\n    }\n  </style>\n\n  <!-- a laptop has no tilt sensor but still sends one empty reading. ignore it, so rotationX stays a number -->\n  <script>\n    window.addEventListener('deviceorientation', function (e) {\n      if (e.beta === null) e.stopImmediatePropagation();\n    }, true);\n  </script>\n\n  <!-- p5.js 2.x -->\n  <script src=\"https://cdn.jsdelivr.net/npm/p5@2.2.3/lib/p5.js\"></script>\n\n  <!-- p5-phone: the permission tap, the gesture lock, the sensors and the flashlight -->\n  <script src=\"https://cdn.jsdelivr.net/npm/p5-phone@1.15.0/dist/p5-phone.min.js\"></script>\n\n  <!-- on a laptop, a QR code of this page, to open it on a phone. only on the https examples site -->\n  <script>\n    if (location.protocol === 'https:' && window.self === window.top) {\n      addEventListener('load', function () { showDesktopQr(); });\n    }\n  </script>\n</head>\n<body>\n  <script src=\"sketch.js\"></script>\n</body>\n</html>\n",
+      "id": "dc5dac6dee8eafdc36a291ee",
+      "_id": "dc5dac6dee8eafdc36a291ee",
+      "fileType": "file",
+      "children": []
+    },
+    {
+      "name": "sketch.js",
+      "content": "// Connecting 05 · Combine\n// Two inputs at once. The light needs a finger on the screen AND the phone tipped forward.\n// Give each input to a different person and the light needs both of them.\n// && means and. Change it to || (or) and see how the relation changes.\n\n// change these\nlet threshold = 20; // degrees of forward tilt that count as tipped\n\nfunction setup() {\n  createCanvas(windowWidth, windowHeight);\n  lockGestures();\n  angleMode(DEGREES); // tilt in degrees. p5.js uses radians unless you say so\n  enableSensorTap('Tap to start');\n}\n\nfunction draw() {\n  background(20);\n  if (!window.sensorsEnabled) return;\n\n  let touching = mouseIsPressed;\n  let tipped = rotationX > threshold;\n\n  if (touching && tipped) {\n    background(255);\n  }\n\n  fill(0);\n  rect(0, 0, width, 60);\n  fill(255);\n  textSize(18);\n  text('touching ' + touching + '   tipped ' + tipped, 20, 38);\n}\n\nfunction windowResized() {\n  resizeCanvas(windowWidth, windowHeight);\n}\n",
+      "id": "b583835943b8fc0cb05b49d6",
+      "_id": "b583835943b8fc0cb05b49d6",
+      "fileType": "file",
+      "children": [],
+      "isSelectedFile": true
+    }
+  ]
+}

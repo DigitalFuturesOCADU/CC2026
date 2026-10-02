@@ -1,0 +1,36 @@
+{
+  "slug": "gifs-01-play-and-pause",
+  "title": "GIFs 01 · Play and Pause",
+  "name": "C&C F26 · GIFs 01 · Play and Pause",
+  "projectId": "2Z5rHXFA0",
+  "contentHash": "sha256:2bbe6174f9b0e7c2596a328b54b2c68fbd0dad2fe514b50ee7cb95ca9a1d7faf",
+  "files": [
+    {
+      "name": "root",
+      "id": "552e99d2e5556bf29de754bb",
+      "_id": "552e99d2e5556bf29de754bb",
+      "fileType": "folder",
+      "children": [
+        "c5f98169a938a04ae598908e",
+        "ef72b3197b95ca9653a0ed78"
+      ]
+    },
+    {
+      "name": "index.html",
+      "content": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n  <title>GIFs 01 · Play and Pause</title>\n  <style>\n    body {\n      margin: 0;\n      padding: 0;\n      overflow: hidden;\n      background: #141414;\n    }\n    canvas {\n      touch-action: none; /* a finger on the canvas never scrolls the page */\n    }\n  </style>\n\n  <!-- a laptop has no tilt sensor but still sends one empty reading. ignore it, so rotationX stays a number -->\n  <script>\n    window.addEventListener('deviceorientation', function (e) {\n      if (e.beta === null) e.stopImmediatePropagation();\n    }, true);\n  </script>\n\n  <!-- p5.js 2.x -->\n  <script src=\"https://cdn.jsdelivr.net/npm/p5@2.2.3/lib/p5.js\"></script>\n\n  <!-- p5-phone: the permission tap, the gesture lock, the sensors and the flashlight -->\n  <script src=\"https://cdn.jsdelivr.net/npm/p5-phone@1.15.0/dist/p5-phone.min.js\"></script>\n\n  <!-- on a laptop, a QR code of this page, to open it on a phone. only on the https examples site -->\n  <script>\n    if (location.protocol === 'https:' && window.self === window.top) {\n      addEventListener('load', function () { showDesktopQr(); });\n    }\n  </script>\n</head>\n<body>\n  <script src=\"sketch.js\"></script>\n</body>\n</html>\n",
+      "id": "c5f98169a938a04ae598908e",
+      "_id": "c5f98169a938a04ae598908e",
+      "fileType": "file",
+      "children": []
+    },
+    {
+      "name": "sketch.js",
+      "content": "// GIFs 01 · Play and Pause\n// loadImage() loads a GIF too, and it plays by itself. pause() stops it, play() starts it.\n// Hold a finger on the screen to play the GIF. Lift it to pause.\n\nlet gifImage; // the GIF, once it has loaded\n\nasync function setup() {\n  createCanvas(windowWidth, windowHeight);\n  lockGestures();\n  imageMode(CENTER);\n  gifImage = await loadImage('https://digitalfuturesocadu.github.io/CC2026/media/gifs/hand.gif');\n  gifImage.pause(); // still, until a finger is down\n}\n\nfunction draw() {\n  background(20);\n  // as big as fits the screen, as in Images 01\n  let fit = min(width / gifImage.width, height / gifImage.height);\n  image(gifImage, width / 2, height / 2, gifImage.width * fit, gifImage.height * fit);\n\n  // frames are counted from 0, so the last one is numFrames() - 1\n  fill(255);\n  textSize(18);\n  text('frame ' + gifImage.getCurrentFrame() + ' of ' + gifImage.numFrames(), 20, 40);\n}\n\nfunction mousePressed() {\n  // pause() stops the picture, not the GIF's clock. setting the frame restarts the clock,\n  // so the GIF carries on from this frame instead of jumping ahead\n  gifImage.setFrame(gifImage.getCurrentFrame());\n  gifImage.play();\n}\n\nfunction mouseReleased() {\n  gifImage.pause();\n}\n\nfunction windowResized() {\n  resizeCanvas(windowWidth, windowHeight);\n}\n",
+      "id": "ef72b3197b95ca9653a0ed78",
+      "_id": "ef72b3197b95ca9653a0ed78",
+      "fileType": "file",
+      "children": [],
+      "isSelectedFile": true
+    }
+  ]
+}

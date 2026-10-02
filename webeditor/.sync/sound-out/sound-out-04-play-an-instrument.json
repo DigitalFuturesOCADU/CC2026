@@ -1,0 +1,36 @@
+{
+  "slug": "sound-out-04-play-an-instrument",
+  "title": "Sound Out 04 · Play an Instrument",
+  "name": "C&C F26 · Sound Out 04 · Play an Instrument",
+  "projectId": null,
+  "contentHash": "sha256:2444b7def4c3b77932c63f742b68cd693e6c2cb60301b89646fff2a91869814e",
+  "files": [
+    {
+      "name": "root",
+      "id": "1ca83c5b9861dfd50e8da647",
+      "_id": "1ca83c5b9861dfd50e8da647",
+      "fileType": "folder",
+      "children": [
+        "cef9fa14a7fb0e743c7e5744",
+        "fa78568ea6545c2b4a11ce39"
+      ]
+    },
+    {
+      "name": "index.html",
+      "content": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n  <title>Sound Out 04 · Play an Instrument</title>\n  <style>\n    body {\n      margin: 0;\n      padding: 0;\n      overflow: hidden;\n      background: #141414;\n    }\n    canvas {\n      touch-action: none; /* a finger on the canvas never scrolls the page */\n    }\n  </style>\n\n  <!-- a laptop has no tilt sensor but still sends one empty reading. ignore it, so rotationX stays a number -->\n  <script>\n    window.addEventListener('deviceorientation', function (e) {\n      if (e.beta === null) e.stopImmediatePropagation();\n    }, true);\n  </script>\n\n  <!-- p5.js 2.x -->\n  <script src=\"https://cdn.jsdelivr.net/npm/p5@2.2.3/lib/p5.js\"></script>\n\n  <!-- p5-phone: the permission tap, the gesture lock, the sensors and the flashlight -->\n  <script src=\"https://cdn.jsdelivr.net/npm/p5-phone@1.15.0/dist/p5-phone.min.js\"></script>\n\n  <!-- on a laptop, a QR code of this page, to open it on a phone. only on the https examples site -->\n  <script>\n    if (location.protocol === 'https:' && window.self === window.top) {\n      addEventListener('load', function () { showDesktopQr(); });\n    }\n  </script>\n</head>\n<body>\n  <script src=\"sketch.js\"></script>\n</body>\n</html>\n",
+      "id": "cef9fa14a7fb0e743c7e5744",
+      "_id": "cef9fa14a7fb0e743c7e5744",
+      "fileType": "file",
+      "children": []
+    },
+    {
+      "name": "sketch.js",
+      "content": "// Sound Out 04 · Play an Instrument\n// smplr plays recordings of a real marimba, one for each note. Tap a key to strike it.\n// The recordings download when the page opens, so it says loading until they arrive.\n\n// change these\nlet notes = ['C4', 'D4', 'E4', 'G4', 'A4', 'C5', 'D5', 'E5']; // one key for each, low to high\n\nlet audio = new AudioContext(); // the browser's own sound system. smplr plays through it\nlet marimba;     // the instrument\nlet struck = -1; // the key struck last. -1 is none\n\nasync function setup() {\n  createCanvas(windowWidth, windowHeight);\n  lockGestures();\n  background(20);\n  fill(255);\n  textSize(18);\n  text('loading', 20, 40); // draw() starts once the marimba is ready\n\n  // smplr comes as a module, which a plain script tag cannot load, so import() loads it here\n  let smplr = await import('https://cdn.jsdelivr.net/npm/smplr@1.0.0/dist/index.mjs');\n  marimba = smplr.Soundfont(audio, { instrument: 'marimba' });\n  await marimba.ready;            // wait for the recordings\n  enableSoundTap('Tap to start'); // asked for once there is something to play\n}\n\nfunction draw() {\n  background(20);\n  noStroke();\n  let w = width / notes.length;\n  for (let i = 0; i < notes.length; i++) {\n    fill(60);\n    if (i === struck && mouseIsPressed) {\n      fill(255, 200, 0); // the key under the finger\n    }\n    rect(i * w + 2, 80, w - 4, height - 100);\n    fill(255);\n    text(notes[i], i * w + 8, height - 40);\n  }\n  text('marimba. tap a key', 20, 40);\n}\n\nfunction mousePressed() {\n  if (!window.soundEnabled) return; // the permission tap only turns the sound on\n  // the key under the finger: left is 0, right is the last one\n  struck = constrain(floor(mouseX / width * notes.length), 0, notes.length - 1);\n  marimba.start({ note: notes[struck] });\n}\n\nfunction windowResized() {\n  resizeCanvas(windowWidth, windowHeight);\n}\n",
+      "id": "fa78568ea6545c2b4a11ce39",
+      "_id": "fa78568ea6545c2b4a11ce39",
+      "fileType": "file",
+      "children": [],
+      "isSelectedFile": true
+    }
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "slug": "sound-out-03-start-a-loop",
+  "title": "Sound Out 03 · Start a Loop",
+  "name": "C&C F26 · Sound Out 03 · Start a Loop",
+  "projectId": null,
+  "contentHash": "sha256:7811684488b2efdb0ca67717f229806eacb279d08a4d24fb960d9fa3e11ce47d",
+  "files": [
+    {
+      "name": "root",
+      "id": "de3087bb8a93227b20ab1ac1",
+      "_id": "de3087bb8a93227b20ab1ac1",
+      "fileType": "folder",
+      "children": [
+        "189805c2b143f56eb57634b2",
+        "d16f792ad4bdc0a727f8d557"
+      ]
+    },
+    {
+      "name": "index.html",
+      "content": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n  <title>Sound Out 03 · Start a Loop</title>\n  <style>\n    body {\n      margin: 0;\n      padding: 0;\n      overflow: hidden;\n      background: #141414;\n    }\n    canvas {\n      touch-action: none; /* a finger on the canvas never scrolls the page */\n    }\n  </style>\n\n  <!-- a laptop has no tilt sensor but still sends one empty reading. ignore it, so rotationX stays a number -->\n  <script>\n    window.addEventListener('deviceorientation', function (e) {\n      if (e.beta === null) e.stopImmediatePropagation();\n    }, true);\n  </script>\n\n  <!-- p5.js 2.x -->\n  <script src=\"https://cdn.jsdelivr.net/npm/p5@2.2.3/lib/p5.js\"></script>\n\n  <!-- Tone.js: loops and synths on their own clock -->\n  <script src=\"https://cdn.jsdelivr.net/npm/tone@15.1.22/build/Tone.js\"></script>\n\n  <!-- p5-phone: the permission tap, the gesture lock, the sensors and the flashlight -->\n  <script src=\"https://cdn.jsdelivr.net/npm/p5-phone@1.15.0/dist/p5-phone.min.js\"></script>\n\n  <!-- on a laptop, a QR code of this page, to open it on a phone. only on the https examples site -->\n  <script>\n    if (location.protocol === 'https:' && window.self === window.top) {\n      addEventListener('load', function () { showDesktopQr(); });\n    }\n  </script>\n</head>\n<body>\n  <script src=\"sketch.js\"></script>\n</body>\n</html>\n",
+      "id": "189805c2b143f56eb57634b2",
+      "_id": "189805c2b143f56eb57634b2",
+      "fileType": "file",
+      "children": []
+    },
+    {
+      "name": "sketch.js",
+      "content": "// Sound Out 03 · Start a Loop\n// Tone.js plays a pattern of notes on its own clock, the Transport.\n// A quick tap starts or stops it. Hold a finger down and slide up and down to set the tempo.\n\n// change these\nlet notes = ['C4', 'E4', 'G4', 'B4', 'C5', 'B4', 'G4', 'E4']; // the pattern, one note per step\nlet slowest = 60;  // beats per minute at the bottom of the screen\nlet fastest = 240; // beats per minute at the top\n\nlet synth;             // the instrument that plays the notes\nlet downTime = -10000; // when the finger went down\n\nfunction setup() {\n  createCanvas(windowWidth, windowHeight);\n  lockGestures();\n  synth = new Tone.Synth().toDestination();\n  new Tone.Sequence(playNote, notes, '8n').start(0); // a step every '8n': two steps to a beat\n  enableSoundTap('Tap to start');\n}\n\n// the Transport calls this for each step, a little early. time says exactly when to play\nfunction playNote(time, note) {\n  synth.triggerAttackRelease(note, '16n', time); // a short note, half a step long\n}\n\nfunction draw() {\n  background(20);\n\n  // while a finger is down, its height sets the tempo\n  if (mouseIsPressed && window.soundEnabled) {\n    Tone.getTransport().bpm.value = map(mouseY, height, 0, slowest, fastest, true);\n  }\n\n  fill(255);\n  textSize(18);\n  text(Tone.getTransport().state + '   ' + round(Tone.getTransport().bpm.value) + ' bpm', 20, 40);\n}\n\nfunction mousePressed() {\n  if (!window.soundEnabled) return; // the permission tap only turns the sound on\n  downTime = millis();\n}\n\nfunction mouseReleased() {\n  // a quick tap starts or stops the Transport. a longer hold only sets the tempo\n  if (millis() - downTime > 300) return;\n  Tone.getTransport().toggle();\n}\n\nfunction windowResized() {\n  resizeCanvas(windowWidth, windowHeight);\n}\n",
+      "id": "d16f792ad4bdc0a727f8d557",
+      "_id": "d16f792ad4bdc0a727f8d557",
+      "fileType": "file",
+      "children": [],
+      "isSelectedFile": true
+    }
+  ]
+}

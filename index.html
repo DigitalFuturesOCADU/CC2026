@@ -95,6 +95,93 @@
       </li>
     </ul>
 
+    <!-- REFERENCE:START -->
+    <!-- Written by tools/examples.py. Edit the lists there, not here. -->
+    <h2 id="p5-phone">Phone Basics · p5-phone</h2>
+    <p class="intro">The pattern every phone sketch uses: lock the gestures, ask on a tap, check the flag, then read.</p>
+    <ul>
+      <li><a href="p5-phone/01-start-here/">01 Start Here</a> <a class="code" href="https://github.com/DigitalFuturesOCADU/CC2026/tree/main/p5-phone/01-start-here">code</a> <a class="code" href="https://editor.p5js.org/creationcomputation/sketches/CjlWXB4nM">web editor</a><span class="what">The blank phone sketch. Lock the gestures, ask on a tap, wait for the flag.</span></li>
+      <li><a href="p5-phone/02-debug-panel/">02 Debug Panel</a> <a class="code" href="https://github.com/DigitalFuturesOCADU/CC2026/tree/main/p5-phone/02-debug-panel">code</a> <a class="code" href="https://editor.p5js.org/creationcomputation/sketches/SBLbF3kt0">web editor</a><span class="what">A phone has no console. showDebug() puts one on the screen.</span></li>
+      <li><a href="p5-phone/03-one-tap-many-permissions/">03 One Tap, Many Permissions</a> <a class="code" href="https://github.com/DigitalFuturesOCADU/CC2026/tree/main/p5-phone/03-one-tap-many-permissions">code</a> <a class="code" href="https://editor.p5js.org/creationcomputation/sketches/yZa1Qjo6u">web editor</a><span class="what">Motion, microphone and flashlight from one tap, then a check of each flag.</span></li>
+    </ul>
+
+    <h2 id="motion">Input · Motion</h2>
+    <p class="intro">Tilt, shake and movement. The values are p5.js&#x27;s own: rotationX, accelerationX, deviceShaken().</p>
+    <ul>
+      <li><a href="motion/01-tilt/">01 Tilt</a> <a class="code" href="https://github.com/DigitalFuturesOCADU/CC2026/tree/main/motion/01-tilt">code</a> <a class="code" href="https://editor.p5js.org/creationcomputation/sketches/3kic823dL">web editor</a><span class="what">rotationX and rotationY move a circle.</span></li>
+      <li><a href="motion/02-shake/">02 Shake</a> <a class="code" href="https://github.com/DigitalFuturesOCADU/CC2026/tree/main/motion/02-shake">code</a> <a class="code" href="https://editor.p5js.org/creationcomputation/sketches/BFJh_8Tp0">web editor</a><span class="what">deviceShaken() is an event. Each shake picks a new colour and adds one to a count.</span></li>
+      <li><a href="motion/03-how-much-movement/">03 How Much Movement</a> <a class="code" href="https://github.com/DigitalFuturesOCADU/CC2026/tree/main/motion/03-how-much-movement">code</a> <a class="code" href="https://editor.p5js.org/creationcomputation/sketches/9xuT__ZDb">web editor</a><span class="what">Acceleration, added up and smoothed: how much the phone is moving.</span></li>
+    </ul>
+
+    <h2 id="sound-in">Input · Sound</h2>
+    <p class="intro">The microphone: how loud, when it gets loud, and how high or low.</p>
+    <ul>
+      <li><a href="sound-in/01-level/">01 Level</a> <a class="code" href="https://github.com/DigitalFuturesOCADU/CC2026/tree/main/sound-in/01-level">code</a> <a class="code" href="https://editor.p5js.org/creationcomputation/sketches/6iH6jXdgo">web editor</a><span class="what">How loud it is, from 0 to 1, sets the size of a circle.</span></li>
+      <li><a href="sound-in/02-clap/">02 Clap</a> <a class="code" href="https://github.com/DigitalFuturesOCADU/CC2026/tree/main/sound-in/02-clap">code</a> <a class="code" href="https://editor.p5js.org/creationcomputation/sketches/mLMJFNe1K">web editor</a><span class="what">A loud moment is an event. Each clap counts once.</span></li>
+      <li><a href="sound-in/03-high-and-low/">03 High and Low</a> <a class="code" href="https://github.com/DigitalFuturesOCADU/CC2026/tree/main/sound-in/03-high-and-low">code</a> <a class="code" href="https://editor.p5js.org/creationcomputation/sketches/q5vPdirnU">web editor</a><span class="what">The FFT splits sound into bands. Low and high each get a bar.</span></li>
+    </ul>
+
+    <h2 id="touch">Input · Touch</h2>
+    <p class="intro">Where the fingers are, how many there are, and which part of the screen they hold.</p>
+    <ul>
+      <li><a href="touch/01-where/">01 Where</a> <a class="code" href="https://github.com/DigitalFuturesOCADU/CC2026/tree/main/touch/01-where">code</a> <a class="code" href="https://editor.p5js.org/creationcomputation/sketches/YGprzO_FN">web editor</a><span class="what">mouseX and mouseY follow a finger. mouseIsPressed says if one is down.</span></li>
+      <li><a href="touch/02-how-many/">02 How Many</a> <a class="code" href="https://github.com/DigitalFuturesOCADU/CC2026/tree/main/touch/02-how-many">code</a> <a class="code" href="https://editor.p5js.org/creationcomputation/sketches/0ktIOcnf9">web editor</a><span class="what">touches holds every finger on the screen. Count them, draw them. Phone only: the mouse is not a touch.</span></li>
+      <li><a href="touch/03-zones/">03 Zones</a> <a class="code" href="https://github.com/DigitalFuturesOCADU/CC2026/tree/main/touch/03-zones">code</a> <a class="code" href="https://editor.p5js.org/creationcomputation/sketches/wzf4WsQG0">web editor</a><span class="what">The screen in three parts. Each part lights while a finger holds it. Phone only.</span></li>
+    </ul>
+
+    <h2 id="drawing">Output · Drawing</h2>
+    <p class="intro">Shapes, trails and repeats, drawn on the screen.</p>
+    <ul>
+      <li><a href="drawing/01-shapes/">01 Shapes</a> <a class="code" href="https://github.com/DigitalFuturesOCADU/CC2026/tree/main/drawing/01-shapes">code</a> <a class="code" href="https://editor.p5js.org/creationcomputation/sketches/BXtQSR9zT">web editor</a><span class="what">background, fill, circle, rect, line and text, redrawn every frame.</span></li>
+      <li><a href="drawing/02-trails/">02 Trails</a> <a class="code" href="https://github.com/DigitalFuturesOCADU/CC2026/tree/main/drawing/02-trails">code</a> <a class="code" href="https://editor.p5js.org/creationcomputation/sketches/qeTPu2zkw">web editor</a><span class="what">Tilt steers a pen. A see-through background leaves a fading trail.</span></li>
+      <li><a href="drawing/03-repeat/">03 Repeat</a> <a class="code" href="https://github.com/DigitalFuturesOCADU/CC2026/tree/main/drawing/03-repeat">code</a> <a class="code" href="https://editor.p5js.org/creationcomputation/sketches/dIyo-Pdvi">web editor</a><span class="what">A for loop draws a ring of shapes. A finger sets how many.</span></li>
+    </ul>
+
+    <h2 id="images">Output · Images</h2>
+    <p class="intro">Load an image, fit it to the screen, and change it with input.</p>
+    <ul>
+      <li><a href="images/01-load-and-fit/">01 Load and Fit</a> <a class="code" href="https://github.com/DigitalFuturesOCADU/CC2026/tree/main/images/01-load-and-fit">code</a> <a class="code" href="https://editor.p5js.org/creationcomputation/sketches/D7F6i9ftl">web editor</a><span class="what">await loadImage(), then image() as big as fits the screen.</span></li>
+      <li><a href="images/02-tilt-to-scale/">02 Tilt to Scale</a> <a class="code" href="https://github.com/DigitalFuturesOCADU/CC2026/tree/main/images/02-tilt-to-scale">code</a> <a class="code" href="https://editor.p5js.org/creationcomputation/sketches/TqZOAbeQm">web editor</a><span class="what">Tipping the phone forward and back scales the image.</span></li>
+      <li><a href="images/03-shake-for-the-next/">03 Shake for the Next</a> <a class="code" href="https://github.com/DigitalFuturesOCADU/CC2026/tree/main/images/03-shake-for-the-next">code</a> <a class="code" href="https://editor.p5js.org/creationcomputation/sketches/hTcck-OCR">web editor</a><span class="what">A list of images. Each shake shows the next one.</span></li>
+    </ul>
+
+    <h2 id="gifs">Output · GIFs</h2>
+    <p class="intro">A GIF is an image with frames. Play it, pick a frame, change its speed.</p>
+    <ul>
+      <li><a href="gifs/01-play-and-pause/">01 Play and Pause</a> <a class="code" href="https://github.com/DigitalFuturesOCADU/CC2026/tree/main/gifs/01-play-and-pause">code</a> <a class="code" href="https://editor.p5js.org/creationcomputation/sketches/2Z5rHXFA0">web editor</a><span class="what">The GIF plays while a finger is down and pauses when it lifts.</span></li>
+      <li><a href="gifs/02-tilt-to-frame/">02 Tilt to Frame</a> <a class="code" href="https://github.com/DigitalFuturesOCADU/CC2026/tree/main/gifs/02-tilt-to-frame">code</a> <a class="code" href="https://editor.p5js.org/creationcomputation/sketches/GIdLyf2wl">web editor</a><span class="what">Tilt picks the frame with setFrame(). The GIF never plays on its own.</span></li>
+      <li><a href="gifs/03-speed/">03 Speed</a> <a class="code" href="https://github.com/DigitalFuturesOCADU/CC2026/tree/main/gifs/03-speed">code</a> <a class="code" href="https://editor.p5js.org/creationcomputation/sketches/pyWMviodx">web editor</a><span class="what">delay() sets the time between frames. A finger sets the speed.</span></li>
+    </ul>
+
+    <h2 id="sound-out">Output · Sound</h2>
+    <p class="intro">One example for each way of making sound: a recording, a tone, a loop, an instrument, a voice.</p>
+    <ul>
+      <li><a href="sound-out/01-play-a-recording/">01 Play a Recording</a> <a class="code" href="https://github.com/DigitalFuturesOCADU/CC2026/tree/main/sound-out/01-play-a-recording">code</a> <a class="code" href="https://editor.p5js.org/creationcomputation/sketches/O7qY-xaqc">web editor</a><span class="what">p5.sound. A quick tap starts and stops a loop. Hold and slide to bend its speed.</span></li>
+      <li><a href="sound-out/02-make-a-tone/">02 Make a Tone</a> <a class="code" href="https://github.com/DigitalFuturesOCADU/CC2026/tree/main/sound-out/02-make-a-tone">code</a> <a class="code" href="https://editor.p5js.org/creationcomputation/sketches/GShTWEvF9">web editor</a><span class="what">p5.Oscillator. A tone sounds while a finger is down. Left to right is low to high.</span></li>
+      <li><a href="sound-out/03-start-a-loop/">03 Start a Loop</a> <a class="code" href="https://github.com/DigitalFuturesOCADU/CC2026/tree/main/sound-out/03-start-a-loop">code</a> <a class="code" href="https://editor.p5js.org/creationcomputation/sketches/qKqf4kDxP">web editor</a><span class="what">Tone.js. A pattern of notes on Tone.js&#x27;s own clock. A tap starts and stops it. A finger sets the tempo.</span></li>
+      <li><a href="sound-out/04-play-an-instrument/">04 Play an Instrument</a> <a class="code" href="https://github.com/DigitalFuturesOCADU/CC2026/tree/main/sound-out/04-play-an-instrument">code</a> <a class="code" href="https://editor.p5js.org/creationcomputation/sketches/rmya59zfp">web editor</a><span class="what">smplr. A marimba made of recordings. The screen is the keys.</span></li>
+      <li><a href="sound-out/05-say-something/">05 Say Something</a> <a class="code" href="https://github.com/DigitalFuturesOCADU/CC2026/tree/main/sound-out/05-say-something">code</a> <a class="code" href="https://editor.p5js.org/creationcomputation/sketches/3vaXa6aUa">web editor</a><span class="what">The browser&#x27;s own voice. A tap says the next word.</span></li>
+    </ul>
+
+    <h2 id="flashlight">Output · Flashlight</h2>
+    <p class="intro">The camera&#x27;s light, switched by the sketch.</p>
+    <ul>
+      <li><a href="flashlight/01-tap-for-light/">01 Tap for Light</a> <a class="code" href="https://github.com/DigitalFuturesOCADU/CC2026/tree/main/flashlight/01-tap-for-light">code</a> <a class="code" href="https://editor.p5js.org/creationcomputation/sketches/TmtMjzgBP">web editor</a><span class="what">A tap switches the flashlight on and off.</span></li>
+      <li><a href="flashlight/02-slow-blink/">02 Slow Blink</a> <a class="code" href="https://github.com/DigitalFuturesOCADU/CC2026/tree/main/flashlight/02-slow-blink">code</a> <a class="code" href="https://editor.p5js.org/creationcomputation/sketches/92ZdmSbdD">web editor</a><span class="what">A timer blinks the light. Tilt sets how slowly, never faster than 300 ms.</span></li>
+    </ul>
+
+    <h2 id="connecting">Connecting Input to Output</h2>
+    <p class="intro">The small moves between a sensor and an output: map, smooth, threshold, fade, combine.</p>
+    <ul>
+      <li><a href="connecting/01-map/">01 Map</a> <a class="code" href="https://github.com/DigitalFuturesOCADU/CC2026/tree/main/connecting/01-map">code</a> <a class="code" href="https://editor.p5js.org/creationcomputation/sketches/c8eFYvVLq">web editor</a><span class="what">map() turns tilt in degrees into screen brightness.</span></li>
+      <li><a href="connecting/02-smooth/">02 Smooth</a> <a class="code" href="https://github.com/DigitalFuturesOCADU/CC2026/tree/main/connecting/02-smooth">code</a> <a class="code" href="https://editor.p5js.org/creationcomputation/sketches/OaYkOahPW">web editor</a><span class="what">lerp() smooths a jumpy reading. Raw and smoothed side by side.</span></li>
+      <li><a href="connecting/03-threshold/">03 Threshold</a> <a class="code" href="https://github.com/DigitalFuturesOCADU/CC2026/tree/main/connecting/03-threshold">code</a> <a class="code" href="https://editor.p5js.org/creationcomputation/sketches/QeT1ukj39S">web editor</a><span class="what">A stream becomes an event: tipping past a line counts once.</span></li>
+      <li><a href="connecting/04-fade/">04 Fade</a> <a class="code" href="https://github.com/DigitalFuturesOCADU/CC2026/tree/main/connecting/04-fade">code</a> <a class="code" href="https://editor.p5js.org/creationcomputation/sketches/bLbixhTm85">web editor</a><span class="what">An event starts a clock. The light fades over three seconds.</span></li>
+      <li><a href="connecting/05-combine/">05 Combine</a> <a class="code" href="https://github.com/DigitalFuturesOCADU/CC2026/tree/main/connecting/05-combine">code</a> <a class="code" href="https://editor.p5js.org/creationcomputation/sketches/b1up1nrp7">web editor</a><span class="what">Two inputs at once: the light needs a finger down and the phone tipped.</span></li>
+    </ul>
+
+    <!-- REFERENCE:END -->
+
   </main>
 
 </body>

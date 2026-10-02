@@ -1,0 +1,36 @@
+{
+  "slug": "gifs-03-speed",
+  "title": "GIFs 03 · Speed",
+  "name": "C&C F26 · GIFs 03 · Speed",
+  "projectId": "pyWMviodx",
+  "contentHash": "sha256:007192d07d0f50ac5b548258dec1179fb8b1b58a537cff63f73b305d8068bc20",
+  "files": [
+    {
+      "name": "root",
+      "id": "347860c6174728940cf57c18",
+      "_id": "347860c6174728940cf57c18",
+      "fileType": "folder",
+      "children": [
+        "3708ed722c435b25f5ff891a",
+        "4d1936a0660d518f62adc9f2"
+      ]
+    },
+    {
+      "name": "index.html",
+      "content": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n  <title>GIFs 03 · Speed</title>\n  <style>\n    body {\n      margin: 0;\n      padding: 0;\n      overflow: hidden;\n      background: #141414;\n    }\n    canvas {\n      touch-action: none; /* a finger on the canvas never scrolls the page */\n    }\n  </style>\n\n  <!-- a laptop has no tilt sensor but still sends one empty reading. ignore it, so rotationX stays a number -->\n  <script>\n    window.addEventListener('deviceorientation', function (e) {\n      if (e.beta === null) e.stopImmediatePropagation();\n    }, true);\n  </script>\n\n  <!-- p5.js 2.x -->\n  <script src=\"https://cdn.jsdelivr.net/npm/p5@2.2.3/lib/p5.js\"></script>\n\n  <!-- p5-phone: the permission tap, the gesture lock, the sensors and the flashlight -->\n  <script src=\"https://cdn.jsdelivr.net/npm/p5-phone@1.15.0/dist/p5-phone.min.js\"></script>\n\n  <!-- on a laptop, a QR code of this page, to open it on a phone. only on the https examples site -->\n  <script>\n    if (location.protocol === 'https:' && window.self === window.top) {\n      addEventListener('load', function () { showDesktopQr(); });\n    }\n  </script>\n</head>\n<body>\n  <script src=\"sketch.js\"></script>\n</body>\n</html>\n",
+      "id": "3708ed722c435b25f5ff891a",
+      "_id": "3708ed722c435b25f5ff891a",
+      "fileType": "file",
+      "children": []
+    },
+    {
+      "name": "sketch.js",
+      "content": "// GIFs 03 · Speed\n// delay() sets how long every frame stays on the screen, in milliseconds. It replaces\n// the timing saved in the file. Drag a finger up for fast, down for slow.\n\n// change these\nlet fastest = 20;  // milliseconds for each frame, with a finger at the top\nlet slowest = 400; // milliseconds for each frame, with a finger at the bottom\n\nlet gifImage;    // the GIF, once it has loaded\nlet amount = 60; // the delay now. it starts at 60, the speed saved in this GIF\n\nasync function setup() {\n  createCanvas(windowWidth, windowHeight);\n  lockGestures();\n  imageMode(CENTER);\n  gifImage = await loadImage('https://digitalfuturesocadu.github.io/CC2026/media/gifs/cow.gif');\n  gifImage.delay(amount); // every frame now waits this long\n}\n\nfunction draw() {\n  background(20);\n  // as big as fits the screen, as in Images 01\n  let fit = min(width / gifImage.width, height / gifImage.height);\n  image(gifImage, width / 2, height / 2, gifImage.width * fit, gifImage.height * fit);\n\n  fill(255);\n  textSize(18);\n  text('delay ' + amount + ' ms', 20, 40);\n}\n\n// a finger dragged up and down: the top of the screen is fast, the bottom is slow\nfunction mouseDragged() {\n  amount = round(map(mouseY, 0, height, fastest, slowest, true));\n  gifImage.delay(amount);\n}\n\nfunction windowResized() {\n  resizeCanvas(windowWidth, windowHeight);\n}\n",
+      "id": "4d1936a0660d518f62adc9f2",
+      "_id": "4d1936a0660d518f62adc9f2",
+      "fileType": "file",
+      "children": [],
+      "isSelectedFile": true
+    }
+  ]
+}

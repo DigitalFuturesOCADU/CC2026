@@ -1,0 +1,36 @@
+{
+  "slug": "connecting-01-map",
+  "title": "Connecting 01 · Map",
+  "name": "C&C F26 · Connecting 01 · Map",
+  "projectId": "c8eFYvVLq",
+  "contentHash": "sha256:131d550812b6efc2e0e3d3250d8581d20a9b6f303d8363e6c4ce5965bb87cb14",
+  "files": [
+    {
+      "name": "root",
+      "id": "dd56e6096a3e05b25b8a3418",
+      "_id": "dd56e6096a3e05b25b8a3418",
+      "fileType": "folder",
+      "children": [
+        "e4eebbab17c5f590c779fc2e",
+        "008dd18f2eae7a7565fe34af"
+      ]
+    },
+    {
+      "name": "index.html",
+      "content": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n  <title>Connecting 01 · Map</title>\n  <style>\n    body {\n      margin: 0;\n      padding: 0;\n      overflow: hidden;\n      background: #141414;\n    }\n    canvas {\n      touch-action: none; /* a finger on the canvas never scrolls the page */\n    }\n  </style>\n\n  <!-- a laptop has no tilt sensor but still sends one empty reading. ignore it, so rotationX stays a number -->\n  <script>\n    window.addEventListener('deviceorientation', function (e) {\n      if (e.beta === null) e.stopImmediatePropagation();\n    }, true);\n  </script>\n\n  <!-- p5.js 2.x -->\n  <script src=\"https://cdn.jsdelivr.net/npm/p5@2.2.3/lib/p5.js\"></script>\n\n  <!-- p5-phone: the permission tap, the gesture lock, the sensors and the flashlight -->\n  <script src=\"https://cdn.jsdelivr.net/npm/p5-phone@1.15.0/dist/p5-phone.min.js\"></script>\n\n  <!-- on a laptop, a QR code of this page, to open it on a phone. only on the https examples site -->\n  <script>\n    if (location.protocol === 'https:' && window.self === window.top) {\n      addEventListener('load', function () { showDesktopQr(); });\n    }\n  </script>\n</head>\n<body>\n  <script src=\"sketch.js\"></script>\n</body>\n</html>\n",
+      "id": "e4eebbab17c5f590c779fc2e",
+      "_id": "e4eebbab17c5f590c779fc2e",
+      "fileType": "file",
+      "children": []
+    },
+    {
+      "name": "sketch.js",
+      "content": "// Connecting 01 · Map\n// map() turns one range of numbers into another.\n// Tilt in degrees becomes the brightness of the whole screen: the screen is a light.\n// The last argument, true, keeps the answer inside the new range, like constrain().\n\n// change these\nlet darkTilt = -30;  // tilt (degrees) that gives a black screen\nlet lightTilt = 30;  // tilt (degrees) that gives a white screen\n\nfunction setup() {\n  createCanvas(windowWidth, windowHeight);\n  lockGestures();\n  angleMode(DEGREES); // tilt in degrees. p5.js uses radians unless you say so\n  enableSensorTap('Tap to start');\n}\n\nfunction draw() {\n  background(20);\n  if (!window.sensorsEnabled) return;\n\n  let glow = map(rotationX, darkTilt, lightTilt, 0, 255, true);\n  background(glow);\n\n  // the numbers, on a dark band so they show on any brightness\n  fill(0);\n  rect(0, 0, width, 60);\n  fill(255);\n  textSize(18);\n  text('rotationX ' + round(rotationX) + '  becomes  ' + round(glow), 20, 38);\n}\n\nfunction windowResized() {\n  resizeCanvas(windowWidth, windowHeight);\n}\n",
+      "id": "008dd18f2eae7a7565fe34af",
+      "_id": "008dd18f2eae7a7565fe34af",
+      "fileType": "file",
+      "children": [],
+      "isSelectedFile": true
+    }
+  ]
+}

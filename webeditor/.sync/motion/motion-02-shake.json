@@ -1,0 +1,36 @@
+{
+  "slug": "motion-02-shake",
+  "title": "Motion 02 · Shake",
+  "name": "C&C F26 · Motion 02 · Shake",
+  "projectId": "BFJh_8Tp0",
+  "contentHash": "sha256:4138b134adf2ba4928a041d8d699fe84808fb4a272ef1ab2e26e6c66e1138b89",
+  "files": [
+    {
+      "name": "root",
+      "id": "f6cc016bf8af141816f93354",
+      "_id": "f6cc016bf8af141816f93354",
+      "fileType": "folder",
+      "children": [
+        "9dd4a4d383ba81870a01751c",
+        "4813cd2829bf01a6ba29d8b1"
+      ]
+    },
+    {
+      "name": "index.html",
+      "content": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n  <title>Motion 02 · Shake</title>\n  <style>\n    body {\n      margin: 0;\n      padding: 0;\n      overflow: hidden;\n      background: #141414;\n    }\n    canvas {\n      touch-action: none; /* a finger on the canvas never scrolls the page */\n    }\n  </style>\n\n  <!-- a laptop has no tilt sensor but still sends one empty reading. ignore it, so rotationX stays a number -->\n  <script>\n    window.addEventListener('deviceorientation', function (e) {\n      if (e.beta === null) e.stopImmediatePropagation();\n    }, true);\n  </script>\n\n  <!-- p5.js 2.x -->\n  <script src=\"https://cdn.jsdelivr.net/npm/p5@2.2.3/lib/p5.js\"></script>\n\n  <!-- p5-phone: the permission tap, the gesture lock, the sensors and the flashlight -->\n  <script src=\"https://cdn.jsdelivr.net/npm/p5-phone@1.15.0/dist/p5-phone.min.js\"></script>\n\n  <!-- on a laptop, a QR code of this page, to open it on a phone. only on the https examples site -->\n  <script>\n    if (location.protocol === 'https:' && window.self === window.top) {\n      addEventListener('load', function () { showDesktopQr(); });\n    }\n  </script>\n</head>\n<body>\n  <script src=\"sketch.js\"></script>\n</body>\n</html>\n",
+      "id": "9dd4a4d383ba81870a01751c",
+      "_id": "9dd4a4d383ba81870a01751c",
+      "fileType": "file",
+      "children": []
+    },
+    {
+      "name": "sketch.js",
+      "content": "// Motion 02 · Shake\n// deviceShaken() is an event. p5.js calls it when the phone is shaken hard enough.\n// Each shake picks a new colour and adds one to the count. Try a small shake, then a big one.\n\n// change these\nlet threshold = 30; // how hard a shake has to be. lower is easier\nlet gap = 500;      // milliseconds before the next shake can count\n\nlet count = 0;     // how many shakes so far\nlet lastShake = 0; // when the last shake counted, in milliseconds\nlet colour;        // the background colour\n\nfunction setup() {\n  createCanvas(windowWidth, windowHeight);\n  lockGestures();\n  enableSensorTap('Tap to start');\n  setShakeThreshold(threshold);\n  colour = color(20);\n}\n\nfunction draw() {\n  background(colour);\n  if (!window.sensorsEnabled) return;\n\n  // the count, on a dark band so it shows on any colour\n  fill(0);\n  rect(0, 0, width, 60);\n  fill(255);\n  textSize(18);\n  text('shakes ' + count, 20, 38);\n}\n\n// p5.js calls this when the phone is shaken\nfunction deviceShaken() {\n  // one shake calls this several times in a row, so count it only once\n  if (millis() - lastShake < gap) return;\n  lastShake = millis();\n  count = count + 1;\n  colour = color(random(255), random(255), random(255));\n}\n\nfunction windowResized() {\n  resizeCanvas(windowWidth, windowHeight);\n}\n",
+      "id": "4813cd2829bf01a6ba29d8b1",
+      "_id": "4813cd2829bf01a6ba29d8b1",
+      "fileType": "file",
+      "children": [],
+      "isSelectedFile": true
+    }
+  ]
+}

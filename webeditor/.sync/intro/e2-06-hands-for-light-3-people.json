@@ -2,32 +2,32 @@
   "slug": "e2-06-hands-for-light-3-people",
   "title": "06 Hands for Light · 3 people",
   "name": "C&C F26 · 06 Hands for Light · 3 people",
-  "projectId": null,
-  "contentHash": "sha256:c1f5bd0d7f4c2bec76e65f569b8e89626ab967e0f7a0bae90ade8aa7e9627668",
+  "projectId": "AsDs40D7h",
+  "contentHash": "sha256:383c93d35d8de2b69cd9e56ee6c8867ea8307f96cabf8b8bed94e55a098f10b0",
   "files": [
     {
       "name": "root",
-      "id": "2e24cc700caa3236c32b5182",
-      "_id": "2e24cc700caa3236c32b5182",
+      "id": "25658344bbf3b20bd8730ad7",
+      "_id": "25658344bbf3b20bd8730ad7",
       "fileType": "folder",
       "children": [
-        "face56a583496db48c08efb5",
-        "33a61c7201b1dc112a30e78e"
+        "1066e029dd3def63e8274d03",
+        "515c3a34783c9542441568c9"
       ]
     },
     {
       "name": "index.html",
-      "content": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n  <title>06 Hands for Light · 3 people</title>\n  <style>\n    body {\n      margin: 0;\n      padding: 0;\n      overflow: hidden;\n      background: #141414;\n    }\n    canvas {\n      touch-action: none; /* a finger on the canvas never scrolls the page */\n    }\n  </style>\n\n  <!-- p5.js 2.x -->\n  <script src=\"https://cdn.jsdelivr.net/npm/p5@2.2.3/lib/p5.js\"></script>\n\n  <!-- p5-phone: the permission tap, the gesture lock, the flashlight and the QR code -->\n  <script src=\"https://cdn.jsdelivr.net/npm/p5-phone@1.15.0/dist/p5-phone.min.js\"></script>\n</head>\n<body>\n  <script src=\"sketch.js\"></script>\n</body>\n</html>\n",
-      "id": "face56a583496db48c08efb5",
-      "_id": "face56a583496db48c08efb5",
+      "content": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n  <title>06 Hands for Light · 3 people</title>\n  <style>\n    body {\n      margin: 0;\n      padding: 0;\n      overflow: hidden;\n      background: #141414;\n    }\n    canvas {\n      touch-action: none; /* a finger on the canvas never scrolls the page */\n    }\n  </style>\n\n  <!-- a laptop has no tilt sensor but still sends one empty reading. ignore it, so rotationX stays a number -->\n  <script>\n    window.addEventListener('deviceorientation', function (e) {\n      if (e.beta === null) e.stopImmediatePropagation();\n    }, true);\n  </script>\n\n  <!-- p5.js 2.x -->\n  <script src=\"https://cdn.jsdelivr.net/npm/p5@2.2.3/lib/p5.js\"></script>\n\n  <!-- p5-phone: the permission tap, the gesture lock, the flashlight and the QR code -->\n  <script src=\"https://cdn.jsdelivr.net/npm/p5-phone@1.15.0/dist/p5-phone.min.js\"></script>\n</head>\n<body>\n  <script src=\"sketch.js\"></script>\n</body>\n</html>\n",
+      "id": "1066e029dd3def63e8274d03",
+      "_id": "1066e029dd3def63e8274d03",
       "fileType": "file",
       "children": []
     },
     {
       "name": "sketch.js",
       "content": "// 06 · Hands for Light · 3 people\n// Touch → flashlight. Together: everyone touches the screen at the same time.\n// The light blinks while some people are touching, faster with more fingers.\n// When everyone is touching, it stays on.\n// The 1, 2 and 3 person versions are the same sketch. Only these two lines change:\nlet people = 3; // how many people share the phone: 1, 2 or 3\nlet howTo = 'Point the light at a wall. One finger each. All three touching keeps it on.';\n\n// the feel of the piece. change these before you change anything else.\nlet slowest = 0.8;   // seconds between blinks with one finger. two fingers: half that\nlet lightColour = '#ffdc78'; // the screen shows this while the flashlight is on\nlet colours = ['#ff8c1a', '#2ab7ff', '#ff4fa3']; // one colour for each person\n\nlet lightOn = false; // is the flashlight on?\nlet lastSwitch = 0;  // when the light last switched, in milliseconds\n\nfunction setup() {\n  createCanvas(windowWidth, windowHeight);\n  lockGestures();\n\n  // on a laptop, show a QR code of this page so a phone can open it.\n  // it only shows on a public https address, like the examples site.\n  if (location.protocol === 'https:' && window.self === window.top) {\n    showDesktopQr();\n  }\n\n  enableTorchTap('Tap to start');\n}\n\nfunction draw() {\n  // 1. count the fingers on the screen. on a laptop, the mouse counts as one\n  let fingers = touches.length;\n  if (fingers === 0 && mouseIsPressed) {\n    fingers = 1;\n  }\n  fingers = min(fingers, people);\n\n  // 2. what should the light do?\n  let wanted = lightOn;\n  if (fingers === 0) {\n    wanted = false; // no one: off\n  } else if (fingers === people) {\n    wanted = true; // everyone: on\n  } else if (millis() - lastSwitch > slowest * 1000 / fingers) {\n    wanted = !lightOn; // some: blink. more fingers, faster\n  }\n\n  // 3. switch the light only when it needs to change\n  if (wanted !== lightOn) {\n    lightOn = wanted;\n    lastSwitch = millis();\n    if (window.torchEnabled) {\n      setTorch(lightOn);\n    }\n  }\n\n  // the screen shows what the light is doing\n  if (lightOn) {\n    background(lightColour);\n  } else {\n    background(20);\n  }\n\n  // one circle for each person, filled for each finger on the screen\n  for (let i = 0; i < people; i++) {\n    let x = width * (i + 0.5) / people;\n    let size = min(width / people * 0.6, 120);\n    stroke(colours[i]);\n    strokeWeight(6);\n    if (i < fingers) {\n      fill(colours[i]);\n    } else {\n      noFill();\n    }\n    circle(x, height * 0.6, size);\n  }\n\n  drawHowTo(torchNote());\n}\n\n// what the flashlight is doing, for the band at the top\nfunction torchNote() {\n  if (window.torchError) {\n    return 'Flashlight: ' + window.torchError;\n  }\n  if (!window.torchEnabled) {\n    return 'Tap to start. The flashlight needs a phone.';\n  }\n  return '';\n}\n\n// the band across the top: what to do, and a note when there is one\nfunction drawHowTo(note) {\n  noStroke();\n  fill(0, 180);\n  rect(0, 0, width, 110);\n  fill(255);\n  textSize(16);\n  textAlign(LEFT, TOP);\n  text(howTo, 16, 14, width - 32);\n  if (note) {\n    fill(255, 200, 0);\n    text(note, 16, 80, width - 32);\n  }\n}\n\nfunction windowResized() {\n  resizeCanvas(windowWidth, windowHeight);\n}\n",
-      "id": "33a61c7201b1dc112a30e78e",
-      "_id": "33a61c7201b1dc112a30e78e",
+      "id": "515c3a34783c9542441568c9",
+      "_id": "515c3a34783c9542441568c9",
       "fileType": "file",
       "children": [],
       "isSelectedFile": true

@@ -1,0 +1,36 @@
+{
+  "slug": "touch-01-where",
+  "title": "Touch 01 · Where",
+  "name": "C&C F26 · Touch 01 · Where",
+  "projectId": "YGprzO_FN",
+  "contentHash": "sha256:920f45bd1a4d05d7c0a8f6fb0e380f2fcd145b5300f08d5009bbb79521337f35",
+  "files": [
+    {
+      "name": "root",
+      "id": "70143e7851b14b4ee47a02e1",
+      "_id": "70143e7851b14b4ee47a02e1",
+      "fileType": "folder",
+      "children": [
+        "c7bf31d5abfe4a92564fec48",
+        "95f62215860153b7e9e1bdaa"
+      ]
+    },
+    {
+      "name": "index.html",
+      "content": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n  <title>Touch 01 · Where</title>\n  <style>\n    body {\n      margin: 0;\n      padding: 0;\n      overflow: hidden;\n      background: #141414;\n    }\n    canvas {\n      touch-action: none; /* a finger on the canvas never scrolls the page */\n    }\n  </style>\n\n  <!-- a laptop has no tilt sensor but still sends one empty reading. ignore it, so rotationX stays a number -->\n  <script>\n    window.addEventListener('deviceorientation', function (e) {\n      if (e.beta === null) e.stopImmediatePropagation();\n    }, true);\n  </script>\n\n  <!-- p5.js 2.x -->\n  <script src=\"https://cdn.jsdelivr.net/npm/p5@2.2.3/lib/p5.js\"></script>\n\n  <!-- p5-phone: the permission tap, the gesture lock, the sensors and the flashlight -->\n  <script src=\"https://cdn.jsdelivr.net/npm/p5-phone@1.15.0/dist/p5-phone.min.js\"></script>\n\n  <!-- on a laptop, a QR code of this page, to open it on a phone. only on the https examples site -->\n  <script>\n    if (location.protocol === 'https:' && window.self === window.top) {\n      addEventListener('load', function () { showDesktopQr(); });\n    }\n  </script>\n</head>\n<body>\n  <script src=\"sketch.js\"></script>\n</body>\n</html>\n",
+      "id": "c7bf31d5abfe4a92564fec48",
+      "_id": "c7bf31d5abfe4a92564fec48",
+      "fileType": "file",
+      "children": []
+    },
+    {
+      "name": "sketch.js",
+      "content": "// Touch 01 · Where\n// mouseX and mouseY are where the finger is. mouseIsPressed is true while it is down.\n// Put a finger on the screen and drag it around. On a laptop, the mouse does the same.\n\n// change these\nlet diameter = 120; // how big the circle is\n\nfunction setup() {\n  createCanvas(windowWidth, windowHeight);\n  lockGestures(); // no scrolling, zooming or pull to refresh. touch needs no permission\n}\n\nfunction draw() {\n  background(20);\n  noStroke();\n  fill(255);\n\n  // while a finger is down, a circle sits under it\n  if (mouseIsPressed) {\n    circle(mouseX, mouseY, diameter);\n  }\n\n  // the raw values\n  textSize(18);\n  text('mouseX ' + round(mouseX) + '   mouseY ' + round(mouseY), 20, 40);\n  text('mouseIsPressed ' + mouseIsPressed, 20, 70);\n}\n\nfunction windowResized() {\n  resizeCanvas(windowWidth, windowHeight);\n}\n",
+      "id": "95f62215860153b7e9e1bdaa",
+      "_id": "95f62215860153b7e9e1bdaa",
+      "fileType": "file",
+      "children": [],
+      "isSelectedFile": true
+    }
+  ]
+}

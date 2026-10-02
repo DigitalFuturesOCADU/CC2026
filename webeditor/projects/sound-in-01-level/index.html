@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sound In 01 · Level</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      background: #141414;
+    }
+    canvas {
+      touch-action: none; /* a finger on the canvas never scrolls the page */
+    }
+  </style>
+
+  <!-- a laptop has no tilt sensor but still sends one empty reading. ignore it, so rotationX stays a number -->
+  <script>
+    window.addEventListener('deviceorientation', function (e) {
+      if (e.beta === null) e.stopImmediatePropagation();
+    }, true);
+  </script>
+
+  <!-- p5.js 2.x -->
+  <script src="https://cdn.jsdelivr.net/npm/p5@2.2.3/lib/p5.js"></script>
+
+  <!-- p5.sound: the microphone, recordings and tones -->
+  <script src="https://cdn.jsdelivr.net/npm/p5.sound@0.3.0/dist/p5.sound.min.js"></script>
+
+  <!-- p5-phone: the permission tap, the gesture lock, the sensors and the flashlight -->
+  <script src="https://cdn.jsdelivr.net/npm/p5-phone@1.15.0/dist/p5-phone.min.js"></script>
+
+  <!-- on a laptop, a QR code of this page, to open it on a phone. only on the https examples site -->
+  <script>
+    if (location.protocol === 'https:' && window.self === window.top) {
+      addEventListener('load', function () { showDesktopQr(); });
+    }
+  </script>
+</head>
+<body>
+  <script src="sketch.js"></script>
+</body>
+</html>

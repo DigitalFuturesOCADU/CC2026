@@ -1,0 +1,36 @@
+{
+  "slug": "images-03-shake-for-the-next",
+  "title": "Images 03 · Shake for the Next",
+  "name": "C&C F26 · Images 03 · Shake for the Next",
+  "projectId": "hTcck-OCR",
+  "contentHash": "sha256:bc7035de935070a91265dde90bfc3ac5883a43d48e7720ad71d355d7aee9689a",
+  "files": [
+    {
+      "name": "root",
+      "id": "1c35a093e5e178e9fdd068a1",
+      "_id": "1c35a093e5e178e9fdd068a1",
+      "fileType": "folder",
+      "children": [
+        "ae34dbf891610affbab536bd",
+        "27e34172e1ab3b5f8a5fcc39"
+      ]
+    },
+    {
+      "name": "index.html",
+      "content": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n  <title>Images 03 · Shake for the Next</title>\n  <style>\n    body {\n      margin: 0;\n      padding: 0;\n      overflow: hidden;\n      background: #141414;\n    }\n    canvas {\n      touch-action: none; /* a finger on the canvas never scrolls the page */\n    }\n  </style>\n\n  <!-- a laptop has no tilt sensor but still sends one empty reading. ignore it, so rotationX stays a number -->\n  <script>\n    window.addEventListener('deviceorientation', function (e) {\n      if (e.beta === null) e.stopImmediatePropagation();\n    }, true);\n  </script>\n\n  <!-- p5.js 2.x -->\n  <script src=\"https://cdn.jsdelivr.net/npm/p5@2.2.3/lib/p5.js\"></script>\n\n  <!-- p5-phone: the permission tap, the gesture lock, the sensors and the flashlight -->\n  <script src=\"https://cdn.jsdelivr.net/npm/p5-phone@1.15.0/dist/p5-phone.min.js\"></script>\n\n  <!-- on a laptop, a QR code of this page, to open it on a phone. only on the https examples site -->\n  <script>\n    if (location.protocol === 'https:' && window.self === window.top) {\n      addEventListener('load', function () { showDesktopQr(); });\n    }\n  </script>\n</head>\n<body>\n  <script src=\"sketch.js\"></script>\n</body>\n</html>\n",
+      "id": "ae34dbf891610affbab536bd",
+      "_id": "ae34dbf891610affbab536bd",
+      "fileType": "file",
+      "children": []
+    },
+    {
+      "name": "sketch.js",
+      "content": "// Images 03 · Shake for the Next\n// Four pictures wait in a list. Each shake shows the next one,\n// and after the last comes the first again. Shake the phone once, firmly.\n\n// change these\nlet threshold = 30; // how hard a shake has to be. lower is easier\nlet gap = 500;      // milliseconds before the next shake can count\n\nlet pictures = []; // the list of pictures\nlet shakes = 0;    // how many shakes so far\nlet lastShake = 0; // when the last shake counted, in milliseconds\n\nasync function setup() {\n  createCanvas(windowWidth, windowHeight);\n  lockGestures();\n  enableSensorTap('Tap to start');\n  setShakeThreshold(threshold);\n  imageMode(CENTER);\n\n  // the files are named still-1.jpg to still-4.jpg, so a loop can build each address\n  for (let i = 1; i <= 4; i++) {\n    let address = 'https://digitalfuturesocadu.github.io/CC2026/media/images/still-' + i + '.jpg';\n    pictures.push(await loadImage(address)); // push() adds it to the end of the list\n  }\n}\n\nfunction draw() {\n  background(20);\n  if (!window.sensorsEnabled) return;\n\n  // % wraps the count around the list: 0, 1, 2, 3, then 0 again\n  let current = shakes % pictures.length;\n  let picture = pictures[current];\n  let fit = min(width / picture.width, height / picture.height); // as in Images 01\n  image(picture, width / 2, height / 2, picture.width * fit, picture.height * fit);\n\n  fill(255);\n  textSize(18);\n  text('shakes ' + shakes + '   picture ' + (current + 1) + ' of ' + pictures.length, 20, 40);\n}\n\n// p5.js calls this when the phone is shaken\nfunction deviceShaken() {\n  // one shake calls this several times in a row, so count it only once\n  if (millis() - lastShake < gap) return;\n  lastShake = millis();\n  shakes = shakes + 1;\n}\n\nfunction windowResized() {\n  resizeCanvas(windowWidth, windowHeight);\n}\n",
+      "id": "27e34172e1ab3b5f8a5fcc39",
+      "_id": "27e34172e1ab3b5f8a5fcc39",
+      "fileType": "file",
+      "children": [],
+      "isSelectedFile": true
+    }
+  ]
+}

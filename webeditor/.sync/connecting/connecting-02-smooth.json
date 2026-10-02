@@ -1,0 +1,36 @@
+{
+  "slug": "connecting-02-smooth",
+  "title": "Connecting 02 · Smooth",
+  "name": "C&C F26 · Connecting 02 · Smooth",
+  "projectId": "OaYkOahPW",
+  "contentHash": "sha256:248ca581bbe608d1a54c5b7961f8dcb6a8b1c67fa119865d9a19bd0a1bd1a003",
+  "files": [
+    {
+      "name": "root",
+      "id": "a97f51fd59d245676854eb6e",
+      "_id": "a97f51fd59d245676854eb6e",
+      "fileType": "folder",
+      "children": [
+        "8a1d34a16ebce38ac6949d11",
+        "056ac4d9e98de1fed497cfb1"
+      ]
+    },
+    {
+      "name": "index.html",
+      "content": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n  <title>Connecting 02 · Smooth</title>\n  <style>\n    body {\n      margin: 0;\n      padding: 0;\n      overflow: hidden;\n      background: #141414;\n    }\n    canvas {\n      touch-action: none; /* a finger on the canvas never scrolls the page */\n    }\n  </style>\n\n  <!-- a laptop has no tilt sensor but still sends one empty reading. ignore it, so rotationX stays a number -->\n  <script>\n    window.addEventListener('deviceorientation', function (e) {\n      if (e.beta === null) e.stopImmediatePropagation();\n    }, true);\n  </script>\n\n  <!-- p5.js 2.x -->\n  <script src=\"https://cdn.jsdelivr.net/npm/p5@2.2.3/lib/p5.js\"></script>\n\n  <!-- p5-phone: the permission tap, the gesture lock, the sensors and the flashlight -->\n  <script src=\"https://cdn.jsdelivr.net/npm/p5-phone@1.15.0/dist/p5-phone.min.js\"></script>\n\n  <!-- on a laptop, a QR code of this page, to open it on a phone. only on the https examples site -->\n  <script>\n    if (location.protocol === 'https:' && window.self === window.top) {\n      addEventListener('load', function () { showDesktopQr(); });\n    }\n  </script>\n</head>\n<body>\n  <script src=\"sketch.js\"></script>\n</body>\n</html>\n",
+      "id": "8a1d34a16ebce38ac6949d11",
+      "_id": "8a1d34a16ebce38ac6949d11",
+      "fileType": "file",
+      "children": []
+    },
+    {
+      "name": "sketch.js",
+      "content": "// Connecting 02 · Smooth\n// Sensor readings jump around. lerp() moves a value part of the way to its target\n// every frame, so it follows smoothly. Shake the phone and compare the two bars.\n\n// change these\nlet amount = 0.1; // how far to move each frame. 0.02 is slow and smooth, 1 is no smoothing\nlet most = 20;    // the movement that fills a bar\n\nlet smoothed = 0; // kept from frame to frame, so it is declared up here\n\nfunction setup() {\n  createCanvas(windowWidth, windowHeight);\n  lockGestures();\n  enableSensorTap('Tap to start');\n}\n\nfunction draw() {\n  background(20);\n  if (!window.sensorsEnabled) return;\n\n  let raw = abs(accelerationX) + abs(accelerationY) + abs(accelerationZ);\n  smoothed = lerp(smoothed, raw, amount);\n\n  // raw on the left in grey, smoothed on the right in white\n  let rawHeight = map(raw, 0, most, 0, height - 80, true);\n  let smoothHeight = map(smoothed, 0, most, 0, height - 80, true);\n  noStroke();\n  fill(120);\n  rect(width * 0.15, height - rawHeight, width * 0.3, rawHeight);\n  fill(255);\n  rect(width * 0.55, height - smoothHeight, width * 0.3, smoothHeight);\n\n  textSize(18);\n  text('raw ' + nf(raw, 1, 1) + '   smoothed ' + nf(smoothed, 1, 1), 20, 40);\n}\n\nfunction windowResized() {\n  resizeCanvas(windowWidth, windowHeight);\n}\n",
+      "id": "056ac4d9e98de1fed497cfb1",
+      "_id": "056ac4d9e98de1fed497cfb1",
+      "fileType": "file",
+      "children": [],
+      "isSelectedFile": true
+    }
+  ]
+}

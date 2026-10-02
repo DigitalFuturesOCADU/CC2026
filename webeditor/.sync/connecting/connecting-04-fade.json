@@ -1,0 +1,36 @@
+{
+  "slug": "connecting-04-fade",
+  "title": "Connecting 04 · Fade",
+  "name": "C&C F26 · Connecting 04 · Fade",
+  "projectId": "bLbixhTm85",
+  "contentHash": "sha256:03b197aea77d4d8f8867fec2364406b18ae965ce59ce7d072cd9b7c6d27cdca0",
+  "files": [
+    {
+      "name": "root",
+      "id": "1e76d8befd5549485461e748",
+      "_id": "1e76d8befd5549485461e748",
+      "fileType": "folder",
+      "children": [
+        "bbdbcb9bcefde37f8cd40f89",
+        "8cca06fc2df12ed6f1d8e4b5"
+      ]
+    },
+    {
+      "name": "index.html",
+      "content": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n  <title>Connecting 04 · Fade</title>\n  <style>\n    body {\n      margin: 0;\n      padding: 0;\n      overflow: hidden;\n      background: #141414;\n    }\n    canvas {\n      touch-action: none; /* a finger on the canvas never scrolls the page */\n    }\n  </style>\n\n  <!-- a laptop has no tilt sensor but still sends one empty reading. ignore it, so rotationX stays a number -->\n  <script>\n    window.addEventListener('deviceorientation', function (e) {\n      if (e.beta === null) e.stopImmediatePropagation();\n    }, true);\n  </script>\n\n  <!-- p5.js 2.x -->\n  <script src=\"https://cdn.jsdelivr.net/npm/p5@2.2.3/lib/p5.js\"></script>\n\n  <!-- p5-phone: the permission tap, the gesture lock, the sensors and the flashlight -->\n  <script src=\"https://cdn.jsdelivr.net/npm/p5-phone@1.15.0/dist/p5-phone.min.js\"></script>\n\n  <!-- on a laptop, a QR code of this page, to open it on a phone. only on the https examples site -->\n  <script>\n    if (location.protocol === 'https:' && window.self === window.top) {\n      addEventListener('load', function () { showDesktopQr(); });\n    }\n  </script>\n</head>\n<body>\n  <script src=\"sketch.js\"></script>\n</body>\n</html>\n",
+      "id": "bbdbcb9bcefde37f8cd40f89",
+      "_id": "bbdbcb9bcefde37f8cd40f89",
+      "fileType": "file",
+      "children": []
+    },
+    {
+      "name": "sketch.js",
+      "content": "// Connecting 04 · Fade\n// An event starts a clock. Each shake lights the screen, and the light fades over three seconds.\n// millis() is the time since the sketch started. Subtract the time of the event\n// and you know how long ago it happened.\n\n// change these\nlet fadeTime = 3000; // milliseconds from full light to dark\n\nlet shakeTime = -100000; // when the last shake happened. long ago, to start dark\n\nfunction setup() {\n  createCanvas(windowWidth, windowHeight);\n  lockGestures();\n  enableSensorTap('Tap to start');\n}\n\nfunction draw() {\n  let since = millis() - shakeTime;\n  let glow = map(since, 0, fadeTime, 255, 20, true);\n  background(glow);\n\n  fill(0);\n  rect(0, 0, width, 60);\n  fill(255);\n  textSize(18);\n  text('shake it. last shake ' + nf(since / 1000, 1, 1) + ' s ago', 20, 38);\n}\n\n// p5.js calls this when the phone is shaken\nfunction deviceShaken() {\n  shakeTime = millis();\n}\n\nfunction windowResized() {\n  resizeCanvas(windowWidth, windowHeight);\n}\n",
+      "id": "8cca06fc2df12ed6f1d8e4b5",
+      "_id": "8cca06fc2df12ed6f1d8e4b5",
+      "fileType": "file",
+      "children": [],
+      "isSelectedFile": true
+    }
+  ]
+}

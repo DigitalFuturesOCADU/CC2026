@@ -1,0 +1,36 @@
+{
+  "slug": "drawing-02-trails",
+  "title": "Drawing 02 · Trails",
+  "name": "C&C F26 · Drawing 02 · Trails",
+  "projectId": "qeTPu2zkw",
+  "contentHash": "sha256:79000c1d2d328a18424023aa0ac9cff9b41a0b8e9d3c55a4e450af92d15447fe",
+  "files": [
+    {
+      "name": "root",
+      "id": "783ab6cead2219470f49432e",
+      "_id": "783ab6cead2219470f49432e",
+      "fileType": "folder",
+      "children": [
+        "4dc8fade8672a7d75905e410",
+        "ce154eb09a982ee47e33d7af"
+      ]
+    },
+    {
+      "name": "index.html",
+      "content": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n  <title>Drawing 02 · Trails</title>\n  <style>\n    body {\n      margin: 0;\n      padding: 0;\n      overflow: hidden;\n      background: #141414;\n    }\n    canvas {\n      touch-action: none; /* a finger on the canvas never scrolls the page */\n    }\n  </style>\n\n  <!-- a laptop has no tilt sensor but still sends one empty reading. ignore it, so rotationX stays a number -->\n  <script>\n    window.addEventListener('deviceorientation', function (e) {\n      if (e.beta === null) e.stopImmediatePropagation();\n    }, true);\n  </script>\n\n  <!-- p5.js 2.x -->\n  <script src=\"https://cdn.jsdelivr.net/npm/p5@2.2.3/lib/p5.js\"></script>\n\n  <!-- p5-phone: the permission tap, the gesture lock, the sensors and the flashlight -->\n  <script src=\"https://cdn.jsdelivr.net/npm/p5-phone@1.15.0/dist/p5-phone.min.js\"></script>\n\n  <!-- on a laptop, a QR code of this page, to open it on a phone. only on the https examples site -->\n  <script>\n    if (location.protocol === 'https:' && window.self === window.top) {\n      addEventListener('load', function () { showDesktopQr(); });\n    }\n  </script>\n</head>\n<body>\n  <script src=\"sketch.js\"></script>\n</body>\n</html>\n",
+      "id": "4dc8fade8672a7d75905e410",
+      "_id": "4dc8fade8672a7d75905e410",
+      "fileType": "file",
+      "children": []
+    },
+    {
+      "name": "sketch.js",
+      "content": "// Drawing 02 · Trails\n// Tilt steers a pen, like a marble on a tray. The background is see-through, so the\n// last frames still show, a little darker each time. Hold the phone flat, then tip it.\n\n// change these\nlet speed = 0.2; // how far the pen moves each frame, for each degree of tilt\nlet fade = 20;   // how fast the trail fades. 0 never fades, 255 leaves no trail\n\nlet x; // where the pen is\nlet y;\n\nfunction setup() {\n  createCanvas(windowWidth, windowHeight);\n  lockGestures();\n  angleMode(DEGREES); // tilt in degrees. p5.js uses radians unless you say so\n  enableSensorTap('Tap to start');\n  x = width / 2;\n  y = height / 2;\n}\n\nfunction draw() {\n  background(0, fade); // black, made see-through by the second number\n  if (!window.sensorsEnabled) return;\n\n  // each frame the pen moves by the tilt. constrain() keeps it on the screen\n  x = constrain(x + rotationY * speed, 0, width);\n  y = constrain(y + rotationX * speed, 0, height);\n\n  noStroke();\n  fill(255);\n  circle(x, y, 30);\n\n  // the raw values, on a solid band so the numbers do not leave a trail\n  fill(0);\n  rect(0, 0, width, 60);\n  fill(255);\n  textSize(18);\n  text('rotationX ' + round(rotationX) + '   rotationY ' + round(rotationY), 20, 40);\n}\n\nfunction windowResized() {\n  resizeCanvas(windowWidth, windowHeight);\n}\n",
+      "id": "ce154eb09a982ee47e33d7af",
+      "_id": "ce154eb09a982ee47e33d7af",
+      "fileType": "file",
+      "children": [],
+      "isSelectedFile": true
+    }
+  ]
+}

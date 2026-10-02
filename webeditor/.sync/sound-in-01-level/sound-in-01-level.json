@@ -1,0 +1,36 @@
+{
+  "slug": "sound-in-01-level",
+  "title": "Sound In 01 · Level",
+  "name": "C&C F26 · Sound In 01 · Level",
+  "projectId": "6iH6jXdgo",
+  "contentHash": "sha256:863816de04ecbdfd266b772156f7612ebeeb3ba08701774b1d82256d45cffadd",
+  "files": [
+    {
+      "name": "root",
+      "id": "943f0f01649f9a2015d63e3c",
+      "_id": "943f0f01649f9a2015d63e3c",
+      "fileType": "folder",
+      "children": [
+        "a3ac63b3a5ef10028efb17bc",
+        "db18553abcfec676c75b718f"
+      ]
+    },
+    {
+      "name": "index.html",
+      "content": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n  <title>Sound In 01 · Level</title>\n  <style>\n    body {\n      margin: 0;\n      padding: 0;\n      overflow: hidden;\n      background: #141414;\n    }\n    canvas {\n      touch-action: none; /* a finger on the canvas never scrolls the page */\n    }\n  </style>\n\n  <!-- a laptop has no tilt sensor but still sends one empty reading. ignore it, so rotationX stays a number -->\n  <script>\n    window.addEventListener('deviceorientation', function (e) {\n      if (e.beta === null) e.stopImmediatePropagation();\n    }, true);\n  </script>\n\n  <!-- p5.js 2.x -->\n  <script src=\"https://cdn.jsdelivr.net/npm/p5@2.2.3/lib/p5.js\"></script>\n\n  <!-- p5.sound: the microphone, recordings and tones -->\n  <script src=\"https://cdn.jsdelivr.net/npm/p5.sound@0.3.0/dist/p5.sound.min.js\"></script>\n\n  <!-- p5-phone: the permission tap, the gesture lock, the sensors and the flashlight -->\n  <script src=\"https://cdn.jsdelivr.net/npm/p5-phone@1.15.0/dist/p5-phone.min.js\"></script>\n\n  <!-- on a laptop, a QR code of this page, to open it on a phone. only on the https examples site -->\n  <script>\n    if (location.protocol === 'https:' && window.self === window.top) {\n      addEventListener('load', function () { showDesktopQr(); });\n    }\n  </script>\n</head>\n<body>\n  <script src=\"sketch.js\"></script>\n</body>\n</html>\n",
+      "id": "a3ac63b3a5ef10028efb17bc",
+      "_id": "a3ac63b3a5ef10028efb17bc",
+      "fileType": "file",
+      "children": []
+    },
+    {
+      "name": "sketch.js",
+      "content": "// Sound In 01 · Level\n// How loud it is, from 0 to 1, sets the size of the circle.\n// Hum, talk, clap. Phones hear quietly, so the level is turned up by boost.\n\n// change these\nlet boost = 5; // multiplies the level. raise it if the circle barely moves\n\nlet mic;   // p5-phone looks for a variable with exactly this name\nlet meter; // measures how loud the microphone is\n\nfunction setup() {\n  createCanvas(windowWidth, windowHeight);\n  lockGestures();\n  mic = new p5.AudioIn();\n  meter = new p5.Amplitude();\n  enableMicTap('Tap to start');\n}\n\nfunction draw() {\n  background(20);\n  if (!window.micOpen) return; // true only while sound is really arriving\n\n  mic.disconnect();   // unplug the microphone from the speaker...\n  mic.connect(meter); // ...and plug it into the meter\n  let level = constrain(meter.getLevel() * boost, 0, 1);\n\n  noStroke();\n  fill(255);\n  circle(width / 2, height / 2, 40 + level * width);\n\n  // the raw value\n  textSize(18);\n  text('level ' + nf(level, 1, 2), 20, 40);\n}\n\nfunction windowResized() {\n  resizeCanvas(windowWidth, windowHeight);\n}\n",
+      "id": "db18553abcfec676c75b718f",
+      "_id": "db18553abcfec676c75b718f",
+      "fileType": "file",
+      "children": [],
+      "isSelectedFile": true
+    }
+  ]
+}

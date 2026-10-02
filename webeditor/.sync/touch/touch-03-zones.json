@@ -1,0 +1,36 @@
+{
+  "slug": "touch-03-zones",
+  "title": "Touch 03 · Zones",
+  "name": "C&C F26 · Touch 03 · Zones",
+  "projectId": "wzf4WsQG0",
+  "contentHash": "sha256:9917270b21c16d37524746af5a6fef7d59f7898764a60a73d106c852ff44f40e",
+  "files": [
+    {
+      "name": "root",
+      "id": "397fe112198323001cce8a5d",
+      "_id": "397fe112198323001cce8a5d",
+      "fileType": "folder",
+      "children": [
+        "e7608d25a2e6a05ed6892cd2",
+        "646b13bd65cec7c529915c77"
+      ]
+    },
+    {
+      "name": "index.html",
+      "content": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n  <title>Touch 03 · Zones</title>\n  <style>\n    body {\n      margin: 0;\n      padding: 0;\n      overflow: hidden;\n      background: #141414;\n    }\n    canvas {\n      touch-action: none; /* a finger on the canvas never scrolls the page */\n    }\n  </style>\n\n  <!-- a laptop has no tilt sensor but still sends one empty reading. ignore it, so rotationX stays a number -->\n  <script>\n    window.addEventListener('deviceorientation', function (e) {\n      if (e.beta === null) e.stopImmediatePropagation();\n    }, true);\n  </script>\n\n  <!-- p5.js 2.x -->\n  <script src=\"https://cdn.jsdelivr.net/npm/p5@2.2.3/lib/p5.js\"></script>\n\n  <!-- p5-phone: the permission tap, the gesture lock, the sensors and the flashlight -->\n  <script src=\"https://cdn.jsdelivr.net/npm/p5-phone@1.15.0/dist/p5-phone.min.js\"></script>\n\n  <!-- on a laptop, a QR code of this page, to open it on a phone. only on the https examples site -->\n  <script>\n    if (location.protocol === 'https:' && window.self === window.top) {\n      addEventListener('load', function () { showDesktopQr(); });\n    }\n  </script>\n</head>\n<body>\n  <script src=\"sketch.js\"></script>\n</body>\n</html>\n",
+      "id": "e7608d25a2e6a05ed6892cd2",
+      "_id": "e7608d25a2e6a05ed6892cd2",
+      "fileType": "file",
+      "children": []
+    },
+    {
+      "name": "sketch.js",
+      "content": "// Touch 03 · Zones\n// The screen in three zones, side by side. A zone lights while any finger is in it.\n// Hold one zone, then all three. Or give each person a zone.\n// The mouse is not in touches, so try this one on a phone.\n\n// change these\nlet zones = 3; // how many zones across the screen\n\nfunction setup() {\n  createCanvas(windowWidth, windowHeight);\n  lockGestures(); // no scrolling, zooming or pull to refresh. touch needs no permission\n}\n\nfunction draw() {\n  background(20);\n  let zoneWidth = width / zones;\n\n  for (let z = 0; z < zones; z++) {\n    let left = z * zoneWidth;\n\n    // is any finger in this zone? loop over touches and check each one's x\n    let held = false;\n    for (let i = 0; i < touches.length; i++) {\n      if (touches[i].x >= left && touches[i].x < left + zoneWidth) {\n        held = true;\n      }\n    }\n\n    // lit while held\n    if (held) {\n      fill(255, 140, 0);\n    } else {\n      fill(40);\n    }\n    rect(left, 0, zoneWidth, height);\n\n    // the zone's number. the loop counts from 0\n    fill(255);\n    textSize(18);\n    text('zone ' + z, left + 15, 40);\n  }\n}\n\nfunction windowResized() {\n  resizeCanvas(windowWidth, windowHeight);\n}\n",
+      "id": "646b13bd65cec7c529915c77",
+      "_id": "646b13bd65cec7c529915c77",
+      "fileType": "file",
+      "children": [],
+      "isSelectedFile": true
+    }
+  ]
+}

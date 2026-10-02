@@ -1,0 +1,36 @@
+{
+  "slug": "drawing-03-repeat",
+  "title": "Drawing 03 · Repeat",
+  "name": "C&C F26 · Drawing 03 · Repeat",
+  "projectId": "dIyo-Pdvi",
+  "contentHash": "sha256:0da4bf488c05e3a426a163e1a20ad966f801cd864d70c8ed8851f6bce1a58b33",
+  "files": [
+    {
+      "name": "root",
+      "id": "aac20c603a371beca622a1d2",
+      "_id": "aac20c603a371beca622a1d2",
+      "fileType": "folder",
+      "children": [
+        "7300355a23a990662c09fa8a",
+        "8dc9e87f8d6b814da825c3be"
+      ]
+    },
+    {
+      "name": "index.html",
+      "content": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n  <title>Drawing 03 · Repeat</title>\n  <style>\n    body {\n      margin: 0;\n      padding: 0;\n      overflow: hidden;\n      background: #141414;\n    }\n    canvas {\n      touch-action: none; /* a finger on the canvas never scrolls the page */\n    }\n  </style>\n\n  <!-- a laptop has no tilt sensor but still sends one empty reading. ignore it, so rotationX stays a number -->\n  <script>\n    window.addEventListener('deviceorientation', function (e) {\n      if (e.beta === null) e.stopImmediatePropagation();\n    }, true);\n  </script>\n\n  <!-- p5.js 2.x -->\n  <script src=\"https://cdn.jsdelivr.net/npm/p5@2.2.3/lib/p5.js\"></script>\n\n  <!-- p5-phone: the permission tap, the gesture lock, the sensors and the flashlight -->\n  <script src=\"https://cdn.jsdelivr.net/npm/p5-phone@1.15.0/dist/p5-phone.min.js\"></script>\n\n  <!-- on a laptop, a QR code of this page, to open it on a phone. only on the https examples site -->\n  <script>\n    if (location.protocol === 'https:' && window.self === window.top) {\n      addEventListener('load', function () { showDesktopQr(); });\n    }\n  </script>\n</head>\n<body>\n  <script src=\"sketch.js\"></script>\n</body>\n</html>\n",
+      "id": "7300355a23a990662c09fa8a",
+      "_id": "7300355a23a990662c09fa8a",
+      "fileType": "file",
+      "children": []
+    },
+    {
+      "name": "sketch.js",
+      "content": "// Drawing 03 · Repeat\n// A for loop draws the same circle again and again, each one further around a ring.\n// Slide a finger left and right: its x position sets how many circles there are.\n\n// change these\nlet fewest = 3; // circles with a finger at the left edge\nlet most = 40;  // circles with a finger at the right edge\n\nfunction setup() {\n  createCanvas(windowWidth, windowHeight);\n  lockGestures();\n  angleMode(DEGREES); // angles in degrees: once around the ring is 360\n}\n\nfunction draw() {\n  background(20);\n\n  // the finger's x position becomes a whole number of circles\n  let count = round(map(mouseX, 0, width, fewest, most, true));\n  let ring = width * 0.35; // how far the circles sit from the centre\n\n  noStroke();\n  fill(255);\n  for (let i = 0; i < count; i++) {\n    let angle = i * 360 / count; // spread evenly around the ring\n    let x = width / 2 + cos(angle) * ring;\n    let y = height / 2 + sin(angle) * ring;\n    circle(x, y, 20);\n  }\n\n  textSize(18);\n  text('mouseX ' + round(mouseX) + '   count ' + count, 20, 40);\n}\n\nfunction windowResized() {\n  resizeCanvas(windowWidth, windowHeight);\n}\n",
+      "id": "8dc9e87f8d6b814da825c3be",
+      "_id": "8dc9e87f8d6b814da825c3be",
+      "fileType": "file",
+      "children": [],
+      "isSelectedFile": true
+    }
+  ]
+}

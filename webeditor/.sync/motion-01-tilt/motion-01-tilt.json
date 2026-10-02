@@ -1,0 +1,36 @@
+{
+  "slug": "motion-01-tilt",
+  "title": "Motion 01 · Tilt",
+  "name": "C&C F26 · Motion 01 · Tilt",
+  "projectId": null,
+  "contentHash": "sha256:f2769debe63a9d1be94c23ee0999b964d8b82a620c531bcf9f68a902aa0add5e",
+  "files": [
+    {
+      "name": "root",
+      "id": "a5362e7df46e83970baeea60",
+      "_id": "a5362e7df46e83970baeea60",
+      "fileType": "folder",
+      "children": [
+        "f4eae145c8efdf8593cdd33b",
+        "19b081e2c78c2327e57106cc"
+      ]
+    },
+    {
+      "name": "index.html",
+      "content": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n  <title>Motion 01 · Tilt</title>\n  <style>\n    body {\n      margin: 0;\n      padding: 0;\n      overflow: hidden;\n      background: #141414;\n    }\n    canvas {\n      touch-action: none; /* a finger on the canvas never scrolls the page */\n    }\n  </style>\n\n  <!-- p5.js 2.x -->\n  <script src=\"https://cdn.jsdelivr.net/npm/p5@2.2.3/lib/p5.js\"></script>\n\n  <!-- p5-phone: the permission tap, the gesture lock, the sensors and the flashlight -->\n  <script src=\"https://cdn.jsdelivr.net/npm/p5-phone@1.15.0/dist/p5-phone.min.js\"></script>\n\n  <!-- on a laptop, a QR code of this page, to open it on a phone. only on the https examples site -->\n  <script>\n    if (location.protocol === 'https:' && window.self === window.top) {\n      addEventListener('load', function () { showDesktopQr(); });\n    }\n  </script>\n</head>\n<body>\n  <script src=\"sketch.js\"></script>\n</body>\n</html>\n",
+      "id": "f4eae145c8efdf8593cdd33b",
+      "_id": "f4eae145c8efdf8593cdd33b",
+      "fileType": "file",
+      "children": []
+    },
+    {
+      "name": "sketch.js",
+      "content": "// Motion 01 · Tilt\n// rotationX and rotationY say how far the phone is tipped, in degrees.\n// Tip it left and right, then forward and back, to move the circle.\n\n// change these\nlet range = 45; // degrees of tilt that reach the edge of the screen\n\nfunction setup() {\n  createCanvas(windowWidth, windowHeight);\n  lockGestures();\n  angleMode(DEGREES); // tilt in degrees. p5.js uses radians unless you say so\n  enableSensorTap('Tap to start');\n}\n\nfunction draw() {\n  background(20);\n  if (!window.sensorsEnabled) return;\n\n  // rotationY: tipped left and right. rotationX: tipped forward and back\n  let x = map(rotationY, -range, range, 0, width, true);\n  let y = map(rotationX, -range, range, 0, height, true);\n\n  noStroke();\n  fill(255);\n  circle(x, y, 80);\n\n  // the raw values\n  textSize(18);\n  text('rotationX ' + round(rotationX) + '   rotationY ' + round(rotationY), 20, 40);\n}\n\nfunction windowResized() {\n  resizeCanvas(windowWidth, windowHeight);\n}\n",
+      "id": "19b081e2c78c2327e57106cc",
+      "_id": "19b081e2c78c2327e57106cc",
+      "fileType": "file",
+      "children": [],
+      "isSelectedFile": true
+    }
+  ]
+}

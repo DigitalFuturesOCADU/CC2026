@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Add a "web editor" link after every "code" link in index.html.
+"""Add a "web editor" link after every "code" link in the index pages.
 
 Reads the sketch IDs from webeditor/.sync/registry.json (written by
 p5-webeditor-sync) and puts the Web Editor link right after the matching
@@ -13,7 +13,7 @@ import re
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
-INDEX = ROOT / "index.html"
+INDEXES = [ROOT / "index.html", ROOT / "reference" / "index.html"]
 REGISTRY = ROOT / "webeditor" / ".sync" / "registry.json"
 CODE_BASE = "https://github.com/DigitalFuturesOCADU/CC2026/tree/main/"
 
@@ -29,8 +29,6 @@ def main() -> None:
     registry = json.loads(REGISTRY.read_text(encoding="utf-8"))
     account = registry["account"]
     projects = registry["projects"]
-    page = INDEX.read_text(encoding="utf-8")
-
     code_link = re.compile(
         r'(<a class="code" href="' + re.escape(CODE_BASE) + r'([^"]+)">code</a>)'
         r'(?: <a class="code" href="https://editor\.p5js\.org/[^"]+">web editor</a>)?'
@@ -46,10 +44,11 @@ def main() -> None:
         url = f"https://editor.p5js.org/{account}/sketches/{project['projectId']}"
         return f'{match.group(1)} <a class="code" href="{url}">web editor</a>'
 
-    page = code_link.sub(add_editor_link, page)
-    INDEX.write_text(page, encoding="utf-8")
-    linked = page.count(">web editor</a>")
-    print(f"{linked} web editor links in index.html")
+    for index in INDEXES:
+        page = code_link.sub(add_editor_link, index.read_text(encoding="utf-8"))
+        index.write_text(page, encoding="utf-8")
+        linked = page.count(">web editor</a>")
+        print(f"{linked} web editor links in {index.relative_to(ROOT)}")
     if missing:
         print("Not synced yet:", ", ".join(missing))
 

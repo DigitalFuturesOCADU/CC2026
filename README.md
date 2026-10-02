@@ -2,7 +2,8 @@
 
 Example sketches for Creation & Computation (Fall 2026). p5.js 2.x with
 [p5-phone](https://npuckett.github.io/p5-phone/examples/homepage/). Published with GitHub Pages.
-The index of every example is https://digitalfuturesocadu.github.io/CC2026/ and each folder
+The Experiment 2 examples are at https://digitalfuturesocadu.github.io/CC2026/, the reference
+examples at https://digitalfuturesocadu.github.io/CC2026/reference/, and each folder
 opens on a phone at `https://digitalfuturesocadu.github.io/CC2026/<folder>/`.
 
 Each example is one folder with its own `index.html` and `sketch.js`. Read `sketch.js` first.
@@ -48,7 +49,8 @@ anything louder than that counts as sound.
 
 ## Reference examples
 
-Short examples, one idea each, short enough to type. Each folder matches a Canvas page.
+Short examples, one idea each, short enough to type. Each folder matches a Canvas page. They are
+listed on their own page, [reference/](reference/), not the main index.
 
 | Folder | Canvas page | Examples |
 | --- | --- | --- |
@@ -64,4 +66,4 @@ Short examples, one idea each, short enough to type. Each folder matches a Canva
 | `connecting/` | Connecting Input to Output | Map, Smooth, Threshold, Fade, Combine |
 
 Their media is in `media/`. For instructors: `tools/examples.py` lists them and writes each
-folder's `index.html` and the index page's lists; `tools/STYLE.md` is how they are written.
+folder's `index.html` and the lists on `reference/index.html`; `tools/STYLE.md` is how they are written.

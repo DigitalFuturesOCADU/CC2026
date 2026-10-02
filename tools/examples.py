@@ -3,7 +3,7 @@
 
 Each example is a folder with a hand-written sketch.js. This script writes the
 folder's index.html (so every example loads the same libraries the same way)
-and the reference sections of the main index.html, between the
+and the reference sections of reference/index.html, between the
 <!-- REFERENCE:START --> and <!-- REFERENCE:END --> markers.
 
     python3 tools/examples.py
@@ -203,7 +203,7 @@ def write_index():
             name = title.split(" · ", 1)[1]
             number = folder.split("/")[1][:2]
             parts.append(
-                f'      <li><a href="{folder}/">{number} {html.escape(name)}</a> '
+                f'      <li><a href="../{folder}/">{number} {html.escape(name)}</a> '
                 f'<a class="code" href="{code_base}{folder}">code</a>'
                 f'<span class="what">{html.escape(what)}</span></li>'
             )
@@ -212,7 +212,7 @@ def write_index():
     parts.append("    <!-- REFERENCE:END -->")
     block = "\n".join(parts)
 
-    index_path = ROOT / "index.html"
+    index_path = ROOT / "reference" / "index.html"
     page = index_path.read_text(encoding="utf-8")
     start, end = "<!-- REFERENCE:START -->", "<!-- REFERENCE:END -->"
     if start in page:

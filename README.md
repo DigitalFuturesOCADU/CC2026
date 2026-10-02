@@ -12,6 +12,15 @@ open the same example on your phone.
 **Do not edit inside this folder. Copy.** Copy an example folder into your own project and
 change it there. Pull often: new examples arrive with every class.
 
+**In the p5.js Web Editor.** Every example also has a copy on the course's Web Editor account,
+[creationcomputation](https://editor.p5js.org/creationcomputation/sketches). The index links each
+one as "web editor". Log in, open it, then File › Duplicate to make it yours.
+
+For instructors: `python3 webeditor/stage.py` copies the examples into `webeditor/projects/`,
+then `XDG_CONFIG_HOME=~/.config/p5-candc node ../p5-webeditor-sync/bin/p5-webeditor-sync.mjs sync --batch <batch>`
+pushes them (the prefix selects the creationcomputation session), and
+`python3 webeditor/link_index.py` adds the links to the index.
+
 ## Experiment 2 · One Phone, More People
 
 Eight examples in `experiment-2/`. Motion, touch and sound go in; the screen, sound and the

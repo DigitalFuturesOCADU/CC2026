@@ -1,0 +1,36 @@
+{
+  "slug": "e2-05-hold-a-note-1-person",
+  "title": "05 Hold a Note · 1 person",
+  "name": "C&C F26 · 05 Hold a Note · 1 person",
+  "projectId": null,
+  "contentHash": "sha256:75ad34cb9d745c47c631c493fb501fc1cc1c90694e5bdcac09cf431915b59544",
+  "files": [
+    {
+      "name": "root",
+      "id": "cc148e85dfdb74ba21c8c805",
+      "_id": "cc148e85dfdb74ba21c8c805",
+      "fileType": "folder",
+      "children": [
+        "25e235302732b92f0caee919",
+        "e2a9f3ee2453ec3ee9fc6197"
+      ]
+    },
+    {
+      "name": "index.html",
+      "content": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n  <title>05 Hold a Note · 1 person</title>\n  <style>\n    body {\n      margin: 0;\n      padding: 0;\n      overflow: hidden;\n      background: #141414;\n    }\n    canvas {\n      touch-action: none; /* a finger on the canvas never scrolls the page */\n    }\n  </style>\n\n  <!-- p5.js 2.x -->\n  <script src=\"https://cdn.jsdelivr.net/npm/p5@2.2.3/lib/p5.js\"></script>\n\n  <!-- p5.sound: the microphone, recordings and oscillators -->\n  <script src=\"https://cdn.jsdelivr.net/npm/p5.js-compatibility@0.2.0/src/preload.js\"></script>\n  <script src=\"https://cdn.jsdelivr.net/npm/p5.sound@0.3.0/dist/p5.sound.min.js\"></script>\n\n  <!-- p5-phone: the permission tap, the gesture lock, the flashlight and the QR code -->\n  <script src=\"https://cdn.jsdelivr.net/npm/p5-phone@1.15.0/dist/p5-phone.min.js\"></script>\n</head>\n<body>\n  <script src=\"sketch.js\"></script>\n</body>\n</html>\n",
+      "id": "25e235302732b92f0caee919",
+      "_id": "25e235302732b92f0caee919",
+      "fileType": "file",
+      "children": []
+    },
+    {
+      "name": "sketch.js",
+      "content": "// 05 · Hold a Note · 1 person\n// Touch → sound. Side by side: the screen is split into one strip for each person.\n// Each strip plays one note. Hold a finger on your strip to play it.\n// Slide up for a higher note, down for a lower one.\n// The 1, 2 and 3 person versions are the same sketch. Only these two lines change:\nlet people = 1; // how many people share the phone: 1, 2 or 3\nlet howTo = 'Hold a finger down to play. Slide up for higher, down for lower.';\n\n// the notes you can slide between, low to high. a pentatonic scale,\n// so any of them played together sound good together\nlet notes = [220, 247, 277, 330, 370, 440, 494, 554, 659, 740];\n\n// the feel of the piece\nlet waveType = 'triangle'; // 'sine', 'triangle', 'sawtooth' or 'square'\nlet volume = 0.3;          // for each note. three notes together reach 0.9\nlet colours = ['#ff8c1a', '#2ab7ff', '#ff4fa3']; // one colour for each person\n\nlet voices = [];      // one oscillator for each person\nlet playing = [];     // is each person's note sounding?\nlet unlocked = false; // has the tap turned the sound on?\nlet started = false;  // are the oscillators running?\n\n// p5-phone calls this once the tap has turned the sound on\nfunction userSetupComplete() {\n  unlocked = true;\n}\n\nfunction setup() {\n  createCanvas(windowWidth, windowHeight);\n  lockGestures();\n\n  // on a laptop, show a QR code of this page so a phone can open it.\n  // it only shows on a public https address, like the examples site.\n  if (location.protocol === 'https:' && window.self === window.top) {\n    showDesktopQr();\n  }\n\n  enableSoundTap('Tap to start');\n\n  // one oscillator for each person. they run all the time, silent until a finger is down\n  for (let i = 0; i < people; i++) {\n    voices[i] = new p5.Oscillator(notes[0], waveType);\n    voices[i].amp(0);\n    playing[i] = false;\n  }\n}\n\nfunction draw() {\n  background(20);\n\n  // the oscillators start once the tap has turned the sound on\n  if (unlocked && !started) {\n    for (let i = 0; i < people; i++) {\n      voices[i].start();\n    }\n    started = true;\n  }\n\n  let stripWidth = width / people;\n  let noteHeight = height / notes.length;\n  for (let i = 0; i < people; i++) {\n    let left = i * stripWidth;\n\n    // the strip, in this person's colour, faint\n    let faint = color(colours[i]);\n    faint.setAlpha(50);\n    noStroke();\n    fill(faint);\n    rect(left + 2, 0, stripWidth - 4, height);\n\n    // 1. find a finger on this strip. -1 means there is none\n    let y = fingerY(left, left + stripWidth);\n\n    if (y >= 0 && started) {\n      // 2. keep it on the screen, then map it onto a note: the bottom is low, the top high\n      y = constrain(y, 1, height);\n      let n = floor(map(y, height, 0, 0, notes.length));\n\n      // 3. play that note\n      voices[i].freq(notes[n]);\n      if (!playing[i]) {\n        voices[i].amp(volume, 0.1); // fade in\n        playing[i] = true;\n      }\n      fill(colours[i]);\n      rect(left + 2, height - (n + 1) * noteHeight, stripWidth - 4, noteHeight);\n    } else if (playing[i]) {\n      voices[i].amp(0, 0.3); // fade out\n      playing[i] = false;\n    }\n  }\n\n  // a line between the notes\n  stroke(255, 40);\n  strokeWeight(1);\n  for (let n = 1; n < notes.length; n++) {\n    line(0, n * noteHeight, width, n * noteHeight);\n  }\n\n  drawHowTo('No sound? Check silent mode.');\n}\n\n// how high a finger between left and right is. -1 if there is none.\n// on a laptop, the mouse counts as one finger\nfunction fingerY(left, right) {\n  for (let i = 0; i < touches.length; i++) {\n    if (touches[i].x >= left && touches[i].x < right) {\n      return touches[i].y;\n    }\n  }\n  if (touches.length === 0 && mouseIsPressed && mouseX >= left && mouseX < right) {\n    return mouseY;\n  }\n  return -1;\n}\n\n// the band across the top: what to do, and a note when there is one\nfunction drawHowTo(note) {\n  noStroke();\n  fill(0, 180);\n  rect(0, 0, width, 110);\n  fill(255);\n  textSize(16);\n  textAlign(LEFT, TOP);\n  text(howTo, 16, 14, width - 32);\n  if (note) {\n    fill(255, 200, 0);\n    text(note, 16, 80, width - 32);\n  }\n}\n\nfunction windowResized() {\n  resizeCanvas(windowWidth, windowHeight);\n}\n",
+      "id": "e2a9f3ee2453ec3ee9fc6197",
+      "_id": "e2a9f3ee2453ec3ee9fc6197",
+      "fileType": "file",
+      "children": [],
+      "isSelectedFile": true
+    }
+  ]
+}

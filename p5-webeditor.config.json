@@ -1,0 +1,43 @@
+{
+  "account": "creationcomputation",
+  "projectsDir": "webeditor/projects",
+  "syncDir": "webeditor/.sync",
+  "registryFile": "webeditor/.sync/registry.json",
+  "namePrefix": "C&C F26 · ",
+  "visibility": "Public",
+  "verify": {
+    "enabled": true,
+    "signature": "p5-phone@1.15.0",
+    "mode": "local",
+    "skipIfMissing": true,
+    "failOnVerify": false
+  },
+  "batches": {
+    "intro": [
+      "e2-01-tilt-to-draw-1-person",
+      "e2-01-tilt-to-draw-2-people",
+      "e2-01-tilt-to-draw-3-people",
+      "e2-02-tilt-to-speed-1-person",
+      "e2-02-tilt-to-speed-2-people",
+      "e2-02-tilt-to-speed-3-people",
+      "e2-03-still-for-light-1-person",
+      "e2-03-still-for-light-2-people",
+      "e2-03-still-for-light-3-people",
+      "e2-04-hold-to-reveal-1-person",
+      "e2-04-hold-to-reveal-2-people",
+      "e2-04-hold-to-reveal-3-people",
+      "e2-05-hold-a-note-1-person",
+      "e2-05-hold-a-note-2-people",
+      "e2-05-hold-a-note-3-people",
+      "e2-06-hands-for-light-1-person",
+      "e2-06-hands-for-light-2-people",
+      "e2-06-hands-for-light-3-people",
+      "e2-07-hum-to-play-1-person",
+      "e2-07-hum-to-play-2-people",
+      "e2-07-hum-to-play-3-people",
+      "e2-08-quiet-for-light-1-person",
+      "e2-08-quiet-for-light-2-people",
+      "e2-08-quiet-for-light-3-people"
+    ]
+  }
+}

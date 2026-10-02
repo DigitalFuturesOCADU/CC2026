@@ -1,0 +1,36 @@
+{
+  "slug": "e2-01-tilt-to-draw-1-person",
+  "title": "01 Tilt to Draw · 1 person",
+  "name": "C&C F26 · 01 Tilt to Draw · 1 person",
+  "projectId": null,
+  "contentHash": "sha256:7c0c11b21cf55798b4387463765891d321616fd35725b46c74dfd7a915825e6a",
+  "files": [
+    {
+      "name": "root",
+      "id": "a4fd6771dd1f3cd1207aa9ec",
+      "_id": "a4fd6771dd1f3cd1207aa9ec",
+      "fileType": "folder",
+      "children": [
+        "2757588117cdcb6fff76514e",
+        "1da46d48c883286d74dba9b0"
+      ]
+    },
+    {
+      "name": "index.html",
+      "content": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n  <title>01 Tilt to Draw · 1 person</title>\n  <style>\n    body {\n      margin: 0;\n      padding: 0;\n      overflow: hidden;\n      background: #141414;\n    }\n    canvas {\n      touch-action: none; /* a finger on the canvas never scrolls the page */\n    }\n  </style>\n\n  <!-- p5.js 2.x -->\n  <script src=\"https://cdn.jsdelivr.net/npm/p5@2.2.3/lib/p5.js\"></script>\n\n  <!-- p5-phone: the permission tap, the gesture lock, the flashlight and the QR code -->\n  <script src=\"https://cdn.jsdelivr.net/npm/p5-phone@1.15.0/dist/p5-phone.min.js\"></script>\n</head>\n<body>\n  <script src=\"sketch.js\"></script>\n</body>\n</html>\n",
+      "id": "2757588117cdcb6fff76514e",
+      "_id": "2757588117cdcb6fff76514e",
+      "fileType": "file",
+      "children": []
+    },
+    {
+      "name": "sketch.js",
+      "content": "// 01 · Tilt to Draw · 1 person\n// Motion → screen. In turn: the phone is passed from person to person.\n// Tilt the phone and the pen moves, leaving a line in your colour.\n// Every 15 seconds the colour changes and the phone goes to the next person.\n// The 1, 2 and 3 person versions are the same sketch. Only these two lines change:\nlet people = 1; // how many people share the phone: 1, 2 or 3\nlet howTo = 'Hold the phone flat. Tip it to draw.';\n\n// the feel of the piece. change these before you change anything else.\nlet turnSeconds = 15; // how long each turn lasts\nlet maxTilt = 30;     // degrees of tilt that reach the edge of the screen\nlet fade = 10;        // how much the old lines fade, once a second. 0 never fades\nlet colours = ['#ff8c1a', '#2ab7ff', '#ff4fa3']; // one colour for each person\n\nlet x, y;             // where the pen is\nlet startTime = -1;   // when the first turn started, in milliseconds\n\nfunction setup() {\n  createCanvas(windowWidth, windowHeight);\n  lockGestures();\n\n  // on a laptop, show a QR code of this page so a phone can open it.\n  // it only shows on a public https address, like the examples site.\n  if (location.protocol === 'https:' && window.self === window.top) {\n    showDesktopQr();\n  }\n\n  angleMode(DEGREES);\n  enableGyroTap('Tap to start');\n  x = width / 2;\n  y = height / 2;\n  background(0);\n}\n\nfunction draw() {\n  if (!window.sensorsEnabled) {\n    return;\n  }\n  if (startTime < 0) {\n    startTime = millis();\n  }\n\n  // 1. whose turn is it? 0 is the first person\n  let seconds = (millis() - startTime) / 1000;\n  let turn = floor(seconds / turnSeconds) % people;\n\n  // 2. read the tilt. keep it inside the range first, then map it onto the screen\n  let tiltX = constrain(rotationY, -maxTilt, maxTilt);\n  let tiltY = constrain(rotationX, -maxTilt, maxTilt);\n  let targetX = map(tiltX, -maxTilt, maxTilt, 0, width);\n  let targetY = map(tiltY, -maxTilt, maxTilt, 0, height);\n\n  // 3. move the pen part of the way there, and draw a line in this person's colour\n  let px = x;\n  let py = y;\n  x = lerp(x, targetX, 0.1);\n  y = lerp(y, targetY, 0.1);\n  stroke(colours[turn]);\n  strokeWeight(10);\n  line(px, py, x, y);\n\n  // once a second, a see-through black layer, so old lines slowly fade\n  if (frameCount % 60 === 0) {\n    noStroke();\n    fill(0, fade);\n    rect(0, 0, width, height);\n  }\n\n  drawBanner(turn, turnSeconds - (seconds % turnSeconds));\n}\n\n// the band across the top: whose turn it is, and what to do\nfunction drawBanner(turn, secondsLeft) {\n  noStroke();\n  fill(colours[turn]);\n  rect(0, 0, width, 100);\n  fill(0);\n  textSize(16);\n  textAlign(LEFT, TOP);\n  if (people > 1) {\n    text('Person ' + (turn + 1) + ' of ' + people + ' · ' + ceil(secondsLeft) + ' s', 16, 14);\n    text(howTo, 16, 40, width - 32);\n  } else {\n    text(howTo, 16, 14, width - 32);\n  }\n}\n\nfunction windowResized() {\n  resizeCanvas(windowWidth, windowHeight);\n  background(0);\n}\n",
+      "id": "1da46d48c883286d74dba9b0",
+      "_id": "1da46d48c883286d74dba9b0",
+      "fileType": "file",
+      "children": [],
+      "isSelectedFile": true
+    }
+  ]
+}

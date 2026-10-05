@@ -16,18 +16,11 @@
     }
   </style>
 
-  <!-- a laptop has no tilt sensor but still sends one empty reading. ignore it, so rotationX stays a number -->
-  <script>
-    window.addEventListener('deviceorientation', function (e) {
-      if (e.beta === null) e.stopImmediatePropagation();
-    }, true);
-  </script>
-
   <!-- p5.js 2.x -->
   <script src="https://cdn.jsdelivr.net/npm/p5@2.2.3/lib/p5.js"></script>
 
   <!-- p5-phone: the permission tap, the gesture lock, the flashlight and the QR code -->
-  <script src="https://cdn.jsdelivr.net/npm/p5-phone@1.15.0/dist/p5-phone.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/p5-phone@1.15.2/dist/p5-phone.min.js"></script>
 </head>
 <body>
   <script src="sketch.js"></script>

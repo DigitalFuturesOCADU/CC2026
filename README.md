@@ -15,7 +15,8 @@ change it there. Pull often: new examples arrive with every class.
 
 **In the p5.js Web Editor.** Every example also has a copy on the course's Web Editor account,
 [creationcomputation](https://editor.p5js.org/creationcomputation/sketches). The index links each
-one as "web editor". Log in, open it, then File › Duplicate to make it yours.
+one as "web editor". Log in, open it, then File › Duplicate to make it yours. The QR code shows
+there too and opens the last saved version on the phone, so save before you scan.
 
 For instructors: `python3 webeditor/stage.py` copies the examples into `webeditor/projects/`,
 then `XDG_CONFIG_HOME=~/.config/p5-candc node ../p5-webeditor-sync/bin/p5-webeditor-sync.mjs sync --batch <batch>`

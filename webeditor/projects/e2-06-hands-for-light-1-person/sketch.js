@@ -19,8 +19,8 @@ function setup() {
   lockGestures();
 
   // on a laptop, show a QR code of this page so a phone can open it.
-  // it only shows on a public https address, like the examples site.
-  if (location.protocol === 'https:' && window.self === window.top) {
+  // it only shows on a public https address, like the examples site, and in the p5.js web editor.
+  if (location.protocol === 'https:' || location.protocol === 'blob:') {
     showDesktopQr();
   }
 

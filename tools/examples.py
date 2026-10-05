@@ -19,7 +19,7 @@ ROOT = Path(__file__).resolve().parent.parent
 P5 = "https://cdn.jsdelivr.net/npm/p5@2.2.3/lib/p5.js"
 P5_SOUND = "https://cdn.jsdelivr.net/npm/p5.sound@0.3.0/dist/p5.sound.min.js"
 TONE = "https://cdn.jsdelivr.net/npm/tone@15.1.22/build/Tone.js"
-P5_PHONE = "https://cdn.jsdelivr.net/npm/p5-phone@1.15.0/dist/p5-phone.min.js"
+P5_PHONE = "https://cdn.jsdelivr.net/npm/p5-phone@1.15.2/dist/p5-phone.min.js"
 
 # section id, heading, one line under the heading
 SECTIONS = [
@@ -144,9 +144,9 @@ PAGE = """<!DOCTYPE html>
 
 {scripts}
 
-  <!-- on a laptop, a QR code of this page, to open it on a phone. only on the https examples site -->
+  <!-- on a laptop, a QR code of this page, to open it on a phone. on the https examples site and in the p5.js web editor -->
   <script>
-    if (location.protocol === 'https:' && window.self === window.top) {{
+    if (location.protocol === 'https:' || location.protocol === 'blob:') {{
       addEventListener('load', function () {{ showDesktopQr(); }});
     }}
   </script>
@@ -158,17 +158,8 @@ PAGE = """<!DOCTYPE html>
 """
 
 
-GUARD = """  <!-- a laptop has no tilt sensor but still sends one empty reading. ignore it, so rotationX stays a number -->
-  <script>
-    window.addEventListener('deviceorientation', function (e) {
-      if (e.beta === null) e.stopImmediatePropagation();
-    }, true);
-  </script>
-"""
-
-
 def scripts_for(libs):
-    lines = [GUARD, "  <!-- p5.js 2.x -->", f'  <script src="{P5}"></script>']
+    lines = ["  <!-- p5.js 2.x -->", f'  <script src="{P5}"></script>']
     if "sound" in libs:
         lines += ["", "  <!-- p5.sound: the microphone, recordings and tones -->",
                   f'  <script src="{P5_SOUND}"></script>']

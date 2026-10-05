@@ -3,7 +3,7 @@
   "title": "Touch 01 · Where",
   "name": "C&C F26 · Touch 01 · Where",
   "projectId": "YGprzO_FN",
-  "contentHash": "sha256:920f45bd1a4d05d7c0a8f6fb0e380f2fcd145b5300f08d5009bbb79521337f35",
+  "contentHash": "sha256:abbd06a656a84f4edf89dc86c081fa87b92244d8c41e917a3202b1a136173f28",
   "files": [
     {
       "name": "root",
@@ -17,7 +17,7 @@
     },
     {
       "name": "index.html",
-      "content": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n  <title>Touch 01 · Where</title>\n  <style>\n    body {\n      margin: 0;\n      padding: 0;\n      overflow: hidden;\n      background: #141414;\n    }\n    canvas {\n      touch-action: none; /* a finger on the canvas never scrolls the page */\n    }\n  </style>\n\n  <!-- a laptop has no tilt sensor but still sends one empty reading. ignore it, so rotationX stays a number -->\n  <script>\n    window.addEventListener('deviceorientation', function (e) {\n      if (e.beta === null) e.stopImmediatePropagation();\n    }, true);\n  </script>\n\n  <!-- p5.js 2.x -->\n  <script src=\"https://cdn.jsdelivr.net/npm/p5@2.2.3/lib/p5.js\"></script>\n\n  <!-- p5-phone: the permission tap, the gesture lock, the sensors and the flashlight -->\n  <script src=\"https://cdn.jsdelivr.net/npm/p5-phone@1.15.0/dist/p5-phone.min.js\"></script>\n\n  <!-- on a laptop, a QR code of this page, to open it on a phone. only on the https examples site -->\n  <script>\n    if (location.protocol === 'https:' && window.self === window.top) {\n      addEventListener('load', function () { showDesktopQr(); });\n    }\n  </script>\n</head>\n<body>\n  <script src=\"sketch.js\"></script>\n</body>\n</html>\n",
+      "content": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n  <title>Touch 01 · Where</title>\n  <style>\n    body {\n      margin: 0;\n      padding: 0;\n      overflow: hidden;\n      background: #141414;\n    }\n    canvas {\n      touch-action: none; /* a finger on the canvas never scrolls the page */\n    }\n  </style>\n\n  <!-- p5.js 2.x -->\n  <script src=\"https://cdn.jsdelivr.net/npm/p5@2.2.3/lib/p5.js\"></script>\n\n  <!-- p5-phone: the permission tap, the gesture lock, the sensors and the flashlight -->\n  <script src=\"https://cdn.jsdelivr.net/npm/p5-phone@1.15.2/dist/p5-phone.min.js\"></script>\n\n  <!-- on a laptop, a QR code of this page, to open it on a phone. on the https examples site and in the p5.js web editor -->\n  <script>\n    if (location.protocol === 'https:' || location.protocol === 'blob:') {\n      addEventListener('load', function () { showDesktopQr(); });\n    }\n  </script>\n</head>\n<body>\n  <script src=\"sketch.js\"></script>\n</body>\n</html>\n",
       "id": "c7bf31d5abfe4a92564fec48",
       "_id": "c7bf31d5abfe4a92564fec48",
       "fileType": "file",

@@ -2,32 +2,32 @@
   "slug": "sound-out-05-say-something",
   "title": "Sound Out 05 · Say Something",
   "name": "C&C F26 · Sound Out 05 · Say Something",
-  "projectId": null,
-  "contentHash": "sha256:0c3ca19b8942f3644cf178f4d1a5c612045851191e2095c4ecabe1fbf05cf381",
+  "projectId": "3vaXa6aUa",
+  "contentHash": "sha256:fa358a682d26f546dbed718d7894971aa0184803c6cbc7aa67331bb2a135507d",
   "files": [
     {
       "name": "root",
-      "id": "ff5a3cc9058e55f342cfcbe7",
-      "_id": "ff5a3cc9058e55f342cfcbe7",
+      "id": "eb1094f99a759c3e6ee9f5ae",
+      "_id": "eb1094f99a759c3e6ee9f5ae",
       "fileType": "folder",
       "children": [
-        "a6da08ce8338c8b11c2fde32",
-        "9f8ed400c28c97ed5e5d7a53"
+        "7ec0aad16661a636ad0e5263",
+        "faf5fda0a33b0a96a932c88d"
       ]
     },
     {
       "name": "index.html",
-      "content": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n  <title>Sound Out 05 · Say Something</title>\n  <style>\n    body {\n      margin: 0;\n      padding: 0;\n      overflow: hidden;\n      background: #141414;\n    }\n    canvas {\n      touch-action: none; /* a finger on the canvas never scrolls the page */\n    }\n  </style>\n\n  <!-- a laptop has no tilt sensor but still sends one empty reading. ignore it, so rotationX stays a number -->\n  <script>\n    window.addEventListener('deviceorientation', function (e) {\n      if (e.beta === null) e.stopImmediatePropagation();\n    }, true);\n  </script>\n\n  <!-- p5.js 2.x -->\n  <script src=\"https://cdn.jsdelivr.net/npm/p5@2.2.3/lib/p5.js\"></script>\n\n  <!-- p5-phone: the permission tap, the gesture lock, the sensors and the flashlight -->\n  <script src=\"https://cdn.jsdelivr.net/npm/p5-phone@1.15.0/dist/p5-phone.min.js\"></script>\n\n  <!-- on a laptop, a QR code of this page, to open it on a phone. only on the https examples site -->\n  <script>\n    if (location.protocol === 'https:' && window.self === window.top) {\n      addEventListener('load', function () { showDesktopQr(); });\n    }\n  </script>\n</head>\n<body>\n  <script src=\"sketch.js\"></script>\n</body>\n</html>\n",
-      "id": "a6da08ce8338c8b11c2fde32",
-      "_id": "a6da08ce8338c8b11c2fde32",
+      "content": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n  <title>Sound Out 05 · Say Something</title>\n  <style>\n    body {\n      margin: 0;\n      padding: 0;\n      overflow: hidden;\n      background: #141414;\n    }\n    canvas {\n      touch-action: none; /* a finger on the canvas never scrolls the page */\n    }\n  </style>\n\n  <!-- p5.js 2.x -->\n  <script src=\"https://cdn.jsdelivr.net/npm/p5@2.2.3/lib/p5.js\"></script>\n\n  <!-- p5-phone: the permission tap, the gesture lock, the sensors and the flashlight -->\n  <script src=\"https://cdn.jsdelivr.net/npm/p5-phone@1.15.2/dist/p5-phone.min.js\"></script>\n\n  <!-- on a laptop, a QR code of this page, to open it on a phone. on the https examples site and in the p5.js web editor -->\n  <script>\n    if (location.protocol === 'https:' || location.protocol === 'blob:') {\n      addEventListener('load', function () { showDesktopQr(); });\n    }\n  </script>\n</head>\n<body>\n  <script src=\"sketch.js\"></script>\n</body>\n</html>\n",
+      "id": "7ec0aad16661a636ad0e5263",
+      "_id": "7ec0aad16661a636ad0e5263",
       "fileType": "file",
       "children": []
     },
     {
       "name": "sketch.js",
       "content": "// Sound Out 05 · Say Something\n// The browser has its own voice, speechSynthesis. No library, no recording.\n// Each tap says the next word in the list and shows it.\n\n// change these\nlet words = ['hello', 'over', 'here', 'look', 'up', 'thank you', 'goodbye'];\n\nlet next = 0;  // which word is said next\nlet said = ''; // the word said last\n\nfunction setup() {\n  createCanvas(windowWidth, windowHeight);\n  lockGestures(); // no tap to start here: speech needs no permission and no p5.sound\n}\n\nfunction draw() {\n  background(20);\n  fill(255);\n  textSize(18);\n  text('tap to say the next word', 20, 40);\n  textSize(48);\n  text(said, 20, height / 2);\n}\n\n// on an iPhone the first word must come from a tap. a finger lifting counts as one\nfunction mouseReleased() {\n  said = words[next];\n  let sentence = new SpeechSynthesisUtterance(said); // what to say. it can also set rate and pitch\n  speechSynthesis.speak(sentence);\n  next = (next + 1) % words.length; // after the last word, back to the first\n}\n\nfunction windowResized() {\n  resizeCanvas(windowWidth, windowHeight);\n}\n",
-      "id": "9f8ed400c28c97ed5e5d7a53",
-      "_id": "9f8ed400c28c97ed5e5d7a53",
+      "id": "faf5fda0a33b0a96a932c88d",
+      "_id": "faf5fda0a33b0a96a932c88d",
       "fileType": "file",
       "children": [],
       "isSelectedFile": true

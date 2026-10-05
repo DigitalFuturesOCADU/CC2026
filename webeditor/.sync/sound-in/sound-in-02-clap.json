@@ -2,32 +2,32 @@
   "slug": "sound-in-02-clap",
   "title": "Sound In 02 · Clap",
   "name": "C&C F26 · Sound In 02 · Clap",
-  "projectId": null,
-  "contentHash": "sha256:88c844f02b47d4111c1ff5845e0111c594c6bec937459668b7ca5565fe5b0c9b",
+  "projectId": "mLMJFNe1K",
+  "contentHash": "sha256:5c7b66a1193f7a8d87ab6cc6c0bafa89f454bb9cca84d27fbd1b50e53b5b2f9a",
   "files": [
     {
       "name": "root",
-      "id": "3d6676288fe69f96baa6fe98",
-      "_id": "3d6676288fe69f96baa6fe98",
+      "id": "52d0b8e3ea2439a95a2b6896",
+      "_id": "52d0b8e3ea2439a95a2b6896",
       "fileType": "folder",
       "children": [
-        "de0e424e8b0c856b853c922b",
-        "889bfabe64c36196aab293a8"
+        "6202b3945bfe2d62f4c85d59",
+        "c76fc747565a1effdbf9fff3"
       ]
     },
     {
       "name": "index.html",
-      "content": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n  <title>Sound In 02 · Clap</title>\n  <style>\n    body {\n      margin: 0;\n      padding: 0;\n      overflow: hidden;\n      background: #141414;\n    }\n    canvas {\n      touch-action: none; /* a finger on the canvas never scrolls the page */\n    }\n  </style>\n\n  <!-- a laptop has no tilt sensor but still sends one empty reading. ignore it, so rotationX stays a number -->\n  <script>\n    window.addEventListener('deviceorientation', function (e) {\n      if (e.beta === null) e.stopImmediatePropagation();\n    }, true);\n  </script>\n\n  <!-- p5.js 2.x -->\n  <script src=\"https://cdn.jsdelivr.net/npm/p5@2.2.3/lib/p5.js\"></script>\n\n  <!-- p5.sound: the microphone, recordings and tones -->\n  <script src=\"https://cdn.jsdelivr.net/npm/p5.sound@0.3.0/dist/p5.sound.min.js\"></script>\n\n  <!-- p5-phone: the permission tap, the gesture lock, the sensors and the flashlight -->\n  <script src=\"https://cdn.jsdelivr.net/npm/p5-phone@1.15.0/dist/p5-phone.min.js\"></script>\n\n  <!-- on a laptop, a QR code of this page, to open it on a phone. only on the https examples site -->\n  <script>\n    if (location.protocol === 'https:' && window.self === window.top) {\n      addEventListener('load', function () { showDesktopQr(); });\n    }\n  </script>\n</head>\n<body>\n  <script src=\"sketch.js\"></script>\n</body>\n</html>\n",
-      "id": "de0e424e8b0c856b853c922b",
-      "_id": "de0e424e8b0c856b853c922b",
+      "content": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n  <title>Sound In 02 · Clap</title>\n  <style>\n    body {\n      margin: 0;\n      padding: 0;\n      overflow: hidden;\n      background: #141414;\n    }\n    canvas {\n      touch-action: none; /* a finger on the canvas never scrolls the page */\n    }\n  </style>\n\n  <!-- p5.js 2.x -->\n  <script src=\"https://cdn.jsdelivr.net/npm/p5@2.2.3/lib/p5.js\"></script>\n\n  <!-- p5.sound: the microphone, recordings and tones -->\n  <script src=\"https://cdn.jsdelivr.net/npm/p5.sound@0.3.0/dist/p5.sound.min.js\"></script>\n\n  <!-- p5-phone: the permission tap, the gesture lock, the sensors and the flashlight -->\n  <script src=\"https://cdn.jsdelivr.net/npm/p5-phone@1.15.2/dist/p5-phone.min.js\"></script>\n\n  <!-- on a laptop, a QR code of this page, to open it on a phone. on the https examples site and in the p5.js web editor -->\n  <script>\n    if (location.protocol === 'https:' || location.protocol === 'blob:') {\n      addEventListener('load', function () { showDesktopQr(); });\n    }\n  </script>\n</head>\n<body>\n  <script src=\"sketch.js\"></script>\n</body>\n</html>\n",
+      "id": "6202b3945bfe2d62f4c85d59",
+      "_id": "6202b3945bfe2d62f4c85d59",
       "fileType": "file",
       "children": []
     },
     {
       "name": "sketch.js",
       "content": "// Sound In 02 · Clap\n// A loud moment is an event. Clap: each clap counts once and flashes the screen.\n\n// change these\nlet threshold = 0.5; // the line: how loud a clap has to be, from 0 to 1\nlet cooldown = 250;  // milliseconds after a clap when nothing counts\nlet boost = 5;       // multiplies the level. phones hear quietly\n\nlet mic;               // p5-phone looks for a variable with exactly this name\nlet meter;             // measures how loud the microphone is\nlet wasLoud = false;   // was it over the line last frame?\nlet clapTime = -10000; // when the last clap counted. long ago, to start\nlet count = 0;         // how many claps so far\n\nfunction setup() {\n  createCanvas(windowWidth, windowHeight);\n  lockGestures();\n  mic = new p5.AudioIn();\n  meter = new p5.Amplitude();\n  enableMicTap('Tap to start');\n}\n\nfunction draw() {\n  background(20);\n  if (!window.micOpen) return; // true only while sound is really arriving\n\n  mic.disconnect();   // unplug the microphone from the speaker...\n  mic.connect(meter); // ...and plug it into the meter\n  let level = constrain(meter.getLevel() * boost, 0, 1);\n\n  // over the line now, not last frame, and not just after a clap: a new clap\n  let loud = level > threshold;\n  if (loud && !wasLoud && millis() - clapTime > cooldown) {\n    count = count + 1;\n    clapTime = millis();\n  }\n  wasLoud = loud;\n\n  // the flash: a bright screen for a moment after each clap\n  if (millis() - clapTime < 100) {\n    background(255, 200, 0);\n  }\n\n  noStroke();\n  fill(255);\n  rect(0, height - 40, level * width, 40);     // the level, as a bar\n  rect(threshold * width, height - 60, 4, 60); // the line\n  textSize(18);\n  text('level ' + nf(level, 1, 2) + '   claps ' + count, 20, 40);\n}\n\nfunction windowResized() {\n  resizeCanvas(windowWidth, windowHeight);\n}\n",
-      "id": "889bfabe64c36196aab293a8",
-      "_id": "889bfabe64c36196aab293a8",
+      "id": "c76fc747565a1effdbf9fff3",
+      "_id": "c76fc747565a1effdbf9fff3",
       "fileType": "file",
       "children": [],
       "isSelectedFile": true

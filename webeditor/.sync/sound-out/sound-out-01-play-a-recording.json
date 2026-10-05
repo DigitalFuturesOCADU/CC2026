@@ -2,32 +2,32 @@
   "slug": "sound-out-01-play-a-recording",
   "title": "Sound Out 01 · Play a Recording",
   "name": "C&C F26 · Sound Out 01 · Play a Recording",
-  "projectId": null,
-  "contentHash": "sha256:c4629eb9cf41e71b59704802db0d473e3822121559d7221e9c3511438ca8d451",
+  "projectId": "O7qY-xaqc",
+  "contentHash": "sha256:bbde12892256e7528fb1568da3d1a7d7a681e8263c57067d0f8e2dbefe1d435c",
   "files": [
     {
       "name": "root",
-      "id": "571a8f08be9cf93f9471e875",
-      "_id": "571a8f08be9cf93f9471e875",
+      "id": "38253a134f940a7a4f8e26c6",
+      "_id": "38253a134f940a7a4f8e26c6",
       "fileType": "folder",
       "children": [
-        "1978e9c0a09a243262b222d3",
-        "490e48086672d81d9473ed24"
+        "027548efc35f8d9fe4e0287d",
+        "71d88ae9cb84210a3b71106e"
       ]
     },
     {
       "name": "index.html",
-      "content": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n  <title>Sound Out 01 · Play a Recording</title>\n  <style>\n    body {\n      margin: 0;\n      padding: 0;\n      overflow: hidden;\n      background: #141414;\n    }\n    canvas {\n      touch-action: none; /* a finger on the canvas never scrolls the page */\n    }\n  </style>\n\n  <!-- a laptop has no tilt sensor but still sends one empty reading. ignore it, so rotationX stays a number -->\n  <script>\n    window.addEventListener('deviceorientation', function (e) {\n      if (e.beta === null) e.stopImmediatePropagation();\n    }, true);\n  </script>\n\n  <!-- p5.js 2.x -->\n  <script src=\"https://cdn.jsdelivr.net/npm/p5@2.2.3/lib/p5.js\"></script>\n\n  <!-- p5.sound: the microphone, recordings and tones -->\n  <script src=\"https://cdn.jsdelivr.net/npm/p5.sound@0.3.0/dist/p5.sound.min.js\"></script>\n\n  <!-- p5-phone: the permission tap, the gesture lock, the sensors and the flashlight -->\n  <script src=\"https://cdn.jsdelivr.net/npm/p5-phone@1.15.0/dist/p5-phone.min.js\"></script>\n\n  <!-- on a laptop, a QR code of this page, to open it on a phone. only on the https examples site -->\n  <script>\n    if (location.protocol === 'https:' && window.self === window.top) {\n      addEventListener('load', function () { showDesktopQr(); });\n    }\n  </script>\n</head>\n<body>\n  <script src=\"sketch.js\"></script>\n</body>\n</html>\n",
-      "id": "1978e9c0a09a243262b222d3",
-      "_id": "1978e9c0a09a243262b222d3",
+      "content": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n  <title>Sound Out 01 · Play a Recording</title>\n  <style>\n    body {\n      margin: 0;\n      padding: 0;\n      overflow: hidden;\n      background: #141414;\n    }\n    canvas {\n      touch-action: none; /* a finger on the canvas never scrolls the page */\n    }\n  </style>\n\n  <!-- p5.js 2.x -->\n  <script src=\"https://cdn.jsdelivr.net/npm/p5@2.2.3/lib/p5.js\"></script>\n\n  <!-- p5.sound: the microphone, recordings and tones -->\n  <script src=\"https://cdn.jsdelivr.net/npm/p5.sound@0.3.0/dist/p5.sound.min.js\"></script>\n\n  <!-- p5-phone: the permission tap, the gesture lock, the sensors and the flashlight -->\n  <script src=\"https://cdn.jsdelivr.net/npm/p5-phone@1.15.2/dist/p5-phone.min.js\"></script>\n\n  <!-- on a laptop, a QR code of this page, to open it on a phone. on the https examples site and in the p5.js web editor -->\n  <script>\n    if (location.protocol === 'https:' || location.protocol === 'blob:') {\n      addEventListener('load', function () { showDesktopQr(); });\n    }\n  </script>\n</head>\n<body>\n  <script src=\"sketch.js\"></script>\n</body>\n</html>\n",
+      "id": "027548efc35f8d9fe4e0287d",
+      "_id": "027548efc35f8d9fe4e0287d",
       "fileType": "file",
       "children": []
     },
     {
       "name": "sketch.js",
       "content": "// Sound Out 01 · Play a Recording\n// p5.sound loads a recording and loops it. A quick tap starts or stops it.\n// Hold a finger down and slide up and down to bend the speed. Slower is also lower.\n\n// change these\nlet slowest = 0.5; // the speed at the bottom of the screen. 1 is as it was recorded\nlet fastest = 2;   // the speed at the top\n\nlet recording;         // the loaded sound file\nlet speed = 1;         // how fast it plays now\nlet downTime = -10000; // when the finger went down\n\nasync function setup() {\n  createCanvas(windowWidth, windowHeight);\n  lockGestures();\n  recording = await loadSound('https://digitalfuturesocadu.github.io/CC2026/experiment-2/media/wait-ravag.mp3');\n  recording.loop();               // start again at the end. loop() does not play it, play() does\n  enableSoundTap('Tap to start'); // asked for once the recording has loaded\n}\n\nfunction draw() {\n  background(20);\n\n  // while a finger is down, its height sets the speed\n  if (mouseIsPressed && window.soundEnabled) {\n    speed = map(mouseY, height, 0, slowest, fastest, true);\n    recording.rate(speed);\n  }\n\n  fill(255);\n  textSize(18);\n  text('playing ' + recording.isPlaying() + '   speed ' + nf(speed, 1, 2), 20, 40);\n}\n\nfunction mousePressed() {\n  if (!window.soundEnabled) return; // the permission tap only turns the sound on\n  downTime = millis();\n}\n\nfunction mouseReleased() {\n  // a quick tap starts or stops the loop. a longer hold only bends the speed\n  if (millis() - downTime > 300) return;\n  if (recording.isPlaying()) {\n    recording.stop();\n  } else {\n    recording.play();\n  }\n}\n\nfunction windowResized() {\n  resizeCanvas(windowWidth, windowHeight);\n}\n",
-      "id": "490e48086672d81d9473ed24",
-      "_id": "490e48086672d81d9473ed24",
+      "id": "71d88ae9cb84210a3b71106e",
+      "_id": "71d88ae9cb84210a3b71106e",
       "fileType": "file",
       "children": [],
       "isSelectedFile": true

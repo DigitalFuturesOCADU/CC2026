@@ -3,7 +3,7 @@
   "title": "Sound In 01 · Level",
   "name": "C&C F26 · Sound In 01 · Level",
   "projectId": "6iH6jXdgo",
-  "contentHash": "sha256:bf2e8989d2f2ffa5fad45f5338ea1f3a9c4569639463d966de2624eeea1eed94",
+  "contentHash": "sha256:b030e6fc7a795a3977d26f5c9fa7730d72ac7d1b8d501f7c434f09238cfbbbb6",
   "files": [
     {
       "name": "root",
@@ -25,7 +25,7 @@
     },
     {
       "name": "sketch.js",
-      "content": "// Sound In 01 · Level\n// How loud it is, from 0 to 1, sets the size of the circle.\n// Hum, talk, clap. Phones hear quietly, so the level is turned up by boost.\n\n// change these\nlet boost = 5; // multiplies the level. raise it if the circle barely moves\n\nlet mic;   // p5-phone looks for a variable with exactly this name\nlet meter; // measures how loud the microphone is\n\nfunction setup() {\n  createCanvas(windowWidth, windowHeight);\n  lockGestures();\n  mic = new p5.AudioIn();\n  meter = new p5.Amplitude();\n  enableMicTap('Tap to start');\n}\n\nfunction draw() {\n  background(20);\n  if (!window.micOpen) return; // true only while sound is really arriving\n\n  mic.disconnect();   // unplug the microphone from the speaker...\n  mic.connect(meter); // ...and plug it into the meter\n  let level = constrain(meter.getLevel() * boost, 0, 1);\n\n  noStroke();\n  fill(255);\n  circle(width / 2, height / 2, 40 + level * width);\n\n  // the raw value\n  textSize(18);\n  text('level ' + nf(level, 1, 2), 20, 40);\n}\n\nfunction windowResized() {\n  resizeCanvas(windowWidth, windowHeight);\n}\n",
+      "content": "// Sound In 01 · Level\n// How loud it is, from 0 to 1, sets the size of the circle.\n// Hum, talk, clap. Phones hear quietly, so the level is turned up by boost.\n\n// change these\nlet boost = 5; // multiplies the level. raise it if the circle barely moves\n\nlet mic;   // p5-phone looks for a variable with exactly this name\nlet meter; // measures how loud the microphone is\n\nfunction setup() {\n  createCanvas(windowWidth, windowHeight);\n  lockGestures();\n  mic = new p5.AudioIn();\n  meter = new p5.Amplitude();\n  enableMicTap('Tap to start');\n}\n\nfunction draw() {\n  background(20);\n  // micOpen is true only while sound is really arriving\n  if (window.micOpen) {\n    mic.disconnect();   // unplug the microphone from the speaker...\n    mic.connect(meter); // ...and plug it into the meter\n    let level = constrain(meter.getLevel() * boost, 0, 1);\n\n    noStroke();\n    fill(255);\n    circle(width / 2, height / 2, 40 + level * width);\n\n    // the raw value\n    textSize(18);\n    text('level ' + nf(level, 1, 2), 20, 40);\n  }\n}\n\nfunction windowResized() {\n  resizeCanvas(windowWidth, windowHeight);\n}\n",
       "id": "db18553abcfec676c75b718f",
       "_id": "db18553abcfec676c75b718f",
       "fileType": "file",

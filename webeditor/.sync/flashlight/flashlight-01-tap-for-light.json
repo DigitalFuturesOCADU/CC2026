@@ -3,7 +3,7 @@
   "title": "Flashlight 01 · Tap for Light",
   "name": "C&C F26 · Flashlight 01 · Tap for Light",
   "projectId": "TmtMjzgBP",
-  "contentHash": "sha256:96df139c89129c762ddc7517cd378dcec15c8f2f8745848e1ff17808df6b226b",
+  "contentHash": "sha256:bd044788a2b15a837977e09b97dc4dad18fa53ab5e3df814f4aa5fe1bab89901",
   "files": [
     {
       "name": "root",
@@ -25,7 +25,7 @@
     },
     {
       "name": "sketch.js",
-      "content": "// Flashlight 01 · Tap for Light\n// The flashlight is the camera's light, so the first tap asks for the camera.\n// After that, each tap switches the light on or off. The screen shows what the light is doing.\n\nfunction setup() {\n  createCanvas(windowWidth, windowHeight);\n  lockGestures();\n  enableTorchTap('Tap to start');\n}\n\nfunction draw() {\n  // torchActive is true while the light is on\n  if (window.torchActive) {\n    background(255);\n  } else {\n    background(20);\n  }\n\n  // the raw value, on a dark band so it shows on white\n  fill(0);\n  rect(0, 0, width, 60);\n  fill(255);\n  textSize(18);\n  text('torchActive ' + window.torchActive, 20, 38);\n\n  // some phones and browsers have no flashlight. this says why\n  if (window.torchError) {\n    text('flashlight problem: ' + window.torchError, 20, 90, width - 40);\n  }\n}\n\nfunction mousePressed() {\n  if (!window.torchEnabled) return; // the first tap only asks for the camera\n  toggleTorch();\n}\n\nfunction windowResized() {\n  resizeCanvas(windowWidth, windowHeight);\n}\n",
+      "content": "// Flashlight 01 · Tap for Light\n// The flashlight is the camera's light, so the first tap asks for the camera.\n// After that, each tap switches the light on or off. The screen shows what the light is doing.\n\nfunction setup() {\n  createCanvas(windowWidth, windowHeight);\n  lockGestures();\n  enableTorchTap('Tap to start');\n}\n\nfunction draw() {\n  // torchActive is true while the light is on\n  if (window.torchActive) {\n    background(255);\n  } else {\n    background(20);\n  }\n\n  // the raw value, on a dark band so it shows on white\n  fill(0);\n  rect(0, 0, width, 60);\n  fill(255);\n  textSize(18);\n  text('torchActive ' + window.torchActive, 20, 38);\n\n  // some phones and browsers have no flashlight. this says why\n  if (window.torchError) {\n    text('flashlight problem: ' + window.torchError, 20, 90, width - 40);\n  }\n}\n\nfunction mousePressed() {\n  // the first tap only asks for the camera\n  if (window.torchEnabled) {\n    toggleTorch();\n  }\n}\n\nfunction windowResized() {\n  resizeCanvas(windowWidth, windowHeight);\n}\n",
       "id": "47b7366cbfa612d03cd22889",
       "_id": "47b7366cbfa612d03cd22889",
       "fileType": "file",

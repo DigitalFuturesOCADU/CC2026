@@ -3,7 +3,7 @@
   "title": "Motion 01 · Tilt",
   "name": "C&C F26 · Motion 01 · Tilt",
   "projectId": "3kic823dL",
-  "contentHash": "sha256:bd9638680556647bc9eebb0b902c6d23ba39cb0b7e1f0385c4946573780041a3",
+  "contentHash": "sha256:d47a53e47d2cb8d9cefe56f3861c9ecb90b97fca15f75f3131b301bd6db29e2c",
   "files": [
     {
       "name": "root",
@@ -25,7 +25,7 @@
     },
     {
       "name": "sketch.js",
-      "content": "// Motion 01 · Tilt\n// rotationX and rotationY say how far the phone is tipped, in degrees.\n// Tip it left and right, then forward and back, to move the circle.\n\n// change these\nlet range = 45; // degrees of tilt that reach the edge of the screen\n\nfunction setup() {\n  createCanvas(windowWidth, windowHeight);\n  lockGestures();\n  angleMode(DEGREES); // tilt in degrees. p5.js uses radians unless you say so\n  enableGyroTap('Tap to start');\n}\n\nfunction draw() {\n  background(20);\n  if (!window.sensorsEnabled) return;\n\n  // rotationY: tipped left and right. rotationX: tipped forward and back\n  let x = map(rotationY, -range, range, 0, width, true);\n  let y = map(rotationX, -range, range, 0, height, true);\n\n  noStroke();\n  fill(255);\n  circle(x, y, 80);\n\n  // the raw values\n  textSize(18);\n  text('rotationX ' + round(rotationX) + '   rotationY ' + round(rotationY), 20, 40);\n}\n\nfunction windowResized() {\n  resizeCanvas(windowWidth, windowHeight);\n}\n",
+      "content": "// Motion 01 · Tilt\n// rotationX and rotationY say how far the phone is tipped, in degrees.\n// Tip it left and right, then forward and back, to move the circle.\n\n// change these\nlet range = 45; // degrees of tilt that reach the edge of the screen\n\nfunction setup() {\n  createCanvas(windowWidth, windowHeight);\n  lockGestures();\n  angleMode(DEGREES); // tilt in degrees. p5.js uses radians unless you say so\n  enableGyroTap('Tap to start');\n}\n\nfunction draw() {\n  background(20);\n  if (window.sensorsEnabled) {\n    // rotationY: tipped left and right. rotationX: tipped forward and back\n    let x = map(rotationY, -range, range, 0, width, true);\n    let y = map(rotationX, -range, range, 0, height, true);\n\n    noStroke();\n    fill(255);\n    circle(x, y, 80);\n\n    // the raw values\n    textSize(18);\n    text('rotationX ' + round(rotationX) + '   rotationY ' + round(rotationY), 20, 40);\n  }\n}\n\nfunction windowResized() {\n  resizeCanvas(windowWidth, windowHeight);\n}\n",
       "id": "a3a86b9669a80f116d4c9874",
       "_id": "a3a86b9669a80f116d4c9874",
       "fileType": "file",

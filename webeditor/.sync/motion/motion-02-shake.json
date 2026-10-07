@@ -3,7 +3,7 @@
   "title": "Motion 02 · Shake",
   "name": "C&C F26 · Motion 02 · Shake",
   "projectId": "BFJh_8Tp0",
-  "contentHash": "sha256:672f474251e84818dbd80ba28ed91220393d0a1c732e41b1b92fa5402126bbaa",
+  "contentHash": "sha256:5ebb5923de74a2a8c73f0014bded2a224cd2bb50f4b6f5d25aa7754dc7232bf6",
   "files": [
     {
       "name": "root",
@@ -25,7 +25,7 @@
     },
     {
       "name": "sketch.js",
-      "content": "// Motion 02 · Shake\n// deviceShaken() is an event. p5.js calls it when the phone is shaken hard enough.\n// Each shake picks a new colour and adds one to the count. Try a small shake, then a big one.\n\n// change these\nlet threshold = 30; // how hard a shake has to be. lower is easier\nlet gap = 500;      // milliseconds before the next shake can count\n\nlet count = 0;     // how many shakes so far\nlet lastShake = 0; // when the last shake counted, in milliseconds\nlet colour;        // the background colour\n\nfunction setup() {\n  createCanvas(windowWidth, windowHeight);\n  lockGestures();\n  enableGyroTap('Tap to start');\n  setShakeThreshold(threshold);\n  colour = color(20);\n}\n\nfunction draw() {\n  background(colour);\n  if (!window.sensorsEnabled) return;\n\n  // the count, on a dark band so it shows on any colour\n  fill(0);\n  rect(0, 0, width, 60);\n  fill(255);\n  textSize(18);\n  text('shakes ' + count, 20, 38);\n}\n\n// p5.js calls this when the phone is shaken\nfunction deviceShaken() {\n  // one shake calls this several times in a row, so count it only once\n  if (millis() - lastShake < gap) return;\n  lastShake = millis();\n  count = count + 1;\n  colour = color(random(255), random(255), random(255));\n}\n\nfunction windowResized() {\n  resizeCanvas(windowWidth, windowHeight);\n}\n",
+      "content": "// Motion 02 · Shake\n// deviceShaken() is an event. p5.js calls it when the phone is shaken hard enough.\n// Each shake picks a new colour and adds one to the count. Try a small shake, then a big one.\n\n// change these\nlet threshold = 30; // how hard a shake has to be. lower is easier\nlet gap = 500;      // milliseconds before the next shake can count\n\nlet count = 0;     // how many shakes so far\nlet lastShake = 0; // when the last shake counted, in milliseconds\nlet colour;        // the background colour\n\nfunction setup() {\n  createCanvas(windowWidth, windowHeight);\n  lockGestures();\n  enableGyroTap('Tap to start');\n  setShakeThreshold(threshold);\n  colour = color(20);\n}\n\nfunction draw() {\n  background(colour);\n  if (window.sensorsEnabled) {\n    // the count, on a dark band so it shows on any colour\n    fill(0);\n    rect(0, 0, width, 60);\n    fill(255);\n    textSize(18);\n    text('shakes ' + count, 20, 38);\n  }\n}\n\n// p5.js calls this when the phone is shaken\nfunction deviceShaken() {\n  // one shake calls this several times in a row, so count it only once\n  if (millis() - lastShake < gap) return;\n  lastShake = millis();\n  count = count + 1;\n  colour = color(random(255), random(255), random(255));\n}\n\nfunction windowResized() {\n  resizeCanvas(windowWidth, windowHeight);\n}\n",
       "id": "4813cd2829bf01a6ba29d8b1",
       "_id": "4813cd2829bf01a6ba29d8b1",
       "fileType": "file",

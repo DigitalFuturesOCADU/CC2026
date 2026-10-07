@@ -3,7 +3,7 @@
   "title": "Motion 03 · How Much Movement",
   "name": "C&C F26 · Motion 03 · How Much Movement",
   "projectId": "9xuT__ZDb",
-  "contentHash": "sha256:4f44dddb48bc7cabe16f580c7cb0ac0aacf31c48872bb9af2561dab7b375c245",
+  "contentHash": "sha256:084027a0bb4e9cb1968390b17014b75872409e5b18dc455a1b938e80237430ed",
   "files": [
     {
       "name": "root",
@@ -25,7 +25,7 @@
     },
     {
       "name": "sketch.js",
-      "content": "// Motion 03 · How Much Movement\n// accelerationX, Y and Z say how hard the phone is pushed each way. Gravity is left out.\n// Add all three up for one number: how much the phone is moving. lerp() smooths it.\n// Hold the phone still, then walk with it, then wave it around.\n\n// change these\nlet amount = 0.1; // smoothing. lower is smoother and slower. 1 is no smoothing\nlet most = 20;    // the movement that makes the biggest circle\n\nlet movement = 0; // the smoothed movement, kept from frame to frame\n\nfunction setup() {\n  createCanvas(windowWidth, windowHeight);\n  lockGestures();\n  enableGyroTap('Tap to start');\n}\n\nfunction draw() {\n  background(20);\n  if (!window.sensorsEnabled) return;\n\n  // abs() drops the minus sign, so a push either way adds to the total\n  let raw = abs(accelerationX) + abs(accelerationY) + abs(accelerationZ);\n  movement = lerp(movement, raw, amount);\n\n  // more movement, bigger circle\n  let diameter = map(movement, 0, most, 40, width, true);\n  noStroke();\n  fill(255);\n  circle(width / 2, height / 2, diameter);\n\n  // the raw and smoothed values\n  textSize(18);\n  text('raw ' + nf(raw, 1, 1) + '   smoothed ' + nf(movement, 1, 1), 20, 40);\n}\n\nfunction windowResized() {\n  resizeCanvas(windowWidth, windowHeight);\n}\n",
+      "content": "// Motion 03 · How Much Movement\n// accelerationX, Y and Z say how hard the phone is pushed each way. Gravity is left out.\n// Add all three up for one number: how much the phone is moving. lerp() smooths it.\n// Hold the phone still, then walk with it, then wave it around.\n\n// change these\nlet amount = 0.1; // smoothing. lower is smoother and slower. 1 is no smoothing\nlet most = 20;    // the movement that makes the biggest circle\n\nlet movement = 0; // the smoothed movement, kept from frame to frame\n\nfunction setup() {\n  createCanvas(windowWidth, windowHeight);\n  lockGestures();\n  enableGyroTap('Tap to start');\n}\n\nfunction draw() {\n  background(20);\n  if (window.sensorsEnabled) {\n    // abs() drops the minus sign, so a push either way adds to the total\n    let raw = abs(accelerationX) + abs(accelerationY) + abs(accelerationZ);\n    movement = lerp(movement, raw, amount);\n\n    // more movement, bigger circle\n    let diameter = map(movement, 0, most, 40, width, true);\n    noStroke();\n    fill(255);\n    circle(width / 2, height / 2, diameter);\n\n    // the raw and smoothed values\n    textSize(18);\n    text('raw ' + nf(raw, 1, 1) + '   smoothed ' + nf(movement, 1, 1), 20, 40);\n  }\n}\n\nfunction windowResized() {\n  resizeCanvas(windowWidth, windowHeight);\n}\n",
       "id": "30cd2238691186650b8bba80",
       "_id": "30cd2238691186650b8bba80",
       "fileType": "file",

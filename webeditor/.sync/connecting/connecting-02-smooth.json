@@ -3,7 +3,7 @@
   "title": "Connecting 02 · Smooth",
   "name": "C&C F26 · Connecting 02 · Smooth",
   "projectId": "OaYkOahPW",
-  "contentHash": "sha256:fd949a2d6e04a03c2d01dcfa9a26c755d317a5ee4e81838d3a18f85ca4ee24b9",
+  "contentHash": "sha256:742f8bf36f402c23e63275b5a1f65eeb4cc758ffc96cbbb8dbbc360b57d58d2e",
   "files": [
     {
       "name": "root",
@@ -25,7 +25,7 @@
     },
     {
       "name": "sketch.js",
-      "content": "// Connecting 02 · Smooth\n// Sensor readings jump around. lerp() moves a value part of the way to its target\n// every frame, so it follows smoothly. Shake the phone and compare the two bars.\n\n// change these\nlet amount = 0.1; // how far to move each frame. 0.02 is slow and smooth, 1 is no smoothing\nlet most = 20;    // the movement that fills a bar\n\nlet smoothed = 0; // kept from frame to frame, so it is declared up here\n\nfunction setup() {\n  createCanvas(windowWidth, windowHeight);\n  lockGestures();\n  enableGyroTap('Tap to start');\n}\n\nfunction draw() {\n  background(20);\n  if (!window.sensorsEnabled) return;\n\n  let raw = abs(accelerationX) + abs(accelerationY) + abs(accelerationZ);\n  smoothed = lerp(smoothed, raw, amount);\n\n  // raw on the left in grey, smoothed on the right in white\n  let rawHeight = map(raw, 0, most, 0, height - 80, true);\n  let smoothHeight = map(smoothed, 0, most, 0, height - 80, true);\n  noStroke();\n  fill(120);\n  rect(width * 0.15, height - rawHeight, width * 0.3, rawHeight);\n  fill(255);\n  rect(width * 0.55, height - smoothHeight, width * 0.3, smoothHeight);\n\n  textSize(18);\n  text('raw ' + nf(raw, 1, 1) + '   smoothed ' + nf(smoothed, 1, 1), 20, 40);\n}\n\nfunction windowResized() {\n  resizeCanvas(windowWidth, windowHeight);\n}\n",
+      "content": "// Connecting 02 · Smooth\n// Sensor readings jump around. lerp() moves a value part of the way to its target\n// every frame, so it follows smoothly. Shake the phone and compare the two bars.\n\n// change these\nlet amount = 0.1; // how far to move each frame. 0.02 is slow and smooth, 1 is no smoothing\nlet most = 20;    // the movement that fills a bar\n\nlet smoothed = 0; // kept from frame to frame, so it is declared up here\n\nfunction setup() {\n  createCanvas(windowWidth, windowHeight);\n  lockGestures();\n  enableGyroTap('Tap to start');\n}\n\nfunction draw() {\n  background(20);\n  if (window.sensorsEnabled) {\n    let raw = abs(accelerationX) + abs(accelerationY) + abs(accelerationZ);\n    smoothed = lerp(smoothed, raw, amount);\n\n    // raw on the left in grey, smoothed on the right in white\n    let rawHeight = map(raw, 0, most, 0, height - 80, true);\n    let smoothHeight = map(smoothed, 0, most, 0, height - 80, true);\n    noStroke();\n    fill(120);\n    rect(width * 0.15, height - rawHeight, width * 0.3, rawHeight);\n    fill(255);\n    rect(width * 0.55, height - smoothHeight, width * 0.3, smoothHeight);\n\n    textSize(18);\n    text('raw ' + nf(raw, 1, 1) + '   smoothed ' + nf(smoothed, 1, 1), 20, 40);\n  }\n}\n\nfunction windowResized() {\n  resizeCanvas(windowWidth, windowHeight);\n}\n",
       "id": "056ac4d9e98de1fed497cfb1",
       "_id": "056ac4d9e98de1fed497cfb1",
       "fileType": "file",

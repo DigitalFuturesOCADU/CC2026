@@ -3,7 +3,7 @@
   "title": "Connecting 01 · Map",
   "name": "C&C F26 · Connecting 01 · Map",
   "projectId": "c8eFYvVLq",
-  "contentHash": "sha256:b484e3812894659fc81872b133ed4b9d3e3280c64e6f35207194620c81001c85",
+  "contentHash": "sha256:f4109749d31a9ccc07b7df95226acf7a0e8ad81dc0a7db8d2e07205c30e05c10",
   "files": [
     {
       "name": "root",
@@ -25,7 +25,7 @@
     },
     {
       "name": "sketch.js",
-      "content": "// Connecting 01 · Map\n// map() turns one range of numbers into another.\n// Tilt in degrees becomes the brightness of the whole screen: the screen is a light.\n// The last argument, true, keeps the answer inside the new range, like constrain().\n\n// change these\nlet darkTilt = -30;  // tilt (degrees) that gives a black screen\nlet lightTilt = 30;  // tilt (degrees) that gives a white screen\n\nfunction setup() {\n  createCanvas(windowWidth, windowHeight);\n  lockGestures();\n  angleMode(DEGREES); // tilt in degrees. p5.js uses radians unless you say so\n  enableGyroTap('Tap to start');\n}\n\nfunction draw() {\n  background(20);\n  if (!window.sensorsEnabled) return;\n\n  let glow = map(rotationX, darkTilt, lightTilt, 0, 255, true);\n  background(glow);\n\n  // the numbers, on a dark band so they show on any brightness\n  fill(0);\n  rect(0, 0, width, 60);\n  fill(255);\n  textSize(18);\n  text('rotationX ' + round(rotationX) + '  becomes  ' + round(glow), 20, 38);\n}\n\nfunction windowResized() {\n  resizeCanvas(windowWidth, windowHeight);\n}\n",
+      "content": "// Connecting 01 · Map\n// map() turns one range of numbers into another.\n// Tilt in degrees becomes the brightness of the whole screen: the screen is a light.\n// The last argument, true, keeps the answer inside the new range, like constrain().\n\n// change these\nlet darkTilt = -30;  // tilt (degrees) that gives a black screen\nlet lightTilt = 30;  // tilt (degrees) that gives a white screen\n\nfunction setup() {\n  createCanvas(windowWidth, windowHeight);\n  lockGestures();\n  angleMode(DEGREES); // tilt in degrees. p5.js uses radians unless you say so\n  enableGyroTap('Tap to start');\n}\n\nfunction draw() {\n  background(20);\n  if (window.sensorsEnabled) {\n    let glow = map(rotationX, darkTilt, lightTilt, 0, 255, true);\n    background(glow);\n\n    // the numbers, on a dark band so they show on any brightness\n    fill(0);\n    rect(0, 0, width, 60);\n    fill(255);\n    textSize(18);\n    text('rotationX ' + round(rotationX) + '  becomes  ' + round(glow), 20, 38);\n  }\n}\n\nfunction windowResized() {\n  resizeCanvas(windowWidth, windowHeight);\n}\n",
       "id": "008dd18f2eae7a7565fe34af",
       "_id": "008dd18f2eae7a7565fe34af",
       "fileType": "file",

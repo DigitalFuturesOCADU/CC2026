@@ -3,7 +3,7 @@
   "title": "GIFs 02 · Tilt to Frame",
   "name": "C&C F26 · GIFs 02 · Tilt to Frame",
   "projectId": "GIdLyf2wl",
-  "contentHash": "sha256:3d3ff731597b14b848fa07709de026e5e468f2074437b4ed634fa7d06a1adcdf",
+  "contentHash": "sha256:dd89bfbadc76e3ec3aec3160f3ddd52b9b756314c3f88f5205820c2cc3a5b2ce",
   "files": [
     {
       "name": "root",
@@ -25,7 +25,7 @@
     },
     {
       "name": "sketch.js",
-      "content": "// GIFs 02 · Tilt to Frame\n// The GIF never plays on its own. rotationY, the tilt left and right, picks the frame\n// with setFrame(). Tip the phone slowly from side to side and the fingers move with it.\n\n// change these\nlet range = 45; // degrees of tilt, each way, that reach the first and the last frame\n\nlet gifImage; // the GIF, once it has loaded\n\nasync function setup() {\n  createCanvas(windowWidth, windowHeight);\n  lockGestures();\n  angleMode(DEGREES); // tilt in degrees. p5.js uses radians unless you say so\n  enableGyroTap('Tap to start');\n  imageMode(CENTER);\n  gifImage = await loadImage('https://digitalfuturesocadu.github.io/CC2026/media/gifs/hand.gif');\n  gifImage.pause(); // the tilt picks the frame, not the clock\n}\n\nfunction draw() {\n  background(20);\n  if (!window.sensorsEnabled) return;\n\n  // tipped left is the first frame (0), tipped right is the last (numFrames() - 1)\n  let index = round(map(rotationY, -range, range, 0, gifImage.numFrames() - 1, true));\n  gifImage.setFrame(index);\n\n  // as big as fits the screen, as in Images 01\n  let fit = min(width / gifImage.width, height / gifImage.height);\n  image(gifImage, width / 2, height / 2, gifImage.width * fit, gifImage.height * fit);\n\n  fill(255);\n  textSize(18);\n  text('rotationY ' + round(rotationY) + '   frame ' + index, 20, 40);\n}\n\nfunction windowResized() {\n  resizeCanvas(windowWidth, windowHeight);\n}\n",
+      "content": "// GIFs 02 · Tilt to Frame\n// The GIF never plays on its own. rotationY, the tilt left and right, picks the frame\n// with setFrame(). Tip the phone slowly from side to side and the fingers move with it.\n\n// change these\nlet range = 45; // degrees of tilt, each way, that reach the first and the last frame\n\nlet gifImage; // the GIF, once it has loaded\n\nasync function setup() {\n  createCanvas(windowWidth, windowHeight);\n  lockGestures();\n  angleMode(DEGREES); // tilt in degrees. p5.js uses radians unless you say so\n  enableGyroTap('Tap to start');\n  imageMode(CENTER);\n  gifImage = await loadImage('https://digitalfuturesocadu.github.io/CC2026/media/gifs/hand.gif');\n  gifImage.pause(); // the tilt picks the frame, not the clock\n}\n\nfunction draw() {\n  background(20);\n  if (window.sensorsEnabled) {\n    // tipped left is the first frame (0), tipped right is the last (numFrames() - 1)\n    let index = round(map(rotationY, -range, range, 0, gifImage.numFrames() - 1, true));\n    gifImage.setFrame(index);\n\n    // as big as fits the screen, as in Images 01\n    let fit = min(width / gifImage.width, height / gifImage.height);\n    image(gifImage, width / 2, height / 2, gifImage.width * fit, gifImage.height * fit);\n\n    fill(255);\n    textSize(18);\n    text('rotationY ' + round(rotationY) + '   frame ' + index, 20, 40);\n  }\n}\n\nfunction windowResized() {\n  resizeCanvas(windowWidth, windowHeight);\n}\n",
       "id": "ceae68dc797d27f8771979d4",
       "_id": "ceae68dc797d27f8771979d4",
       "fileType": "file",

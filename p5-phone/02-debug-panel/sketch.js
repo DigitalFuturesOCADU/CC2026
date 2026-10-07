@@ -14,11 +14,11 @@ function setup() {
 
 function draw() {
   background(20);
-  if (!window.sensorsEnabled) return;
-
-  // about once a second, write the tilt to the panel
-  if (frameCount % 60 === 0) {
-    debug('rotationX ' + round(rotationX) + '   rotationY ' + round(rotationY));
+  if (window.sensorsEnabled) {
+    // about once a second, write the tilt to the panel
+    if (frameCount % 60 === 0) {
+      debug('rotationX ' + round(rotationX) + '   rotationY ' + round(rotationY));
+    }
   }
 }
 

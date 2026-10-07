@@ -24,8 +24,9 @@ to read in one go.
     sketch needs more than one. Motion is `enableGyroTap`, the name in the p5-phone README.
     `enableSensorTap` is an alias for the same function: don't use it.
   - Read hardware only behind its flag: `window.sensorsEnabled`, `window.micOpen` (not
-    `micEnabled`), `window.torchEnabled`. The usual shape is
-    `if (!window.sensorsEnabled) return;` near the top of `draw()`.
+    `micEnabled`), `window.torchEnabled`. The shape is a positive if around the code that
+    reads it, `if (window.sensorsEnabled) { … }`, never the flipped early return
+    `if (!window.sensorsEnabled) return;`.
   - Motion values are p5.js's own: `rotationX/Y/Z`, `accelerationX/Y/Z`, `pRotationX`,
     `deviceShaken()`, `deviceMoved()`, `setShakeThreshold()`. There is no `rotationRate*`.
   - **`rotationX/Y/Z` follow `angleMode()`, which is radians by default.** Every sketch that
@@ -98,10 +99,12 @@ function setup() {
 
 function draw() {
   background(20);
-  if (!window.micOpen) return; // true only while sound is really arriving
-  mic.disconnect();            // unplug the microphone from the speaker...
-  mic.connect(meter);          // ...and plug it into the meter
-  let level = meter.getLevel();
+  // micOpen is true only while sound is really arriving
+  if (window.micOpen) {
+    mic.disconnect();   // unplug the microphone from the speaker...
+    mic.connect(meter); // ...and plug it into the meter
+    let level = meter.getLevel();
+  }
 }
 ```
 

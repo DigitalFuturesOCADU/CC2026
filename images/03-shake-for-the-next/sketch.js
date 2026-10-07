@@ -26,17 +26,17 @@ async function setup() {
 
 function draw() {
   background(20);
-  if (!window.sensorsEnabled) return;
+  if (window.sensorsEnabled) {
+    // % wraps the count around the list: 0, 1, 2, 3, then 0 again
+    let current = shakes % pictures.length;
+    let picture = pictures[current];
+    let fit = min(width / picture.width, height / picture.height); // as in Images 01
+    image(picture, width / 2, height / 2, picture.width * fit, picture.height * fit);
 
-  // % wraps the count around the list: 0, 1, 2, 3, then 0 again
-  let current = shakes % pictures.length;
-  let picture = pictures[current];
-  let fit = min(width / picture.width, height / picture.height); // as in Images 01
-  image(picture, width / 2, height / 2, picture.width * fit, picture.height * fit);
-
-  fill(255);
-  textSize(18);
-  text('shakes ' + shakes + '   picture ' + (current + 1) + ' of ' + pictures.length, 20, 40);
+    fill(255);
+    textSize(18);
+    text('shakes ' + shakes + '   picture ' + (current + 1) + ' of ' + pictures.length, 20, 40);
+  }
 }
 
 // p5.js calls this when the phone is shaken

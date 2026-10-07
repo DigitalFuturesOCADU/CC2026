@@ -16,22 +16,22 @@ function setup() {
 
 function draw() {
   background(20);
-  if (!window.sensorsEnabled) return;
+  if (window.sensorsEnabled) {
+    let raw = abs(accelerationX) + abs(accelerationY) + abs(accelerationZ);
+    smoothed = lerp(smoothed, raw, amount);
 
-  let raw = abs(accelerationX) + abs(accelerationY) + abs(accelerationZ);
-  smoothed = lerp(smoothed, raw, amount);
+    // raw on the left in grey, smoothed on the right in white
+    let rawHeight = map(raw, 0, most, 0, height - 80, true);
+    let smoothHeight = map(smoothed, 0, most, 0, height - 80, true);
+    noStroke();
+    fill(120);
+    rect(width * 0.15, height - rawHeight, width * 0.3, rawHeight);
+    fill(255);
+    rect(width * 0.55, height - smoothHeight, width * 0.3, smoothHeight);
 
-  // raw on the left in grey, smoothed on the right in white
-  let rawHeight = map(raw, 0, most, 0, height - 80, true);
-  let smoothHeight = map(smoothed, 0, most, 0, height - 80, true);
-  noStroke();
-  fill(120);
-  rect(width * 0.15, height - rawHeight, width * 0.3, rawHeight);
-  fill(255);
-  rect(width * 0.55, height - smoothHeight, width * 0.3, smoothHeight);
-
-  textSize(18);
-  text('raw ' + nf(raw, 1, 1) + '   smoothed ' + nf(smoothed, 1, 1), 20, 40);
+    textSize(18);
+    text('raw ' + nf(raw, 1, 1) + '   smoothed ' + nf(smoothed, 1, 1), 20, 40);
+  }
 }
 
 function windowResized() {

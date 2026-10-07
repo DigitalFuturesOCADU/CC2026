@@ -83,10 +83,10 @@ function torchNote() {
   if (window.torchError) {
     return 'Flashlight: ' + window.torchError;
   }
-  if (!window.torchEnabled) {
-    return 'Tap to start. The flashlight needs a phone.';
+  if (window.torchEnabled) {
+    return '';
   }
-  return '';
+  return 'Tap to start. The flashlight needs a phone.';
 }
 
 // the band across the top: what to do, and a note when there is one

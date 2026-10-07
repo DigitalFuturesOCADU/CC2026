@@ -15,20 +15,20 @@ function setup() {
 
 function draw() {
   background(20);
-  if (!window.sensorsEnabled) return;
+  if (window.sensorsEnabled) {
+    let touching = mouseIsPressed;
+    let tipped = rotationX > threshold;
 
-  let touching = mouseIsPressed;
-  let tipped = rotationX > threshold;
+    if (touching && tipped) {
+      background(255);
+    }
 
-  if (touching && tipped) {
-    background(255);
+    fill(0);
+    rect(0, 0, width, 60);
+    fill(255);
+    textSize(18);
+    text('touching ' + touching + '   tipped ' + tipped, 20, 38);
   }
-
-  fill(0);
-  rect(0, 0, width, 60);
-  fill(255);
-  textSize(18);
-  text('touching ' + touching + '   tipped ' + tipped, 20, 38);
 }
 
 function windowResized() {

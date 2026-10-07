@@ -34,12 +34,14 @@ function draw() {
 }
 
 function mousePressed() {
-  if (!window.soundEnabled) return; // the permission tap only turns the sound on
-  if (!started) {
-    osc.start(); // from now on it runs. amp() decides if you hear it
-    started = true;
+  // the permission tap only turns the sound on
+  if (window.soundEnabled) {
+    if (!started) {
+      osc.start(); // from now on it runs. amp() decides if you hear it
+      started = true;
+    }
+    osc.amp(volume, fade); // fade in
   }
-  osc.amp(volume, fade); // fade in
 }
 
 function mouseReleased() {

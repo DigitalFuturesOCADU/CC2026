@@ -52,40 +52,39 @@ async function setup() {
 
 function draw() {
   background(20);
-  if (!unlocked) {
-    return;
+  if (unlocked) {
+    if (startTime < 0) {
+      startTime = millis();
+    }
+
+    // 1. whose turn is it? 0 is the first person
+    let seconds = (millis() - startTime) / 1000;
+    let turn = floor(seconds / turnSeconds) % people;
+
+    // 2. read the tilt: flat is 0, upright is 90. keep it inside that range first
+    let tilt = constrain(rotationX, 0, 90);
+
+    // 3. map the tilt onto a speed, and give it to this person's voice
+    if (speeds[turn] === 0) {
+      // this person's first turn: start their voice
+      voices[turn].loop();
+      voices[turn].play();
+    }
+    speeds[turn] = map(tilt, 0, 90, slowest, fastest);
+    voices[turn].rate(speeds[turn]);
+
+    // 4. one clock for each voice
+    for (let i = 0; i < people; i++) {
+      drawClock(i, i === turn);
+    }
+    drawBanner(turn, turnSeconds - (seconds % turnSeconds));
+
+    noStroke();
+    fill(160);
+    textSize(13);
+    textAlign(LEFT, BASELINE);
+    text('No sound? Check silent mode.', 16, height - 12);
   }
-  if (startTime < 0) {
-    startTime = millis();
-  }
-
-  // 1. whose turn is it? 0 is the first person
-  let seconds = (millis() - startTime) / 1000;
-  let turn = floor(seconds / turnSeconds) % people;
-
-  // 2. read the tilt: flat is 0, upright is 90. keep it inside that range first
-  let tilt = constrain(rotationX, 0, 90);
-
-  // 3. map the tilt onto a speed, and give it to this person's voice
-  if (speeds[turn] === 0) {
-    // this person's first turn: start their voice
-    voices[turn].loop();
-    voices[turn].play();
-  }
-  speeds[turn] = map(tilt, 0, 90, slowest, fastest);
-  voices[turn].rate(speeds[turn]);
-
-  // 4. one clock for each voice
-  for (let i = 0; i < people; i++) {
-    drawClock(i, i === turn);
-  }
-  drawBanner(turn, turnSeconds - (seconds % turnSeconds));
-
-  noStroke();
-  fill(160);
-  textSize(13);
-  textAlign(LEFT, BASELINE);
-  text('No sound? Check silent mode.', 16, height - 12);
 }
 
 // one voice as a clock. its hand turns at the speed of the voice.

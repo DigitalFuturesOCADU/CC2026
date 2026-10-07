@@ -20,22 +20,23 @@ function setup() {
 
 function draw() {
   background(20);
-  if (!window.micOpen) return; // true only while sound is really arriving
-
-  mic.disconnect(); // unplug the microphone from the speaker...
-  mic.connect(fft); // ...and plug it into the FFT
-  let slices = fft.analyze(); // how much sound is in each slice, lowest first
-  let low = bandLevel(slices, lowBand);
-  let high = bandLevel(slices, highBand);
-  // one bar for each band: low on the left, high on the right
-  noStroke();
-  fill(100, 200, 255);
-  rect(width * 0.15, height - low * height, width * 0.3, low * height);
-  fill(255, 200, 0);
-  rect(width * 0.55, height - high * height, width * 0.3, high * height);
-  fill(255);
-  textSize(18);
-  text('low ' + nf(low, 1, 2) + '   high ' + nf(high, 1, 2), 20, 40);
+  // micOpen is true only while sound is really arriving
+  if (window.micOpen) {
+    mic.disconnect(); // unplug the microphone from the speaker...
+    mic.connect(fft); // ...and plug it into the FFT
+    let slices = fft.analyze(); // how much sound is in each slice, lowest first
+    let low = bandLevel(slices, lowBand);
+    let high = bandLevel(slices, highBand);
+    // one bar for each band: low on the left, high on the right
+    noStroke();
+    fill(100, 200, 255);
+    rect(width * 0.15, height - low * height, width * 0.3, low * height);
+    fill(255, 200, 0);
+    rect(width * 0.55, height - high * height, width * 0.3, high * height);
+    fill(255);
+    textSize(18);
+    text('low ' + nf(low, 1, 2) + '   high ' + nf(high, 1, 2), 20, 40);
+  }
 }
 
 // the loudest slice in a band, from 0 to 1

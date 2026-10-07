@@ -19,19 +19,19 @@ async function setup() {
 
 function draw() {
   background(20);
-  if (!window.sensorsEnabled) return;
+  if (window.sensorsEnabled) {
+    // tipped left is the first frame (0), tipped right is the last (numFrames() - 1)
+    let index = round(map(rotationY, -range, range, 0, gifImage.numFrames() - 1, true));
+    gifImage.setFrame(index);
 
-  // tipped left is the first frame (0), tipped right is the last (numFrames() - 1)
-  let index = round(map(rotationY, -range, range, 0, gifImage.numFrames() - 1, true));
-  gifImage.setFrame(index);
+    // as big as fits the screen, as in Images 01
+    let fit = min(width / gifImage.width, height / gifImage.height);
+    image(gifImage, width / 2, height / 2, gifImage.width * fit, gifImage.height * fit);
 
-  // as big as fits the screen, as in Images 01
-  let fit = min(width / gifImage.width, height / gifImage.height);
-  image(gifImage, width / 2, height / 2, gifImage.width * fit, gifImage.height * fit);
-
-  fill(255);
-  textSize(18);
-  text('rotationY ' + round(rotationY) + '   frame ' + index, 20, 40);
+    fill(255);
+    textSize(18);
+    text('rotationY ' + round(rotationY) + '   frame ' + index, 20, 40);
+  }
 }
 
 function windowResized() {

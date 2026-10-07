@@ -17,21 +17,21 @@ function setup() {
 
 function draw() {
   background(20);
-  if (!window.sensorsEnabled) return;
+  if (window.sensorsEnabled) {
+    // abs() drops the minus sign, so a push either way adds to the total
+    let raw = abs(accelerationX) + abs(accelerationY) + abs(accelerationZ);
+    movement = lerp(movement, raw, amount);
 
-  // abs() drops the minus sign, so a push either way adds to the total
-  let raw = abs(accelerationX) + abs(accelerationY) + abs(accelerationZ);
-  movement = lerp(movement, raw, amount);
+    // more movement, bigger circle
+    let diameter = map(movement, 0, most, 40, width, true);
+    noStroke();
+    fill(255);
+    circle(width / 2, height / 2, diameter);
 
-  // more movement, bigger circle
-  let diameter = map(movement, 0, most, 40, width, true);
-  noStroke();
-  fill(255);
-  circle(width / 2, height / 2, diameter);
-
-  // the raw and smoothed values
-  textSize(18);
-  text('raw ' + nf(raw, 1, 1) + '   smoothed ' + nf(movement, 1, 1), 20, 40);
+    // the raw and smoothed values
+    textSize(18);
+    text('raw ' + nf(raw, 1, 1) + '   smoothed ' + nf(movement, 1, 1), 20, 40);
+  }
 }
 
 function windowResized() {

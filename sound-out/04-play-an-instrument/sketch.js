@@ -41,10 +41,12 @@ function draw() {
 }
 
 function mousePressed() {
-  if (!window.soundEnabled) return; // the permission tap only turns the sound on
-  // the key under the finger: left is 0, right is the last one
-  struck = constrain(floor(mouseX / width * notes.length), 0, notes.length - 1);
-  marimba.start({ note: notes[struck] });
+  // the permission tap only turns the sound on
+  if (window.soundEnabled) {
+    // the key under the finger: left is 0, right is the last one
+    struck = constrain(floor(mouseX / width * notes.length), 0, notes.length - 1);
+    marimba.start({ note: notes[struck] });
+  }
 }
 
 function windowResized() {

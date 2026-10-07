@@ -16,17 +16,17 @@ function setup() {
 
 function draw() {
   background(20);
-  if (!window.sensorsEnabled) return;
+  if (window.sensorsEnabled) {
+    let glow = map(rotationX, darkTilt, lightTilt, 0, 255, true);
+    background(glow);
 
-  let glow = map(rotationX, darkTilt, lightTilt, 0, 255, true);
-  background(glow);
-
-  // the numbers, on a dark band so they show on any brightness
-  fill(0);
-  rect(0, 0, width, 60);
-  fill(255);
-  textSize(18);
-  text('rotationX ' + round(rotationX) + '  becomes  ' + round(glow), 20, 38);
+    // the numbers, on a dark band so they show on any brightness
+    fill(0);
+    rect(0, 0, width, 60);
+    fill(255);
+    textSize(18);
+    text('rotationX ' + round(rotationX) + '  becomes  ' + round(glow), 20, 38);
+  }
 }
 
 function windowResized() {

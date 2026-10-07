@@ -18,19 +18,20 @@ function setup() {
 
 function draw() {
   background(20);
-  if (!window.micOpen) return; // true only while sound is really arriving
+  // micOpen is true only while sound is really arriving
+  if (window.micOpen) {
+    mic.disconnect();   // unplug the microphone from the speaker...
+    mic.connect(meter); // ...and plug it into the meter
+    let level = constrain(meter.getLevel() * boost, 0, 1);
 
-  mic.disconnect();   // unplug the microphone from the speaker...
-  mic.connect(meter); // ...and plug it into the meter
-  let level = constrain(meter.getLevel() * boost, 0, 1);
+    noStroke();
+    fill(255);
+    circle(width / 2, height / 2, 40 + level * width);
 
-  noStroke();
-  fill(255);
-  circle(width / 2, height / 2, 40 + level * width);
-
-  // the raw value
-  textSize(18);
-  text('level ' + nf(level, 1, 2), 20, 40);
+    // the raw value
+    textSize(18);
+    text('level ' + nf(level, 1, 2), 20, 40);
+  }
 }
 
 function windowResized() {

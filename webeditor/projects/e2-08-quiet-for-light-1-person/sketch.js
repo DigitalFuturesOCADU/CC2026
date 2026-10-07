@@ -102,10 +102,10 @@ function torchNote() {
   if (window.torchError) {
     return 'Flashlight: ' + window.torchError;
   }
-  if (!window.torchEnabled) {
-    return 'Tap to start. The flashlight needs a phone.';
+  if (window.torchEnabled) {
+    return '';
   }
-  return '';
+  return 'Tap to start. The flashlight needs a phone.';
 }
 
 // the band across the top: what to do, and a note when there is one
@@ -146,11 +146,11 @@ function routeMic() {
 // how loud it is right now, from 0 to 1. it is 0 when there is no microphone.
 // window.micOpen is true only while sound is really arriving.
 function getMicLevel() {
-  if (!window.micOpen) {
-    return 0;
+  if (window.micOpen) {
+    routeMic();
+    return constrain(meter.getLevel() * boost, 0, 1);
   }
-  routeMic();
-  return constrain(meter.getLevel() * boost, 0, 1);
+  return 0;
 }
 
 // the level as a bar along the bottom, with a white line where sound starts to count

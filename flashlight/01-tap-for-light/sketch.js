@@ -30,8 +30,10 @@ function draw() {
 }
 
 function mousePressed() {
-  if (!window.torchEnabled) return; // the first tap only asks for the camera
-  toggleTorch();
+  // the first tap only asks for the camera
+  if (window.torchEnabled) {
+    toggleTorch();
+  }
 }
 
 function windowResized() {

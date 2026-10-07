@@ -18,33 +18,33 @@ function setup() {
 
 function draw() {
   background(20);
-  if (!window.sensorsEnabled) return;
+  if (window.sensorsEnabled) {
+    let wait = map(rotationX, 0, 90, slowest, fastest, true); // tilt sets the time
+    wait = max(wait, 300); // never quicker than 300: fast flashing can trigger seizures
 
-  let wait = map(rotationX, 0, 90, slowest, fastest, true); // tilt sets the time
-  wait = max(wait, 300); // never quicker than 300: fast flashing can trigger seizures
-
-  // when the time is up, switch. setTorch() runs only here, when the light changes
-  if (millis() - lastSwitch > wait) {
-    lightOn = !lightOn;
-    lastSwitch = millis();
-    if (window.torchEnabled) {
-      setTorch(lightOn);
+    // when the time is up, switch. setTorch() runs only here, when the light changes
+    if (millis() - lastSwitch > wait) {
+      lightOn = !lightOn;
+      lastSwitch = millis();
+      if (window.torchEnabled) {
+        setTorch(lightOn);
+      }
     }
-  }
 
-  // the screen shows what the light is doing. torchActive is true while it is on
-  if (window.torchActive) {
-    background(255);
-  }
+    // the screen shows what the light is doing. torchActive is true while it is on
+    if (window.torchActive) {
+      background(255);
+    }
 
-  // the numbers on a dark band, then any flashlight problem
-  fill(0);
-  rect(0, 0, width, 60);
-  fill(255);
-  textSize(18);
-  text('rotationX ' + round(rotationX) + '   wait ' + round(wait), 20, 38);
-  if (window.torchError) {
-    text('flashlight problem: ' + window.torchError, 20, 90, width - 40);
+    // the numbers on a dark band, then any flashlight problem
+    fill(0);
+    rect(0, 0, width, 60);
+    fill(255);
+    textSize(18);
+    text('rotationX ' + round(rotationX) + '   wait ' + round(wait), 20, 38);
+    if (window.torchError) {
+      text('flashlight problem: ' + window.torchError, 20, 90, width - 40);
+    }
   }
 }
 

@@ -20,22 +20,22 @@ function setup() {
 
 function draw() {
   background(0, fade); // black, made see-through by the second number
-  if (!window.sensorsEnabled) return;
+  if (window.sensorsEnabled) {
+    // each frame the pen moves by the tilt. constrain() keeps it on the screen
+    x = constrain(x + rotationY * speed, 0, width);
+    y = constrain(y + rotationX * speed, 0, height);
 
-  // each frame the pen moves by the tilt. constrain() keeps it on the screen
-  x = constrain(x + rotationY * speed, 0, width);
-  y = constrain(y + rotationX * speed, 0, height);
+    noStroke();
+    fill(255);
+    circle(x, y, 30);
 
-  noStroke();
-  fill(255);
-  circle(x, y, 30);
-
-  // the raw values, on a solid band so the numbers do not leave a trail
-  fill(0);
-  rect(0, 0, width, 60);
-  fill(255);
-  textSize(18);
-  text('rotationX ' + round(rotationX) + '   rotationY ' + round(rotationY), 20, 40);
+    // the raw values, on a solid band so the numbers do not leave a trail
+    fill(0);
+    rect(0, 0, width, 60);
+    fill(255);
+    textSize(18);
+    text('rotationX ' + round(rotationX) + '   rotationY ' + round(rotationY), 20, 40);
+  }
 }
 
 function windowResized() {

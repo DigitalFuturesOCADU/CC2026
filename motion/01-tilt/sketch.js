@@ -14,19 +14,19 @@ function setup() {
 
 function draw() {
   background(20);
-  if (!window.sensorsEnabled) return;
+  if (window.sensorsEnabled) {
+    // rotationY: tipped left and right. rotationX: tipped forward and back
+    let x = map(rotationY, -range, range, 0, width, true);
+    let y = map(rotationX, -range, range, 0, height, true);
 
-  // rotationY: tipped left and right. rotationX: tipped forward and back
-  let x = map(rotationY, -range, range, 0, width, true);
-  let y = map(rotationX, -range, range, 0, height, true);
+    noStroke();
+    fill(255);
+    circle(x, y, 80);
 
-  noStroke();
-  fill(255);
-  circle(x, y, 80);
-
-  // the raw values
-  textSize(18);
-  text('rotationX ' + round(rotationX) + '   rotationY ' + round(rotationY), 20, 40);
+    // the raw values
+    textSize(18);
+    text('rotationX ' + round(rotationX) + '   rotationY ' + round(rotationY), 20, 40);
+  }
 }
 
 function windowResized() {

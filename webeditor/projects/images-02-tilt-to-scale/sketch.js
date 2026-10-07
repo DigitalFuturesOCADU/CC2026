@@ -19,18 +19,18 @@ async function setup() {
 
 function draw() {
   background(20);
-  if (!window.sensorsEnabled) return;
+  if (window.sensorsEnabled) {
+    // flat (0 degrees) to standing (90) becomes smallest to biggest. true keeps it in between
+    let amount = map(rotationX, 0, 90, smallest, biggest, true);
+    image(picture, width / 2, height / 2, picture.width * amount, picture.height * amount);
 
-  // flat (0 degrees) to standing (90) becomes smallest to biggest. true keeps it in between
-  let amount = map(rotationX, 0, 90, smallest, biggest, true);
-  image(picture, width / 2, height / 2, picture.width * amount, picture.height * amount);
-
-  // the raw value and the scale it became, on a band so the picture never hides them
-  fill(20);
-  rect(0, 0, width, 60);
-  fill(255);
-  textSize(18);
-  text('rotationX ' + round(rotationX) + '   scale ' + nf(amount, 1, 2), 20, 40);
+    // the raw value and the scale it became, on a band so the picture never hides them
+    fill(20);
+    rect(0, 0, width, 60);
+    fill(255);
+    textSize(18);
+    text('rotationX ' + round(rotationX) + '   scale ' + nf(amount, 1, 2), 20, 40);
+  }
 }
 
 function windowResized() {

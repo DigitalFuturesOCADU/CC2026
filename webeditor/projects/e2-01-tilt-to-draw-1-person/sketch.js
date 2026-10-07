@@ -33,40 +33,39 @@ function setup() {
 }
 
 function draw() {
-  if (!window.sensorsEnabled) {
-    return;
+  if (window.sensorsEnabled) {
+    if (startTime < 0) {
+      startTime = millis();
+    }
+
+    // 1. whose turn is it? 0 is the first person
+    let seconds = (millis() - startTime) / 1000;
+    let turn = floor(seconds / turnSeconds) % people;
+
+    // 2. read the tilt. keep it inside the range first, then map it onto the screen
+    let tiltX = constrain(rotationY, -maxTilt, maxTilt);
+    let tiltY = constrain(rotationX, -maxTilt, maxTilt);
+    let targetX = map(tiltX, -maxTilt, maxTilt, 0, width);
+    let targetY = map(tiltY, -maxTilt, maxTilt, 0, height);
+
+    // 3. move the pen part of the way there, and draw a line in this person's colour
+    let px = x;
+    let py = y;
+    x = lerp(x, targetX, 0.1);
+    y = lerp(y, targetY, 0.1);
+    stroke(colours[turn]);
+    strokeWeight(10);
+    line(px, py, x, y);
+
+    // once a second, a see-through black layer, so old lines slowly fade
+    if (frameCount % 60 === 0) {
+      noStroke();
+      fill(0, fade);
+      rect(0, 0, width, height);
+    }
+
+    drawBanner(turn, turnSeconds - (seconds % turnSeconds));
   }
-  if (startTime < 0) {
-    startTime = millis();
-  }
-
-  // 1. whose turn is it? 0 is the first person
-  let seconds = (millis() - startTime) / 1000;
-  let turn = floor(seconds / turnSeconds) % people;
-
-  // 2. read the tilt. keep it inside the range first, then map it onto the screen
-  let tiltX = constrain(rotationY, -maxTilt, maxTilt);
-  let tiltY = constrain(rotationX, -maxTilt, maxTilt);
-  let targetX = map(tiltX, -maxTilt, maxTilt, 0, width);
-  let targetY = map(tiltY, -maxTilt, maxTilt, 0, height);
-
-  // 3. move the pen part of the way there, and draw a line in this person's colour
-  let px = x;
-  let py = y;
-  x = lerp(x, targetX, 0.1);
-  y = lerp(y, targetY, 0.1);
-  stroke(colours[turn]);
-  strokeWeight(10);
-  line(px, py, x, y);
-
-  // once a second, a see-through black layer, so old lines slowly fade
-  if (frameCount % 60 === 0) {
-    noStroke();
-    fill(0, fade);
-    rect(0, 0, width, height);
-  }
-
-  drawBanner(turn, turnSeconds - (seconds % turnSeconds));
 }
 
 // the band across the top: whose turn it is, and what to do

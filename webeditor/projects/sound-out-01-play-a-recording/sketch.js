@@ -33,8 +33,10 @@ function draw() {
 }
 
 function mousePressed() {
-  if (!window.soundEnabled) return; // the permission tap only turns the sound on
-  downTime = millis();
+  // the permission tap only turns the sound on
+  if (window.soundEnabled) {
+    downTime = millis();
+  }
 }
 
 function mouseReleased() {

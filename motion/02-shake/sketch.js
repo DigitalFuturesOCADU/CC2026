@@ -20,14 +20,14 @@ function setup() {
 
 function draw() {
   background(colour);
-  if (!window.sensorsEnabled) return;
-
-  // the count, on a dark band so it shows on any colour
-  fill(0);
-  rect(0, 0, width, 60);
-  fill(255);
-  textSize(18);
-  text('shakes ' + count, 20, 38);
+  if (window.sensorsEnabled) {
+    // the count, on a dark band so it shows on any colour
+    fill(0);
+    rect(0, 0, width, 60);
+    fill(255);
+    textSize(18);
+    text('shakes ' + count, 20, 38);
+  }
 }
 
 // p5.js calls this when the phone is shaken

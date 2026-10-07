@@ -3,7 +3,7 @@
   "title": "Connecting 03 · Threshold",
   "name": "C&C F26 · Connecting 03 · Threshold",
   "projectId": "QeT1ukj39S",
-  "contentHash": "sha256:c6316bcdb0fc3e1f5e1096b0b24536bfdaa843a77697cfd9de859df3f2db9878",
+  "contentHash": "sha256:e5de6e51c1e14cd46530212b73f384877b0f79a7379b44e1dcaf58ae74c45f7c",
   "files": [
     {
       "name": "root",
@@ -25,7 +25,7 @@
     },
     {
       "name": "sketch.js",
-      "content": "// Connecting 03 · Threshold\n// A stream becomes an event. Tip the phone forward past the line and it counts once.\n// To count it only once, remember whether it was already past the line last frame.\n\n// change these\nlet threshold = 30; // degrees of forward tilt that count as tipped\n\nlet wasTipped = false; // was it past the line last frame?\nlet count = 0;         // how many times it has crossed\n\nfunction setup() {\n  createCanvas(windowWidth, windowHeight);\n  lockGestures();\n  angleMode(DEGREES); // tilt in degrees. p5.js uses radians unless you say so\n  enableSensorTap('Tap to start');\n}\n\nfunction draw() {\n  background(20);\n  if (!window.sensorsEnabled) return;\n\n  let tipped = rotationX > threshold;\n  if (tipped && !wasTipped) {\n    count = count + 1; // the moment it crosses the line: the event\n  }\n  wasTipped = tipped;\n\n  // the stream as a dot moving down the screen, the threshold as a line\n  let y = map(rotationX, -90, 90, 0, height, true);\n  let lineY = map(threshold, -90, 90, 0, height);\n  stroke(255);\n  line(0, lineY, width, lineY);\n  noStroke();\n  if (tipped) {\n    fill(255, 200, 0);\n  } else {\n    fill(255);\n  }\n  circle(width / 2, y, 50);\n\n  fill(255);\n  textSize(18);\n  text('rotationX ' + round(rotationX) + '   count ' + count, 20, 40);\n}\n\nfunction windowResized() {\n  resizeCanvas(windowWidth, windowHeight);\n}\n",
+      "content": "// Connecting 03 · Threshold\n// A stream becomes an event. Tip the phone forward past the line and it counts once.\n// To count it only once, remember whether it was already past the line last frame.\n\n// change these\nlet threshold = 30; // degrees of forward tilt that count as tipped\n\nlet wasTipped = false; // was it past the line last frame?\nlet count = 0;         // how many times it has crossed\n\nfunction setup() {\n  createCanvas(windowWidth, windowHeight);\n  lockGestures();\n  angleMode(DEGREES); // tilt in degrees. p5.js uses radians unless you say so\n  enableGyroTap('Tap to start');\n}\n\nfunction draw() {\n  background(20);\n  if (!window.sensorsEnabled) return;\n\n  let tipped = rotationX > threshold;\n  if (tipped && !wasTipped) {\n    count = count + 1; // the moment it crosses the line: the event\n  }\n  wasTipped = tipped;\n\n  // the stream as a dot moving down the screen, the threshold as a line\n  let y = map(rotationX, -90, 90, 0, height, true);\n  let lineY = map(threshold, -90, 90, 0, height);\n  stroke(255);\n  line(0, lineY, width, lineY);\n  noStroke();\n  if (tipped) {\n    fill(255, 200, 0);\n  } else {\n    fill(255);\n  }\n  circle(width / 2, y, 50);\n\n  fill(255);\n  textSize(18);\n  text('rotationX ' + round(rotationX) + '   count ' + count, 20, 40);\n}\n\nfunction windowResized() {\n  resizeCanvas(windowWidth, windowHeight);\n}\n",
       "id": "f97901cbb788cc464b6becae",
       "_id": "f97901cbb788cc464b6becae",
       "fileType": "file",

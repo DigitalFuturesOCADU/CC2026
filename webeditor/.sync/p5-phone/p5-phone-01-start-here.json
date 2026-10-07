@@ -3,7 +3,7 @@
   "title": "p5-phone 01 · Start Here",
   "name": "C&C F26 · p5-phone 01 · Start Here",
   "projectId": "CjlWXB4nM",
-  "contentHash": "sha256:94793f75b79256b9b7a34a7ebe52b95fe9bf87f05fef9e5b2dd23112b156e566",
+  "contentHash": "sha256:20db6a771bf3b963576a555f5a654630f51df5d1ea59150e9a7654999d24c573",
   "files": [
     {
       "name": "root",
@@ -25,7 +25,7 @@
     },
     {
       "name": "sketch.js",
-      "content": "// p5-phone 01 · Start Here\n// The blank phone sketch. Every phone sketch starts this way:\n// lock the gestures, ask for the sensors on a tap, and read nothing until the flag says yes.\n\nfunction setup() {\n  createCanvas(windowWidth, windowHeight);\n  lockGestures();                  // no scrolling, zooming or pull to refresh\n  angleMode(DEGREES);              // tilt in degrees. p5.js uses radians unless you say so\n  enableSensorTap('Tap to start'); // a phone asks for the sensors only after a tap\n}\n\nfunction draw() {\n  background(20);\n  fill(255);\n  textSize(18);\n\n  // until the tap, there is nothing to read\n  if (!window.sensorsEnabled) {\n    text('waiting for the tap', 20, 40);\n    return;\n  }\n\n  // after the tap: your sketch goes here\n  text('sensors on. rotationX is ' + round(rotationX), 20, 40);\n}\n\nfunction windowResized() {\n  resizeCanvas(windowWidth, windowHeight);\n}\n",
+      "content": "// p5-phone 01 · Start Here\n// The blank phone sketch. Every phone sketch starts this way:\n// lock the gestures, ask for the sensors on a tap, and read nothing until the flag says yes.\n\nfunction setup()\n{\n  createCanvas(windowWidth, windowHeight);\n  lockGestures();                  // no scrolling, zooming or pull to refresh\n  angleMode(DEGREES);              // tilt in degrees. p5.js uses radians unless you say so\n  enableGyroTap('Tap to start');   // a phone asks for the sensors only after a tap\n}\n\nfunction draw()\n{\n  background(20);\n  fill(255);\n  textSize(18);\n\n  // Wait for motion sensors to be available\n  if (window.sensorsEnabled)\n  {\n    //draw the X rotation of the phone as text\n    text('sensors on. rotationX is ' + round(rotationX), 20, 40);\n  }\n}\n",
       "id": "ddc2f07766f7b4910ea1bb73",
       "_id": "ddc2f07766f7b4910ea1bb73",
       "fileType": "file",

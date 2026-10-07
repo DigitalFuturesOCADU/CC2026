@@ -3,7 +3,7 @@
   "title": "Connecting 05 · Combine",
   "name": "C&C F26 · Connecting 05 · Combine",
   "projectId": "b1up1nrp7",
-  "contentHash": "sha256:dfb4699c180851a77303de0ca65c32537ee11e4e1183523c07242c0c6d5e8e04",
+  "contentHash": "sha256:40e8103c50bca330382acd691896f579fcf69ef5c87f431bd58b5a3b43cc4ca3",
   "files": [
     {
       "name": "root",
@@ -25,7 +25,7 @@
     },
     {
       "name": "sketch.js",
-      "content": "// Connecting 05 · Combine\n// Two inputs at once. The light needs a finger on the screen AND the phone tipped forward.\n// Give each input to a different person and the light needs both of them.\n// && means and. Change it to || (or) and see how the relation changes.\n\n// change these\nlet threshold = 20; // degrees of forward tilt that count as tipped\n\nfunction setup() {\n  createCanvas(windowWidth, windowHeight);\n  lockGestures();\n  angleMode(DEGREES); // tilt in degrees. p5.js uses radians unless you say so\n  enableSensorTap('Tap to start');\n}\n\nfunction draw() {\n  background(20);\n  if (!window.sensorsEnabled) return;\n\n  let touching = mouseIsPressed;\n  let tipped = rotationX > threshold;\n\n  if (touching && tipped) {\n    background(255);\n  }\n\n  fill(0);\n  rect(0, 0, width, 60);\n  fill(255);\n  textSize(18);\n  text('touching ' + touching + '   tipped ' + tipped, 20, 38);\n}\n\nfunction windowResized() {\n  resizeCanvas(windowWidth, windowHeight);\n}\n",
+      "content": "// Connecting 05 · Combine\n// Two inputs at once. The light needs a finger on the screen AND the phone tipped forward.\n// Give each input to a different person and the light needs both of them.\n// && means and. Change it to || (or) and see how the relation changes.\n\n// change these\nlet threshold = 20; // degrees of forward tilt that count as tipped\n\nfunction setup() {\n  createCanvas(windowWidth, windowHeight);\n  lockGestures();\n  angleMode(DEGREES); // tilt in degrees. p5.js uses radians unless you say so\n  enableGyroTap('Tap to start');\n}\n\nfunction draw() {\n  background(20);\n  if (!window.sensorsEnabled) return;\n\n  let touching = mouseIsPressed;\n  let tipped = rotationX > threshold;\n\n  if (touching && tipped) {\n    background(255);\n  }\n\n  fill(0);\n  rect(0, 0, width, 60);\n  fill(255);\n  textSize(18);\n  text('touching ' + touching + '   tipped ' + tipped, 20, 38);\n}\n\nfunction windowResized() {\n  resizeCanvas(windowWidth, windowHeight);\n}\n",
       "id": "b583835943b8fc0cb05b49d6",
       "_id": "b583835943b8fc0cb05b49d6",
       "fileType": "file",

@@ -3,7 +3,7 @@
   "title": "Images 02 · Tilt to Scale",
   "name": "C&C F26 · Images 02 · Tilt to Scale",
   "projectId": "TqZOAbeQm",
-  "contentHash": "sha256:13478fdb24639843291854f82648d5264a2cf58878c1ca4bd19982e24007c84f",
+  "contentHash": "sha256:744f2076e8d46b37383fa6ef9ad22461dcbb22e6a4e22245c6dc1edbec320d7d",
   "files": [
     {
       "name": "root",
@@ -25,7 +25,7 @@
     },
     {
       "name": "sketch.js",
-      "content": "// Images 02 · Tilt to Scale\n// rotationX, the tilt forward and back, sets how big the picture is drawn.\n// Lay the phone flat for small, stand it up for big. Scale 1 is the picture's own size.\n\n// change these\nlet smallest = 0.5; // the scale with the phone lying flat\nlet biggest = 2;    // the scale with the phone standing up\n\nlet picture; // the image, once it has loaded\n\nasync function setup() {\n  createCanvas(windowWidth, windowHeight);\n  lockGestures();\n  angleMode(DEGREES); // tilt in degrees. p5.js uses radians unless you say so\n  enableSensorTap('Tap to start');\n  imageMode(CENTER);\n  picture = await loadImage('https://digitalfuturesocadu.github.io/CC2026/media/images/spaceSuit.png');\n}\n\nfunction draw() {\n  background(20);\n  if (!window.sensorsEnabled) return;\n\n  // flat (0 degrees) to standing (90) becomes smallest to biggest. true keeps it in between\n  let amount = map(rotationX, 0, 90, smallest, biggest, true);\n  image(picture, width / 2, height / 2, picture.width * amount, picture.height * amount);\n\n  // the raw value and the scale it became, on a band so the picture never hides them\n  fill(20);\n  rect(0, 0, width, 60);\n  fill(255);\n  textSize(18);\n  text('rotationX ' + round(rotationX) + '   scale ' + nf(amount, 1, 2), 20, 40);\n}\n\nfunction windowResized() {\n  resizeCanvas(windowWidth, windowHeight);\n}\n",
+      "content": "// Images 02 · Tilt to Scale\n// rotationX, the tilt forward and back, sets how big the picture is drawn.\n// Lay the phone flat for small, stand it up for big. Scale 1 is the picture's own size.\n\n// change these\nlet smallest = 0.5; // the scale with the phone lying flat\nlet biggest = 2;    // the scale with the phone standing up\n\nlet picture; // the image, once it has loaded\n\nasync function setup() {\n  createCanvas(windowWidth, windowHeight);\n  lockGestures();\n  angleMode(DEGREES); // tilt in degrees. p5.js uses radians unless you say so\n  enableGyroTap('Tap to start');\n  imageMode(CENTER);\n  picture = await loadImage('https://digitalfuturesocadu.github.io/CC2026/media/images/spaceSuit.png');\n}\n\nfunction draw() {\n  background(20);\n  if (!window.sensorsEnabled) return;\n\n  // flat (0 degrees) to standing (90) becomes smallest to biggest. true keeps it in between\n  let amount = map(rotationX, 0, 90, smallest, biggest, true);\n  image(picture, width / 2, height / 2, picture.width * amount, picture.height * amount);\n\n  // the raw value and the scale it became, on a band so the picture never hides them\n  fill(20);\n  rect(0, 0, width, 60);\n  fill(255);\n  textSize(18);\n  text('rotationX ' + round(rotationX) + '   scale ' + nf(amount, 1, 2), 20, 40);\n}\n\nfunction windowResized() {\n  resizeCanvas(windowWidth, windowHeight);\n}\n",
       "id": "9c22f82c2a66c655616e7b8b",
       "_id": "9c22f82c2a66c655616e7b8b",
       "fileType": "file",

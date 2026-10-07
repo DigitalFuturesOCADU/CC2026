@@ -12,7 +12,7 @@ let movement = 0; // the smoothed movement, kept from frame to frame
 function setup() {
   createCanvas(windowWidth, windowHeight);
   lockGestures();
-  enableSensorTap('Tap to start');
+  enableGyroTap('Tap to start');
 }
 
 function draw() {

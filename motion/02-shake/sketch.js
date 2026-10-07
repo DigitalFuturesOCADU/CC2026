@@ -13,7 +13,7 @@ let colour;        // the background colour
 function setup() {
   createCanvas(windowWidth, windowHeight);
   lockGestures();
-  enableSensorTap('Tap to start');
+  enableGyroTap('Tap to start');
   setShakeThreshold(threshold);
   colour = color(20);
 }

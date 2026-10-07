@@ -12,7 +12,7 @@ async function setup() {
   createCanvas(windowWidth, windowHeight);
   lockGestures();
   angleMode(DEGREES); // tilt in degrees. p5.js uses radians unless you say so
-  enableSensorTap('Tap to start');
+  enableGyroTap('Tap to start');
   imageMode(CENTER);
   picture = await loadImage('https://digitalfuturesocadu.github.io/CC2026/media/images/spaceSuit.png');
 }

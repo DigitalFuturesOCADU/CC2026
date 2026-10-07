@@ -11,7 +11,7 @@ let shakeTime = -100000; // when the last shake happened. long ago, to start dar
 function setup() {
   createCanvas(windowWidth, windowHeight);
   lockGestures();
-  enableSensorTap('Tap to start');
+  enableGyroTap('Tap to start');
 }
 
 function draw() {

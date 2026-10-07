@@ -13,7 +13,7 @@ let lastShake = 0; // when the last shake counted, in milliseconds
 async function setup() {
   createCanvas(windowWidth, windowHeight);
   lockGestures();
-  enableSensorTap('Tap to start');
+  enableGyroTap('Tap to start');
   setShakeThreshold(threshold);
   imageMode(CENTER);
 

@@ -11,7 +11,7 @@ let smoothed = 0; // kept from frame to frame, so it is declared up here
 function setup() {
   createCanvas(windowWidth, windowHeight);
   lockGestures();
-  enableSensorTap('Tap to start');
+  enableGyroTap('Tap to start');
 }
 
 function draw() {

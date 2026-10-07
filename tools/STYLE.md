@@ -16,12 +16,13 @@ to read in one go.
   other p5 1.x touch callbacks. `touches` holds fingers only, never the mouse, so a sketch
   built on `touches` needs a phone. With several fingers, test `touches.length > 0`:
   `mouseIsPressed` goes false as soon as any one finger lifts.
-- **p5-phone 1.15.0.**
+- **p5-phone 1.15.3.**
   - `lockGestures()` in every `setup()`.
   - Sketches that use hardware make exactly one `enable…Tap('Tap to start')` call (touch,
-    drawing, images, GIFs and speech need none): `enableSensorTap`, `enableMicTap`,
+    drawing, images, GIFs and speech need none): `enableGyroTap`, `enableMicTap`,
     `enableSoundTap`, `enableTorchTap`, or `enablePermissionsTap([...], 'Tap to start')` when a
-    sketch needs more than one.
+    sketch needs more than one. Motion is `enableGyroTap`, the name in the p5-phone README.
+    `enableSensorTap` is an alias for the same function: don't use it.
   - Read hardware only behind its flag: `window.sensorsEnabled`, `window.micOpen` (not
     `micEnabled`), `window.torchEnabled`. The usual shape is
     `if (!window.sensorsEnabled) return;` near the top of `draw()`.

@@ -8,7 +8,7 @@ function setup() {
   lockGestures();
   angleMode(DEGREES); // tilt in degrees. p5.js uses radians unless you say so
   showDebug(); // call it first, so it catches errors from the start
-  enableSensorTap('Tap to start');
+  enableGyroTap('Tap to start');
   debug('setup is done');
 }
 

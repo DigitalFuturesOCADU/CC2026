@@ -19,7 +19,7 @@ ROOT = Path(__file__).resolve().parent.parent
 P5 = "https://cdn.jsdelivr.net/npm/p5@2.2.3/lib/p5.js"
 P5_SOUND = "https://cdn.jsdelivr.net/npm/p5.sound@0.3.0/dist/p5.sound.min.js"
 TONE = "https://cdn.jsdelivr.net/npm/tone@15.1.22/build/Tone.js"
-P5_PHONE = "https://cdn.jsdelivr.net/npm/p5-phone@1.15.3/dist/p5-phone.min.js"
+P5_PHONE = "https://cdn.jsdelivr.net/npm/p5-phone@1.15.4/dist/p5-phone.min.js"
 
 # section id, heading, one line under the heading
 SECTIONS = [

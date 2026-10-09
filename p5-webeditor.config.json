@@ -7,7 +7,7 @@
   "visibility": "Public",
   "verify": {
     "enabled": true,
-    "signature": "p5-phone@1.15.3",
+    "signature": "p5-phone@1.15.4",
     "mode": "local",
     "skipIfMissing": true,
     "failOnVerify": false

@@ -3,7 +3,7 @@
   "title": "03 Still for Light · 3 people",
   "name": "C&C F26 · 03 Still for Light · 3 people",
   "projectId": "GiuOu6b3M",
-  "contentHash": "sha256:ce8cfa804bb2a7a666e8e379d84901ca561a558830ea22db9d38e15a89424178",
+  "contentHash": "sha256:4f82c4be09307bb9dd7318c13e76d8fce6036f7d80b89c9349518c46131fd897",
   "files": [
     {
       "name": "root",
@@ -17,7 +17,7 @@
     },
     {
       "name": "index.html",
-      "content": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n  <title>03 Still for Light · 3 people</title>\n  <style>\n    body {\n      margin: 0;\n      padding: 0;\n      overflow: hidden;\n      background: #141414;\n    }\n    canvas {\n      touch-action: none; /* a finger on the canvas never scrolls the page */\n    }\n  </style>\n\n  <!-- p5.js 2.x -->\n  <script src=\"https://cdn.jsdelivr.net/npm/p5@2.2.3/lib/p5.js\"></script>\n\n  <!-- p5-phone: the permission tap, the gesture lock, the flashlight and the QR code -->\n  <script src=\"https://cdn.jsdelivr.net/npm/p5-phone@1.15.3/dist/p5-phone.min.js\"></script>\n</head>\n<body>\n  <script src=\"sketch.js\"></script>\n</body>\n</html>\n",
+      "content": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n  <title>03 Still for Light · 3 people</title>\n  <style>\n    body {\n      margin: 0;\n      padding: 0;\n      overflow: hidden;\n      background: #141414;\n    }\n    canvas {\n      touch-action: none; /* a finger on the canvas never scrolls the page */\n    }\n  </style>\n\n  <!-- p5.js 2.x -->\n  <script src=\"https://cdn.jsdelivr.net/npm/p5@2.2.3/lib/p5.js\"></script>\n\n  <!-- p5-phone: the permission tap, the gesture lock, the flashlight and the QR code -->\n  <script src=\"https://cdn.jsdelivr.net/npm/p5-phone@1.15.4/dist/p5-phone.min.js\"></script>\n</head>\n<body>\n  <script src=\"sketch.js\"></script>\n</body>\n</html>\n",
       "id": "7607cfa368bc5d8b4bea9eb6",
       "_id": "7607cfa368bc5d8b4bea9eb6",
       "fileType": "file",

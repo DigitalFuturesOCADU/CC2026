@@ -3,7 +3,7 @@
   "title": "08 Quiet for Light · 3 people",
   "name": "C&C F26 · 08 Quiet for Light · 3 people",
   "projectId": "mGPkh8pYR",
-  "contentHash": "sha256:05c15f2d0dbcd65da66b6a31c090f30e6f492dbb1234890cbe62e8aa47cd5896",
+  "contentHash": "sha256:e8b5aa18e088c69f76435c0b829f00f5c2e3a1ba46364d774c73730d1afac95f",
   "files": [
     {
       "name": "root",
@@ -17,7 +17,7 @@
     },
     {
       "name": "index.html",
-      "content": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n  <title>08 Quiet for Light · 3 people</title>\n  <style>\n    body {\n      margin: 0;\n      padding: 0;\n      overflow: hidden;\n      background: #141414;\n    }\n    canvas {\n      touch-action: none; /* a finger on the canvas never scrolls the page */\n    }\n  </style>\n\n  <!-- p5.js 2.x -->\n  <script src=\"https://cdn.jsdelivr.net/npm/p5@2.2.3/lib/p5.js\"></script>\n\n  <!-- p5.sound: the microphone, recordings and oscillators -->\n  <script src=\"https://cdn.jsdelivr.net/npm/p5.js-compatibility@0.2.0/src/preload.js\"></script>\n  <script src=\"https://cdn.jsdelivr.net/npm/p5.sound@0.3.0/dist/p5.sound.min.js\"></script>\n\n  <!-- p5-phone: the permission tap, the gesture lock, the flashlight and the QR code -->\n  <script src=\"https://cdn.jsdelivr.net/npm/p5-phone@1.15.3/dist/p5-phone.min.js\"></script>\n</head>\n<body>\n  <script src=\"sketch.js\"></script>\n</body>\n</html>\n",
+      "content": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n  <title>08 Quiet for Light · 3 people</title>\n  <style>\n    body {\n      margin: 0;\n      padding: 0;\n      overflow: hidden;\n      background: #141414;\n    }\n    canvas {\n      touch-action: none; /* a finger on the canvas never scrolls the page */\n    }\n  </style>\n\n  <!-- p5.js 2.x -->\n  <script src=\"https://cdn.jsdelivr.net/npm/p5@2.2.3/lib/p5.js\"></script>\n\n  <!-- p5.sound: the microphone, recordings and oscillators -->\n  <script src=\"https://cdn.jsdelivr.net/npm/p5.js-compatibility@0.2.0/src/preload.js\"></script>\n  <script src=\"https://cdn.jsdelivr.net/npm/p5.sound@0.3.0/dist/p5.sound.min.js\"></script>\n\n  <!-- p5-phone: the permission tap, the gesture lock, the flashlight and the QR code -->\n  <script src=\"https://cdn.jsdelivr.net/npm/p5-phone@1.15.4/dist/p5-phone.min.js\"></script>\n</head>\n<body>\n  <script src=\"sketch.js\"></script>\n</body>\n</html>\n",
       "id": "5a3a5342c561a4ce5e8f2bf9",
       "_id": "5a3a5342c561a4ce5e8f2bf9",
       "fileType": "file",

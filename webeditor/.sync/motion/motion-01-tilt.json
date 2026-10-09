@@ -3,7 +3,7 @@
   "title": "Motion 01 · Tilt",
   "name": "C&C F26 · Motion 01 · Tilt",
   "projectId": "3kic823dL",
-  "contentHash": "sha256:d47a53e47d2cb8d9cefe56f3861c9ecb90b97fca15f75f3131b301bd6db29e2c",
+  "contentHash": "sha256:9ab271b367f249044d2e87638d4c1658f43dd4e09cb4bb3b7859b4fc4f2373e7",
   "files": [
     {
       "name": "root",
@@ -17,7 +17,7 @@
     },
     {
       "name": "index.html",
-      "content": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n  <title>Motion 01 · Tilt</title>\n  <style>\n    body {\n      margin: 0;\n      padding: 0;\n      overflow: hidden;\n      background: #141414;\n    }\n    canvas {\n      touch-action: none; /* a finger on the canvas never scrolls the page */\n    }\n  </style>\n\n  <!-- p5.js 2.x -->\n  <script src=\"https://cdn.jsdelivr.net/npm/p5@2.2.3/lib/p5.js\"></script>\n\n  <!-- p5-phone: the permission tap, the gesture lock, the sensors and the flashlight -->\n  <script src=\"https://cdn.jsdelivr.net/npm/p5-phone@1.15.3/dist/p5-phone.min.js\"></script>\n\n  <!-- on a laptop, a QR code of this page, to open it on a phone. on the https examples site and in the p5.js web editor -->\n  <script>\n    if (location.protocol === 'https:' || location.protocol === 'blob:') {\n      addEventListener('load', function () { showDesktopQr(); });\n    }\n  </script>\n</head>\n<body>\n  <script src=\"sketch.js\"></script>\n</body>\n</html>\n",
+      "content": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n  <title>Motion 01 · Tilt</title>\n  <style>\n    body {\n      margin: 0;\n      padding: 0;\n      overflow: hidden;\n      background: #141414;\n    }\n    canvas {\n      touch-action: none; /* a finger on the canvas never scrolls the page */\n    }\n  </style>\n\n  <!-- p5.js 2.x -->\n  <script src=\"https://cdn.jsdelivr.net/npm/p5@2.2.3/lib/p5.js\"></script>\n\n  <!-- p5-phone: the permission tap, the gesture lock, the sensors and the flashlight -->\n  <script src=\"https://cdn.jsdelivr.net/npm/p5-phone@1.15.4/dist/p5-phone.min.js\"></script>\n\n  <!-- on a laptop, a QR code of this page, to open it on a phone. on the https examples site and in the p5.js web editor -->\n  <script>\n    if (location.protocol === 'https:' || location.protocol === 'blob:') {\n      addEventListener('load', function () { showDesktopQr(); });\n    }\n  </script>\n</head>\n<body>\n  <script src=\"sketch.js\"></script>\n</body>\n</html>\n",
       "id": "c14301561428a7704230d8f6",
       "_id": "c14301561428a7704230d8f6",
       "fileType": "file",

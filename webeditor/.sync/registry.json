@@ -5,686 +5,686 @@
     "e2-01-tilt-to-draw-1-person": {
       "projectId": "8y_qfoqiR",
       "name": "C&C F26 · 01 Tilt to Draw · 1 person",
-      "contentHash": "sha256:5f4238955a0c05935ced69cc08e1992febb0c23145b5788c166967049dce9dcb",
+      "contentHash": "sha256:3a0a98a8fd4d093ecf9ea06a3bf6f54476e0e59995e8de3ab7263d095232e765",
       "fileIds": {
         "__root__": "9d6d9b18dc31bdf8980981a7",
         "index.html": "f7ce3e3114816f605334324e",
         "sketch.js": "7e0719bcc3842b410fe3a012"
       },
-      "lastPush": "2026-10-07T17:36:04.928Z",
-      "lastVerify": "2026-10-07T17:36:04.928Z"
+      "lastPush": "2026-10-09T01:30:06.289Z",
+      "lastVerify": "2026-10-09T01:30:21.336Z"
     },
     "e2-01-tilt-to-draw-2-people": {
       "projectId": "q_iv_rcV4",
       "name": "C&C F26 · 01 Tilt to Draw · 2 people",
-      "contentHash": "sha256:e8aadff06ea30774a1abd674a840b7f8fb7ed513065637ae98303181fe13b624",
+      "contentHash": "sha256:9e476404d64ac251d49e9fe923ec627812495269a7b206424832befe198cf3a4",
       "fileIds": {
         "__root__": "8da5bf3e93651e3da92f09ad",
         "index.html": "19a9251de10a0589497def2b",
         "sketch.js": "9fcf6e649e1081c67d7cfe61"
       },
-      "lastPush": "2026-10-07T17:36:05.550Z",
-      "lastVerify": "2026-10-07T17:36:05.550Z"
+      "lastPush": "2026-10-09T01:30:06.974Z",
+      "lastVerify": "2026-10-09T01:30:21.340Z"
     },
     "e2-01-tilt-to-draw-3-people": {
       "projectId": "aIAjfJgt3",
       "name": "C&C F26 · 01 Tilt to Draw · 3 people",
-      "contentHash": "sha256:08bf44051bfab7cabee8e4b9d7ea57b0edd22c3765b8d8f4aa64ee59b1b3c290",
+      "contentHash": "sha256:63e864de5a3f072e52fead3006c375bd8f837da24ec195e5f8c572754f8926f0",
       "fileIds": {
         "__root__": "612e530e22c4e310a3bde228",
         "index.html": "8ab2d7d5fef5dba6748912ed",
         "sketch.js": "e1e1317c65c4af05f67caa2e"
       },
-      "lastPush": "2026-10-07T17:36:06.255Z",
-      "lastVerify": "2026-10-07T17:36:06.255Z"
+      "lastPush": "2026-10-09T01:30:07.608Z",
+      "lastVerify": "2026-10-09T01:30:21.342Z"
     },
     "e2-02-tilt-to-speed-1-person": {
       "projectId": "gTRmn94xB",
       "name": "C&C F26 · 02 Tilt to Speed · 1 person",
-      "contentHash": "sha256:c4277d73a5c4488d88443178be0c35b3b76e36bf1f23cac058145d4699357d23",
+      "contentHash": "sha256:bfa6d9cc8271dd287b74ad62262fc3682e56025f030b50ece8d811610854c7d8",
       "fileIds": {
         "__root__": "41f543da17bebc78bf11ec7a",
         "index.html": "d5698268994d23c966ee78b2",
         "sketch.js": "a1022d8f6a8329a03423ac34"
       },
-      "lastPush": "2026-10-07T17:36:06.881Z",
-      "lastVerify": "2026-10-07T17:36:06.881Z"
+      "lastPush": "2026-10-09T01:30:08.231Z",
+      "lastVerify": "2026-10-09T01:30:21.343Z"
     },
     "e2-02-tilt-to-speed-2-people": {
       "projectId": "OIHU06x_h",
       "name": "C&C F26 · 02 Tilt to Speed · 2 people",
-      "contentHash": "sha256:e5a493dc24f5718c5882c95782d16276e54f7ba38259bb16a6d0c4e5ce23502c",
+      "contentHash": "sha256:e9052871f7993978fb77bcc38d0e01eca89533a4bbd59c4989cbdb773ad50544",
       "fileIds": {
         "__root__": "3d39389e6b7af3bd49197dbe",
         "index.html": "e3b9341057fe5fcfb22c52ce",
         "sketch.js": "1e5e22b47ac7ef276293b7b4"
       },
-      "lastPush": "2026-10-07T17:36:07.474Z",
-      "lastVerify": "2026-10-07T17:36:07.474Z"
+      "lastPush": "2026-10-09T01:30:08.817Z",
+      "lastVerify": "2026-10-09T01:30:21.346Z"
     },
     "e2-02-tilt-to-speed-3-people": {
       "projectId": "uhOEQbnC8",
       "name": "C&C F26 · 02 Tilt to Speed · 3 people",
-      "contentHash": "sha256:ed61a41830922a7c0a3eb18d7471072312f7f687052a1b77466af577bb5bdb92",
+      "contentHash": "sha256:006b671e0adac48ce3990f0280a23ef07d81de0ee5aa4bf6a1bb9a30d7dc7908",
       "fileIds": {
         "__root__": "0c7751d6fdec009c6cfbd280",
         "index.html": "a7f73c8cc4296265a1ecd2d9",
         "sketch.js": "d1629f265dbd00879e572608"
       },
-      "lastPush": "2026-10-07T17:36:08.083Z",
-      "lastVerify": "2026-10-07T17:36:08.083Z"
+      "lastPush": "2026-10-09T01:30:09.422Z",
+      "lastVerify": "2026-10-09T01:30:21.349Z"
     },
     "e2-03-still-for-light-1-person": {
       "projectId": "I4bsOi_8j",
       "name": "C&C F26 · 03 Still for Light · 1 person",
-      "contentHash": "sha256:d47d8778f19afe0e7c669bfe9c94c0be7be765c6a4ed64aa9f14b5da8f996997",
+      "contentHash": "sha256:2faf041051e4dcca765c83c3458a513b96bab32e2af20e5e8d58b50008d86dad",
       "fileIds": {
         "__root__": "0a4fb5a308af52539ae6967d",
         "index.html": "fe59256666c05ff85bd1df9c",
         "sketch.js": "68f7e1311b88805089cb4f60"
       },
-      "lastPush": "2026-10-07T17:36:08.689Z",
-      "lastVerify": "2026-10-07T17:36:08.689Z"
+      "lastPush": "2026-10-09T01:30:10.105Z",
+      "lastVerify": "2026-10-09T01:30:21.350Z"
     },
     "e2-03-still-for-light-2-people": {
       "projectId": "HlIjIv5nO",
       "name": "C&C F26 · 03 Still for Light · 2 people",
-      "contentHash": "sha256:30e483d342ee83dbb5b3e940d467d05fc5d5963cb8eaee0b9f714382c902170e",
+      "contentHash": "sha256:0c01d01fdbb7bf383fa2af4b80b910984133c9c6e296fb095ea0649e2de4aea3",
       "fileIds": {
         "__root__": "e83320107bbcbf8096b9f0b7",
         "index.html": "090fc7f9bdc6f4f42e726eb1",
         "sketch.js": "f594ef280d8cd88307b476a3"
       },
-      "lastPush": "2026-10-07T17:36:09.292Z",
-      "lastVerify": "2026-10-07T17:36:09.292Z"
+      "lastPush": "2026-10-09T01:30:10.721Z",
+      "lastVerify": "2026-10-09T01:30:21.351Z"
     },
     "e2-03-still-for-light-3-people": {
       "projectId": "GiuOu6b3M",
       "name": "C&C F26 · 03 Still for Light · 3 people",
-      "contentHash": "sha256:ce8cfa804bb2a7a666e8e379d84901ca561a558830ea22db9d38e15a89424178",
+      "contentHash": "sha256:4f82c4be09307bb9dd7318c13e76d8fce6036f7d80b89c9349518c46131fd897",
       "fileIds": {
         "__root__": "fc068e22e6fbf87979b030ea",
         "index.html": "7607cfa368bc5d8b4bea9eb6",
         "sketch.js": "db65018da5a41b43116bb2e1"
       },
-      "lastPush": "2026-10-07T17:36:09.895Z",
-      "lastVerify": "2026-10-07T17:36:09.895Z"
+      "lastPush": "2026-10-09T01:30:11.333Z",
+      "lastVerify": "2026-10-09T01:30:21.352Z"
     },
     "e2-04-hold-to-reveal-1-person": {
       "projectId": "IorNo31Ck",
       "name": "C&C F26 · 04 Hold to Reveal · 1 person",
-      "contentHash": "sha256:bcde4377e868f85106df852294a86b37448392811b5b3f983e8516b54dd764ba",
+      "contentHash": "sha256:25d096665bba0f47c427e23c6f3c20921d1948991d74ab2fa6c8f7925931f90b",
       "fileIds": {
         "__root__": "7cb3e0a0cecd53207b512a49",
         "index.html": "b678cc612d547e3a11031143",
         "sketch.js": "a12319dbf63ef2094c6dd8cd"
       },
-      "lastPush": "2026-10-06T18:35:02.294Z",
-      "lastVerify": "2026-10-06T18:35:11.310Z"
+      "lastPush": "2026-10-09T01:30:11.969Z",
+      "lastVerify": "2026-10-09T01:30:21.353Z"
     },
     "e2-04-hold-to-reveal-2-people": {
       "projectId": "zqhVR6AvF",
       "name": "C&C F26 · 04 Hold to Reveal · 2 people",
-      "contentHash": "sha256:43ad7f79bbce72e615d0a84c9b21d6547f83e99be6939e3356ebaa996c80c23a",
+      "contentHash": "sha256:ea2fc3677d99507ba7caae6f97be23783248338ebcb71d7f8e09e1df1cd48138",
       "fileIds": {
         "__root__": "782733e93f96b5b0db8ab6a1",
         "index.html": "dd7e51a2876b7858dc1808e1",
         "sketch.js": "618c633ded3877bc0336cb79"
       },
-      "lastPush": "2026-10-06T18:35:02.879Z",
-      "lastVerify": "2026-10-06T18:35:11.311Z"
+      "lastPush": "2026-10-09T01:30:12.573Z",
+      "lastVerify": "2026-10-09T01:30:21.355Z"
     },
     "e2-04-hold-to-reveal-3-people": {
       "projectId": "Qkl2fCEbO",
       "name": "C&C F26 · 04 Hold to Reveal · 3 people",
-      "contentHash": "sha256:9a37b18806c667b41146238eb103a2df92fd82b2d565ec90c57efa9a175fe528",
+      "contentHash": "sha256:7496407cd1b8a741987d9f051247be1a098f45c17dbcb4d33af3db881b3bdc5a",
       "fileIds": {
         "__root__": "d34efe789a36c4efb0a7703c",
         "index.html": "ee7679885ad2c7f654673c49",
         "sketch.js": "6e4f839c77c94e168bbdb6ec"
       },
-      "lastPush": "2026-10-06T18:35:03.544Z",
-      "lastVerify": "2026-10-06T18:35:11.311Z"
+      "lastPush": "2026-10-09T01:30:13.277Z",
+      "lastVerify": "2026-10-09T01:30:21.356Z"
     },
     "e2-05-hold-a-note-1-person": {
       "projectId": "TUcXsSeyr",
       "name": "C&C F26 · 05 Hold a Note · 1 person",
-      "contentHash": "sha256:3535657f84a6beb8909c5f220e911897bf3d33ea255b9adc2cafc32cb039aacf",
+      "contentHash": "sha256:229098729448d7b9ad64763acd164ad74724cd7e7ea3233f18285f73856e9ff4",
       "fileIds": {
         "__root__": "52f746001868a84547d53930",
         "index.html": "1cdfb859ba2c86d272cfd663",
         "sketch.js": "a9d00fb64cf8321b2e2930eb"
       },
-      "lastPush": "2026-10-06T18:35:04.156Z",
-      "lastVerify": "2026-10-06T18:35:11.312Z"
+      "lastPush": "2026-10-09T01:30:13.894Z",
+      "lastVerify": "2026-10-09T01:30:21.356Z"
     },
     "e2-05-hold-a-note-2-people": {
       "projectId": "o3X8XgrS9",
       "name": "C&C F26 · 05 Hold a Note · 2 people",
-      "contentHash": "sha256:2841aba46e201ad9b19b9da6f9b10c4fa35cc6f40067adb3ab086ce2b04b443f",
+      "contentHash": "sha256:3ca04cf1474bb57b32ad42fe0faa5e0c4ac33272a4df46a6d0174a8a25df0d53",
       "fileIds": {
         "__root__": "1319f0d7b83ef87cf5b132dd",
         "index.html": "60c6224a340a11a19eae47c8",
         "sketch.js": "6c25386f390d82e7899f12d8"
       },
-      "lastPush": "2026-10-06T18:35:04.814Z",
-      "lastVerify": "2026-10-06T18:35:11.312Z"
+      "lastPush": "2026-10-09T01:30:14.497Z",
+      "lastVerify": "2026-10-09T01:30:21.358Z"
     },
     "e2-05-hold-a-note-3-people": {
       "projectId": "75WUWzk5Y",
       "name": "C&C F26 · 05 Hold a Note · 3 people",
-      "contentHash": "sha256:fab1a87280241d9a521dc672d20410174c15967e23f4f1d0c011a38bb2816c2a",
+      "contentHash": "sha256:0f7d8b795588d0a554c2b14b5e6411208142b47a3392681ad1fabe24312f713a",
       "fileIds": {
         "__root__": "e29109a6b187259d84132137",
         "index.html": "f88df71188a95682cb2387bf",
         "sketch.js": "fd02eb6d45a4623bf4270d1c"
       },
-      "lastPush": "2026-10-06T18:35:05.416Z",
-      "lastVerify": "2026-10-06T18:35:11.313Z"
+      "lastPush": "2026-10-09T01:30:15.108Z",
+      "lastVerify": "2026-10-09T01:30:21.359Z"
     },
     "e2-06-hands-for-light-1-person": {
       "projectId": "2HE35qSXp",
       "name": "C&C F26 · 06 Hands for Light · 1 person",
-      "contentHash": "sha256:c4036ba6898650d85ee021c51255095abbbd2b98abdecabcd3873620ed7c5be1",
+      "contentHash": "sha256:89e7caea136d7cede487a2e0ea120e6de254ad327a5bd4a480d5a3ef232b021d",
       "fileIds": {
         "__root__": "c75c930b6b2fa0259f7ff063",
         "index.html": "51fad607c7f5373976399b1e",
         "sketch.js": "74580194778a72e369451b5c"
       },
-      "lastPush": "2026-10-07T17:36:10.651Z",
-      "lastVerify": "2026-10-07T17:36:10.651Z"
+      "lastPush": "2026-10-09T01:30:15.738Z",
+      "lastVerify": "2026-10-09T01:30:21.361Z"
     },
     "e2-06-hands-for-light-2-people": {
       "projectId": "p5w8aIPbu",
       "name": "C&C F26 · 06 Hands for Light · 2 people",
-      "contentHash": "sha256:2132b423190e3ccc7d5c4767deab3cea4f1719455701c0f26fe2e3397256cc3f",
+      "contentHash": "sha256:4d1a819029ed41aa1c39709b023e0e05a29b320fc96d590db4595d6559b59dc3",
       "fileIds": {
         "__root__": "e9753d4f10b6ad8b38ddcf0d",
         "index.html": "a774d3347fd4ebefaf69542d",
         "sketch.js": "8d7971b42e04268ec5e87202"
       },
-      "lastPush": "2026-10-07T17:36:11.359Z",
-      "lastVerify": "2026-10-07T17:36:11.359Z"
+      "lastPush": "2026-10-09T01:30:16.397Z",
+      "lastVerify": "2026-10-09T01:30:21.362Z"
     },
     "e2-06-hands-for-light-3-people": {
       "projectId": "AsDs40D7h",
       "name": "C&C F26 · 06 Hands for Light · 3 people",
-      "contentHash": "sha256:eadc2f2585760c545afb41f007ac2653dc0765503467b62528a382e9f79a69ac",
+      "contentHash": "sha256:49339a1c612f30af203f3091f230aa6d814b55bce9661e63f8061e2d545a365e",
       "fileIds": {
         "__root__": "25658344bbf3b20bd8730ad7",
         "index.html": "1066e029dd3def63e8274d03",
         "sketch.js": "515c3a34783c9542441568c9"
       },
-      "lastPush": "2026-10-07T17:36:13.078Z",
-      "lastVerify": "2026-10-07T17:36:13.078Z"
+      "lastPush": "2026-10-09T01:30:17.009Z",
+      "lastVerify": "2026-10-09T01:30:21.363Z"
     },
     "e2-07-hum-to-play-1-person": {
       "projectId": "1KIvq5P6h",
       "name": "C&C F26 · 07 Hum to Play · 1 person",
-      "contentHash": "sha256:4cdd686809590dc1bf9f69d4b35fb3afc7d28221cd4728c3f2e9bfd04658cea4",
+      "contentHash": "sha256:970851a1f9e3f9a18b90beadc8255e8c43c0e3054f7de5488ed20368d706328c",
       "fileIds": {
         "__root__": "384c31b460a40ce6d8381bbe",
         "index.html": "67c25b6b68e5501b3fe9e7ad",
         "sketch.js": "685abef74460149e12719d36"
       },
-      "lastPush": "2026-10-07T17:36:13.680Z",
-      "lastVerify": "2026-10-07T17:36:13.680Z"
+      "lastPush": "2026-10-09T01:30:17.618Z",
+      "lastVerify": "2026-10-09T01:30:21.363Z"
     },
     "e2-07-hum-to-play-2-people": {
       "projectId": "ppJRrjHiU",
       "name": "C&C F26 · 07 Hum to Play · 2 people",
-      "contentHash": "sha256:30601caada1b61e66725fc4fec119b949b60fa9b9c3ab13594cbf517cfdf3f8a",
+      "contentHash": "sha256:c974f839668dad7fe246877042d90aede71ea959e0356e72347c59dda64727b2",
       "fileIds": {
         "__root__": "06f16a7867067d340b6ee925",
         "index.html": "e8fe0500801412bd3d05c982",
         "sketch.js": "c34c7356c01248464e6c5f5f"
       },
-      "lastPush": "2026-10-07T17:36:14.300Z",
-      "lastVerify": "2026-10-07T17:36:14.300Z"
+      "lastPush": "2026-10-09T01:30:18.216Z",
+      "lastVerify": "2026-10-09T01:30:21.365Z"
     },
     "e2-07-hum-to-play-3-people": {
       "projectId": "tDg_KmxAD",
       "name": "C&C F26 · 07 Hum to Play · 3 people",
-      "contentHash": "sha256:cd33226f357a6346051bc37b5d2148eb66cb282e78f61938e66109617cf6e341",
+      "contentHash": "sha256:31d231ee94970ab3a2e79d7bceccbb8bd7452fed327629e86d501d3d005c3f97",
       "fileIds": {
         "__root__": "c8466c0e1c8ddff1143681fb",
         "index.html": "b63cedd26c679fbe0e3e1846",
         "sketch.js": "9f623a6d77974a4fea2a3fa6"
       },
-      "lastPush": "2026-10-07T17:36:14.910Z",
-      "lastVerify": "2026-10-07T17:36:14.910Z"
+      "lastPush": "2026-10-09T01:30:18.846Z",
+      "lastVerify": "2026-10-09T01:30:21.365Z"
     },
     "e2-08-quiet-for-light-1-person": {
       "projectId": "mZOccMMFc",
       "name": "C&C F26 · 08 Quiet for Light · 1 person",
-      "contentHash": "sha256:894b906706c680cb466df3facd5dd79dbd464e5378173db73e29ec5a032ddb12",
+      "contentHash": "sha256:1044de62d9982d17afe6ad97bf0caf36ce3950b8240395d65d4402e062337175",
       "fileIds": {
         "__root__": "6fff1589a8dae58e2aa14aa9",
         "index.html": "4b91d3e25dffef89bcfeb2d4",
         "sketch.js": "0d0205b5adc6ed238b1f7e6b"
       },
-      "lastPush": "2026-10-07T17:36:15.513Z",
-      "lastVerify": "2026-10-07T17:36:15.513Z"
+      "lastPush": "2026-10-09T01:30:19.451Z",
+      "lastVerify": "2026-10-09T01:30:21.366Z"
     },
     "e2-08-quiet-for-light-2-people": {
       "projectId": "y8BiAzu6D",
       "name": "C&C F26 · 08 Quiet for Light · 2 people",
-      "contentHash": "sha256:7773134aacc3cf73252aa4f9c4eedd4834b34453ab433efa89a4b1931c1076b6",
+      "contentHash": "sha256:06119cdd2e21eacb07189373ac585f87f883740fdd64241a5b989dad0c832c30",
       "fileIds": {
         "__root__": "463b8741b065334748c33f61",
         "index.html": "b1a2a2bb68fbeec0cc32c80a",
         "sketch.js": "796923c84e6afbb9424e3ddc"
       },
-      "lastPush": "2026-10-07T17:36:16.112Z",
-      "lastVerify": "2026-10-07T17:36:16.112Z"
+      "lastPush": "2026-10-09T01:30:20.078Z",
+      "lastVerify": "2026-10-09T01:30:21.367Z"
     },
     "e2-08-quiet-for-light-3-people": {
       "projectId": "mGPkh8pYR",
       "name": "C&C F26 · 08 Quiet for Light · 3 people",
-      "contentHash": "sha256:05c15f2d0dbcd65da66b6a31c090f30e6f492dbb1234890cbe62e8aa47cd5896",
+      "contentHash": "sha256:e8b5aa18e088c69f76435c0b829f00f5c2e3a1ba46364d774c73730d1afac95f",
       "fileIds": {
         "__root__": "76108987590ff8b80b09349f",
         "index.html": "5a3a5342c561a4ce5e8f2bf9",
         "sketch.js": "2a8b7da5e6912246c06c281c"
       },
-      "lastPush": "2026-10-07T17:36:16.721Z",
-      "lastVerify": "2026-10-07T17:36:16.721Z"
+      "lastPush": "2026-10-09T01:30:20.682Z",
+      "lastVerify": "2026-10-09T01:30:21.367Z"
     },
     "p5-phone-01-start-here": {
       "projectId": "CjlWXB4nM",
       "name": "C&C F26 · p5-phone 01 · Start Here",
-      "contentHash": "sha256:20db6a771bf3b963576a555f5a654630f51df5d1ea59150e9a7654999d24c573",
+      "contentHash": "sha256:f6ccbce41de59340440ec0738b495d223c4628213227fc2e7613f27d2a529df8",
       "fileIds": {
         "__root__": "c38357b33c47fdb752909c38",
         "index.html": "b18a1ee66527d6ae61b73d29",
         "sketch.js": "ddc2f07766f7b4910ea1bb73"
       },
-      "lastPush": "2026-10-07T17:29:18.240Z",
-      "lastVerify": "2026-10-07T17:29:18.240Z"
+      "lastPush": "2026-10-09T01:30:22.580Z",
+      "lastVerify": "2026-10-09T01:30:24.535Z"
     },
     "p5-phone-02-debug-panel": {
       "projectId": "SBLbF3kt0",
       "name": "C&C F26 · p5-phone 02 · Debug Panel",
-      "contentHash": "sha256:3b9f0a66df2fcdae1b5f22b2348e3a3eb7a97ce14c9545ea7b08f3ff257a09ca",
+      "contentHash": "sha256:97711e028b941f05abd4f4c65b821a332849708355cfe4defcb1a3bca2e8f3e8",
       "fileIds": {
         "__root__": "c37c7233f1f5de6157454758",
         "index.html": "e0bf90f6e604196996cbdbe4",
         "sketch.js": "d5a49c8bfc70af2b03fdf4b2"
       },
-      "lastPush": "2026-10-07T17:36:17.564Z",
-      "lastVerify": "2026-10-07T17:36:17.564Z"
+      "lastPush": "2026-10-09T01:30:23.231Z",
+      "lastVerify": "2026-10-09T01:30:24.538Z"
     },
     "p5-phone-03-one-tap-many-permissions": {
       "projectId": "yZa1Qjo6u",
       "name": "C&C F26 · p5-phone 03 · One Tap, Many Permissions",
-      "contentHash": "sha256:7e8374dea2f1d41e848d2f3f39e156e173a417bf4c08e0a6d1935b5b0c551a2f",
+      "contentHash": "sha256:e5385feb8993f8b809fc2d0da412f88dd9e80035848d5afb44cfbc3e7144a61c",
       "fileIds": {
         "__root__": "68c6b3cfba04cf2f8abd2c78",
         "index.html": "36689bb00129e5a88fe55b62",
         "sketch.js": "dd96ad228a2512b690297e74"
       },
-      "lastPush": "2026-10-06T18:35:12.813Z",
-      "lastVerify": "2026-10-06T18:35:13.360Z"
+      "lastPush": "2026-10-09T01:30:23.902Z",
+      "lastVerify": "2026-10-09T01:30:24.539Z"
     },
     "connecting-01-map": {
       "projectId": "c8eFYvVLq",
       "name": "C&C F26 · Connecting 01 · Map",
-      "contentHash": "sha256:f4109749d31a9ccc07b7df95226acf7a0e8ad81dc0a7db8d2e07205c30e05c10",
+      "contentHash": "sha256:455cc787b7a02e30c30e01d3243b82fb1f5106911b8631e7d60ed76f10507cd8",
       "fileIds": {
         "__root__": "dd56e6096a3e05b25b8a3418",
         "index.html": "e4eebbab17c5f590c779fc2e",
         "sketch.js": "008dd18f2eae7a7565fe34af"
       },
-      "lastPush": "2026-10-07T17:36:31.961Z",
-      "lastVerify": "2026-10-07T17:36:31.961Z"
+      "lastPush": "2026-10-09T01:30:58.976Z",
+      "lastVerify": "2026-10-09T01:31:02.110Z"
     },
     "connecting-02-smooth": {
       "projectId": "OaYkOahPW",
       "name": "C&C F26 · Connecting 02 · Smooth",
-      "contentHash": "sha256:742f8bf36f402c23e63275b5a1f65eeb4cc758ffc96cbbb8dbbc360b57d58d2e",
+      "contentHash": "sha256:1ca94a3932d147baa74bc0a4a6e1443831f422111fec3c97247e2cfb92efa67b",
       "fileIds": {
         "__root__": "a97f51fd59d245676854eb6e",
         "index.html": "8a1d34a16ebce38ac6949d11",
         "sketch.js": "056ac4d9e98de1fed497cfb1"
       },
-      "lastPush": "2026-10-07T17:36:32.572Z",
-      "lastVerify": "2026-10-07T17:36:32.572Z"
+      "lastPush": "2026-10-09T01:30:59.609Z",
+      "lastVerify": "2026-10-09T01:31:02.113Z"
     },
     "connecting-03-threshold": {
       "projectId": "QeT1ukj39S",
       "name": "C&C F26 · Connecting 03 · Threshold",
-      "contentHash": "sha256:5d10b544fff3b97fadc1be9cb8e1721b128b7d0c6338aed357075862a3711234",
+      "contentHash": "sha256:37447f16193db5e5c96a22a8527fb9d64ca21aadb5c052efc740050da9914e02",
       "fileIds": {
         "__root__": "3b741bdb0ac7da22038ad97d",
         "index.html": "dd5a92e7fd258166c7b1e2fe",
         "sketch.js": "f97901cbb788cc464b6becae"
       },
-      "lastPush": "2026-10-07T17:36:33.171Z",
-      "lastVerify": "2026-10-07T17:36:33.171Z"
+      "lastPush": "2026-10-09T01:31:00.220Z",
+      "lastVerify": "2026-10-09T01:31:02.113Z"
     },
     "connecting-04-fade": {
       "projectId": "bLbixhTm85",
       "name": "C&C F26 · Connecting 04 · Fade",
-      "contentHash": "sha256:404b2f100c0c596c32f38f8fb6a45e879f4a3c9ffafacda61511e3d024bd3881",
+      "contentHash": "sha256:a961e5d85f5c8195ade779ad7d319f306507e784d5345e4b8a3cac1dc7dd643a",
       "fileIds": {
         "__root__": "1e76d8befd5549485461e748",
         "index.html": "bbdbcb9bcefde37f8cd40f89",
         "sketch.js": "8cca06fc2df12ed6f1d8e4b5"
       },
-      "lastPush": "2026-10-07T17:29:23.529Z",
-      "lastVerify": "2026-10-07T17:29:23.529Z"
+      "lastPush": "2026-10-09T01:31:00.814Z",
+      "lastVerify": "2026-10-09T01:31:02.113Z"
     },
     "connecting-05-combine": {
       "projectId": "b1up1nrp7",
       "name": "C&C F26 · Connecting 05 · Combine",
-      "contentHash": "sha256:37da2e79a5f34910c6c8c0a6282cf55b3dc564421245f467bb4c8e970135970d",
+      "contentHash": "sha256:8288a086ad1f00f2f8f00bfdbf7d1ff60c75e13038b33b87167ca4f572fced8f",
       "fileIds": {
         "__root__": "0e66850bffd5c8e1d94902d1",
         "index.html": "dc5dac6dee8eafdc36a291ee",
         "sketch.js": "b583835943b8fc0cb05b49d6"
       },
-      "lastPush": "2026-10-07T17:36:33.795Z",
-      "lastVerify": "2026-10-07T17:36:33.795Z"
+      "lastPush": "2026-10-09T01:31:01.487Z",
+      "lastVerify": "2026-10-09T01:31:02.113Z"
     },
     "motion-01-tilt": {
       "projectId": "3kic823dL",
       "name": "C&C F26 · Motion 01 · Tilt",
-      "contentHash": "sha256:d47a53e47d2cb8d9cefe56f3861c9ecb90b97fca15f75f3131b301bd6db29e2c",
+      "contentHash": "sha256:9ab271b367f249044d2e87638d4c1658f43dd4e09cb4bb3b7859b4fc4f2373e7",
       "fileIds": {
         "__root__": "c2503a0987f69a60fa3246dd",
         "index.html": "c14301561428a7704230d8f6",
         "sketch.js": "a3a86b9669a80f116d4c9874"
       },
-      "lastPush": "2026-10-07T17:36:18.413Z",
-      "lastVerify": "2026-10-07T17:36:18.413Z"
+      "lastPush": "2026-10-09T01:30:26.515Z",
+      "lastVerify": "2026-10-09T01:30:28.409Z"
     },
     "sound-in-01-level": {
       "projectId": "6iH6jXdgo",
       "name": "C&C F26 · Sound In 01 · Level",
-      "contentHash": "sha256:b030e6fc7a795a3977d26f5c9fa7730d72ac7d1b8d501f7c434f09238cfbbbb6",
+      "contentHash": "sha256:b8c9239b2f435d45ece12fb7163875728da85b8bdd09b5048e7270ffb3bdbf36",
       "fileIds": {
         "__root__": "943f0f01649f9a2015d63e3c",
         "index.html": "a3ac63b3a5ef10028efb17bc",
         "sketch.js": "db18553abcfec676c75b718f"
       },
-      "lastPush": "2026-10-07T17:36:21.072Z",
-      "lastVerify": "2026-10-07T17:36:21.072Z"
+      "lastPush": "2026-10-09T01:30:29.509Z",
+      "lastVerify": "2026-10-09T01:30:31.476Z"
     },
     "motion-02-shake": {
       "projectId": "BFJh_8Tp0",
       "name": "C&C F26 · Motion 02 · Shake",
-      "contentHash": "sha256:5ebb5923de74a2a8c73f0014bded2a224cd2bb50f4b6f5d25aa7754dc7232bf6",
+      "contentHash": "sha256:8d43438180de5b32cd6536dc312206a5a91852c1ad33bca05c087dad925c3beb",
       "fileIds": {
         "__root__": "f6cc016bf8af141816f93354",
         "index.html": "9dd4a4d383ba81870a01751c",
         "sketch.js": "4813cd2829bf01a6ba29d8b1"
       },
-      "lastPush": "2026-10-07T17:36:19.004Z",
-      "lastVerify": "2026-10-07T17:36:19.004Z"
+      "lastPush": "2026-10-09T01:30:27.171Z",
+      "lastVerify": "2026-10-09T01:30:28.411Z"
     },
     "motion-03-how-much-movement": {
       "projectId": "9xuT__ZDb",
       "name": "C&C F26 · Motion 03 · How Much Movement",
-      "contentHash": "sha256:084027a0bb4e9cb1968390b17014b75872409e5b18dc455a1b938e80237430ed",
+      "contentHash": "sha256:13b27e243827b8b3a2357eddf8272dfb82462cb1d9c50bc271d2926f8f5ccead",
       "fileIds": {
         "__root__": "1d66aff05c283d8c1acd06ca",
         "index.html": "7ddc84317126527378fb17b7",
         "sketch.js": "30cd2238691186650b8bba80"
       },
-      "lastPush": "2026-10-07T17:36:19.618Z",
-      "lastVerify": "2026-10-07T17:36:19.618Z"
+      "lastPush": "2026-10-09T01:30:27.785Z",
+      "lastVerify": "2026-10-09T01:30:28.411Z"
     },
     "touch-01-where": {
       "projectId": "YGprzO_FN",
       "name": "C&C F26 · Touch 01 · Where",
-      "contentHash": "sha256:d35a797b41daed0b25b047046cebcaf6857fc3de4e750ea5c4ba36c81023fa59",
+      "contentHash": "sha256:51b723fabb6c183da9252f139ceb87d9ce4acf0f654c155ed14e40953fe7e615",
       "fileIds": {
         "__root__": "70143e7851b14b4ee47a02e1",
         "index.html": "c7bf31d5abfe4a92564fec48",
         "sketch.js": "95f62215860153b7e9e1bdaa"
       },
-      "lastPush": "2026-10-06T18:35:17.785Z",
-      "lastVerify": "2026-10-06T18:35:19.514Z"
+      "lastPush": "2026-10-09T01:30:32.340Z",
+      "lastVerify": "2026-10-09T01:30:34.297Z"
     },
     "touch-02-how-many": {
       "projectId": "0ktIOcnf9",
       "name": "C&C F26 · Touch 02 · How Many",
-      "contentHash": "sha256:2fef19d56d3799c5af3cb9c0a5a9564aff4eb72f7f9edeec2bd14bdd8f555b32",
+      "contentHash": "sha256:c6d8599c799681d27e0b54ad23af3f748355c8a70a0fdab7e596fb08aa702658",
       "fileIds": {
         "__root__": "3b5398b8a9e57030788b8b76",
         "index.html": "ad3cf518a82746d10706480f",
         "sketch.js": "b4625a50f102c443a61eb0c0"
       },
-      "lastPush": "2026-10-06T18:35:18.372Z",
-      "lastVerify": "2026-10-06T18:35:19.517Z"
+      "lastPush": "2026-10-09T01:30:32.958Z",
+      "lastVerify": "2026-10-09T01:30:34.300Z"
     },
     "touch-03-zones": {
       "projectId": "wzf4WsQG0",
       "name": "C&C F26 · Touch 03 · Zones",
-      "contentHash": "sha256:16b0585c4d5bb6d791dbd4d2483c44eb6a0c4527f73ffcde9d9d1eafeed800ca",
+      "contentHash": "sha256:62a7e742436d1d5e90777b76f67f7ea5964d1de60ddf3965f7f72ed51e2aa15b",
       "fileIds": {
         "__root__": "397fe112198323001cce8a5d",
         "index.html": "e7608d25a2e6a05ed6892cd2",
         "sketch.js": "646b13bd65cec7c529915c77"
       },
-      "lastPush": "2026-10-06T18:35:18.959Z",
-      "lastVerify": "2026-10-06T18:35:19.517Z"
+      "lastPush": "2026-10-09T01:30:33.589Z",
+      "lastVerify": "2026-10-09T01:30:34.300Z"
     },
     "flashlight-01-tap-for-light": {
       "projectId": "TmtMjzgBP",
       "name": "C&C F26 · Flashlight 01 · Tap for Light",
-      "contentHash": "sha256:bd044788a2b15a837977e09b97dc4dad18fa53ab5e3df814f4aa5fe1bab89901",
+      "contentHash": "sha256:91cbe5d13ef8cf6a426e78e2cb7768d45211a08fea9400e22ff2d8db0dd4a9f9",
       "fileIds": {
         "__root__": "c385ecc652d00090d8bbda7b",
         "index.html": "33c94836a81a14e7caac053d",
         "sketch.js": "47b7366cbfa612d03cd22889"
       },
-      "lastPush": "2026-10-07T17:36:30.474Z",
-      "lastVerify": "2026-10-07T17:36:30.474Z"
+      "lastPush": "2026-10-09T01:30:56.621Z",
+      "lastVerify": "2026-10-09T01:30:57.914Z"
     },
     "flashlight-02-slow-blink": {
       "projectId": "92ZdmSbdD",
       "name": "C&C F26 · Flashlight 02 · Slow Blink",
-      "contentHash": "sha256:e2946c5ce3687203f6cf0533a6955eae6d6a5422261403c27374ed749d000f8d",
+      "contentHash": "sha256:9155887727eda2205cac63341d6f90006d54f92ce4f23237f745ee141f1ee6b6",
       "fileIds": {
         "__root__": "84ddba8e034bd89e6a0f6e93",
         "index.html": "314d3cd7f48b0acfbc5360e5",
         "sketch.js": "ed1a4936a3083f5da9456f66"
       },
-      "lastPush": "2026-10-07T17:36:31.094Z",
-      "lastVerify": "2026-10-07T17:36:31.094Z"
+      "lastPush": "2026-10-09T01:30:57.295Z",
+      "lastVerify": "2026-10-09T01:30:57.916Z"
     },
     "drawing-01-shapes": {
       "projectId": "BXtQSR9zT",
       "name": "C&C F26 · Drawing 01 · Shapes",
-      "contentHash": "sha256:08cf3d47a92e7e374a736b5e5a285faeb87ce37dfc16047c05f58d805e92919a",
+      "contentHash": "sha256:ec98dccc82a523627cd3defb89edde9208a27005813c1ca2c60ffccb275d5258",
       "fileIds": {
         "__root__": "1d3d20dfe979bd69e215f621",
         "index.html": "12970fd04282bac7945d1549",
         "sketch.js": "54563d540332083d161bba44"
       },
-      "lastPush": "2026-10-06T18:35:19.791Z",
-      "lastVerify": "2026-10-06T18:35:21.531Z"
+      "lastPush": "2026-10-09T01:30:35.141Z",
+      "lastVerify": "2026-10-09T01:30:37.079Z"
     },
     "drawing-02-trails": {
       "projectId": "qeTPu2zkw",
       "name": "C&C F26 · Drawing 02 · Trails",
-      "contentHash": "sha256:3b75472c36c46b68bc143bef372e848570438e002cd47befd67060466249e38e",
+      "contentHash": "sha256:3167e0f8c83b8c82a562374406efcd7bd2be3fd8b65f67885dc6293c9385141c",
       "fileIds": {
         "__root__": "783ab6cead2219470f49432e",
         "index.html": "4dc8fade8672a7d75905e410",
         "sketch.js": "ce154eb09a982ee47e33d7af"
       },
-      "lastPush": "2026-10-07T17:36:23.136Z",
-      "lastVerify": "2026-10-07T17:36:23.136Z"
+      "lastPush": "2026-10-09T01:30:35.798Z",
+      "lastVerify": "2026-10-09T01:30:37.082Z"
     },
     "drawing-03-repeat": {
       "projectId": "dIyo-Pdvi",
       "name": "C&C F26 · Drawing 03 · Repeat",
-      "contentHash": "sha256:2432e0c97d87c74d3f7792a6ad756e41782e0226659043654e93d25f32f6da1e",
+      "contentHash": "sha256:b4bbcfbf8aed151a60897167c6f4a15267e8f407e938ff74934d49ffd2610037",
       "fileIds": {
         "__root__": "aac20c603a371beca622a1d2",
         "index.html": "7300355a23a990662c09fa8a",
         "sketch.js": "8dc9e87f8d6b814da825c3be"
       },
-      "lastPush": "2026-10-06T18:35:20.973Z",
-      "lastVerify": "2026-10-06T18:35:21.534Z"
+      "lastPush": "2026-10-09T01:30:36.434Z",
+      "lastVerify": "2026-10-09T01:30:37.082Z"
     },
     "images-01-load-and-fit": {
       "projectId": "D7F6i9ftl",
       "name": "C&C F26 · Images 01 · Load and Fit",
-      "contentHash": "sha256:1d956ebe2f6ae8a9664fd630878bd417a2cd9e7a3d2a1404eac3e8d0c109288a",
+      "contentHash": "sha256:dc96444abec0d7c922a8ef5fac1796a6d989038a614f3e00340c081950f821f5",
       "fileIds": {
         "__root__": "0c80896206dad09bf37aaa08",
         "index.html": "cde41649f8ce8c6e85071140",
         "sketch.js": "9837494429bbce4e8ac7bb1c"
       },
-      "lastPush": "2026-10-06T18:35:22.116Z",
-      "lastVerify": "2026-10-06T18:35:23.839Z"
+      "lastPush": "2026-10-09T01:30:38.181Z",
+      "lastVerify": "2026-10-09T01:30:40.131Z"
     },
     "images-02-tilt-to-scale": {
       "projectId": "TqZOAbeQm",
       "name": "C&C F26 · Images 02 · Tilt to Scale",
-      "contentHash": "sha256:f983717dc2e6e555c6533ebe0c1e98e4105a4c135124b11688fefaf577ad7cc1",
+      "contentHash": "sha256:695c0109ab062889c74d545717f83d730b6bec3a8d61d427ca00e0d12fe79d00",
       "fileIds": {
         "__root__": "fcdb318abc9393a97501c3b1",
         "index.html": "8fca0814c8262f3fd1b1f9a1",
         "sketch.js": "9c22f82c2a66c655616e7b8b"
       },
-      "lastPush": "2026-10-07T17:36:24.053Z",
-      "lastVerify": "2026-10-07T17:36:24.053Z"
+      "lastPush": "2026-10-09T01:30:38.805Z",
+      "lastVerify": "2026-10-09T01:30:40.141Z"
     },
     "images-03-shake-for-the-next": {
       "projectId": "hTcck-OCR",
       "name": "C&C F26 · Images 03 · Shake for the Next",
-      "contentHash": "sha256:3f3e58b7a57cef46d61ac7acc9ae5ddaf59a3f921b70aa8aac6b25d2a42b0993",
+      "contentHash": "sha256:87c230c0d0e217dcdf4da9e8ac8321fc06ed96cf6bda8254d635d4eaa50a78f6",
       "fileIds": {
         "__root__": "1c35a093e5e178e9fdd068a1",
         "index.html": "ae34dbf891610affbab536bd",
         "sketch.js": "27e34172e1ab3b5f8a5fcc39"
       },
-      "lastPush": "2026-10-07T17:36:24.673Z",
-      "lastVerify": "2026-10-07T17:36:24.673Z"
+      "lastPush": "2026-10-09T01:30:39.469Z",
+      "lastVerify": "2026-10-09T01:30:40.141Z"
     },
     "gifs-01-play-and-pause": {
       "projectId": "2Z5rHXFA0",
       "name": "C&C F26 · GIFs 01 · Play and Pause",
-      "contentHash": "sha256:f0f9567660cc0f48f5cabfa61fafd3cbf91e4b014f9f7679bdfd4208073627d2",
+      "contentHash": "sha256:df9b65a74a1a64ca1404ca74b844c8a3b0753a0e401da052373e741361513676",
       "fileIds": {
         "__root__": "552e99d2e5556bf29de754bb",
         "index.html": "c5f98169a938a04ae598908e",
         "sketch.js": "ef72b3197b95ca9653a0ed78"
       },
-      "lastPush": "2026-10-06T18:35:24.097Z",
-      "lastVerify": "2026-10-06T18:35:25.837Z"
+      "lastPush": "2026-10-09T01:30:41.287Z",
+      "lastVerify": "2026-10-09T01:30:43.238Z"
     },
     "gifs-02-tilt-to-frame": {
       "projectId": "GIdLyf2wl",
       "name": "C&C F26 · GIFs 02 · Tilt to Frame",
-      "contentHash": "sha256:dd89bfbadc76e3ec3aec3160f3ddd52b9b756314c3f88f5205820c2cc3a5b2ce",
+      "contentHash": "sha256:69e5ea962a712bee78cbc34442d2e433a2045d73e2482c6cdcbb13e17eb51796",
       "fileIds": {
         "__root__": "d3b00368c5cfee8d6548fd1a",
         "index.html": "aede792c19f929f773fa7d86",
         "sketch.js": "ceae68dc797d27f8771979d4"
       },
-      "lastPush": "2026-10-07T17:36:25.531Z",
-      "lastVerify": "2026-10-07T17:36:25.531Z"
+      "lastPush": "2026-10-09T01:30:41.891Z",
+      "lastVerify": "2026-10-09T01:30:43.240Z"
     },
     "gifs-03-speed": {
       "projectId": "pyWMviodx",
       "name": "C&C F26 · GIFs 03 · Speed",
-      "contentHash": "sha256:ac4f81511aff41dda69288c7945e1a827ba4e85071b9be69db31026a19281d1d",
+      "contentHash": "sha256:a575730ca1817617b2710655e4a3980971a0f47f52f4f43ea53ff0631139a7f0",
       "fileIds": {
         "__root__": "347860c6174728940cf57c18",
         "index.html": "3708ed722c435b25f5ff891a",
         "sketch.js": "4d1936a0660d518f62adc9f2"
       },
-      "lastPush": "2026-10-06T18:35:25.280Z",
-      "lastVerify": "2026-10-06T18:35:25.839Z"
+      "lastPush": "2026-10-09T01:30:42.620Z",
+      "lastVerify": "2026-10-09T01:30:43.240Z"
     },
     "sound-in-02-clap": {
       "projectId": "mLMJFNe1K",
       "name": "C&C F26 · Sound In 02 · Clap",
-      "contentHash": "sha256:31ce39423aa96982d39c2d272ff95964e397ac6657fef3bc55c90ed9e70f762e",
+      "contentHash": "sha256:7977b792c75605df9ad3043d07deccf12eb652a9f497c4578cc7a6c89154a751",
       "fileIds": {
         "__root__": "52d0b8e3ea2439a95a2b6896",
         "index.html": "6202b3945bfe2d62f4c85d59",
         "sketch.js": "c76fc747565a1effdbf9fff3"
       },
-      "lastPush": "2026-10-07T17:36:21.675Z",
-      "lastVerify": "2026-10-07T17:36:21.675Z"
+      "lastPush": "2026-10-09T01:30:30.150Z",
+      "lastVerify": "2026-10-09T01:30:31.479Z"
     },
     "sound-in-03-high-and-low": {
       "projectId": "q5vPdirnU",
       "name": "C&C F26 · Sound In 03 · High and Low",
-      "contentHash": "sha256:887d2d3ae4c7ac6309ec1cd59dc99c6adeb52ae122c96b6348df031974ab87bd",
+      "contentHash": "sha256:5182c7434e3d274888689af2085b0dc58839b5b62365c03a2ac556444ef0d7db",
       "fileIds": {
         "__root__": "e2e18c7480e96666825d05a7",
         "index.html": "c138472af626c43448f19cc1",
         "sketch.js": "4394cffbc30fd6b702154386"
       },
-      "lastPush": "2026-10-07T17:36:22.284Z",
-      "lastVerify": "2026-10-07T17:36:22.284Z"
+      "lastPush": "2026-10-09T01:30:30.779Z",
+      "lastVerify": "2026-10-09T01:30:31.479Z"
     },
     "sound-out-01-play-a-recording": {
       "projectId": "O7qY-xaqc",
       "name": "C&C F26 · Sound Out 01 · Play a Recording",
-      "contentHash": "sha256:046081b1a1dff20123cd605f0a9369ef194b18ed1161efc46620080602e98ef3",
+      "contentHash": "sha256:e35ef9021827faaed93aadf8e1f2cfb23d9686f022135f4011c75cc9c8d72e3d",
       "fileIds": {
         "__root__": "38253a134f940a7a4f8e26c6",
         "index.html": "027548efc35f8d9fe4e0287d",
         "sketch.js": "71d88ae9cb84210a3b71106e"
       },
-      "lastPush": "2026-10-07T17:36:27.270Z",
-      "lastVerify": "2026-10-07T17:36:27.270Z"
+      "lastPush": "2026-10-09T01:30:52.573Z",
+      "lastVerify": "2026-10-09T01:30:55.670Z"
     },
     "sound-out-02-make-a-tone": {
       "projectId": "GShTWEvF9",
       "name": "C&C F26 · Sound Out 02 · Make a Tone",
-      "contentHash": "sha256:7971a27c957dc4c69699ffb55b000b513c5dcbe9579b93c941916de0aca405bd",
+      "contentHash": "sha256:e75c95adfafbebfe3684e541402dc50b140fa2408336c346b075ad7dc72c04bd",
       "fileIds": {
         "__root__": "7f5b4af3551594262d6a5f24",
         "index.html": "8b97471730477c034d562dde",
         "sketch.js": "49486664fc5b3d0757d61137"
       },
-      "lastPush": "2026-10-07T17:36:27.867Z",
-      "lastVerify": "2026-10-07T17:36:27.867Z"
+      "lastPush": "2026-10-09T01:30:53.181Z",
+      "lastVerify": "2026-10-09T01:30:55.672Z"
     },
     "sound-out-03-start-a-loop": {
       "projectId": "qKqf4kDxP",
       "name": "C&C F26 · Sound Out 03 · Start a Loop",
-      "contentHash": "sha256:e685e69360716193f33d7abf18f3431ad99e5b8d0ab6821b70f190b0ab1e944d",
+      "contentHash": "sha256:41c103ad747461491ced5da277fda51cea40af109eef5b8ae87f669bc7dbe05a",
       "fileIds": {
         "__root__": "b5cea517eae72736b86b0a9d",
         "index.html": "c99144d55e3106cb78bdd912",
         "sketch.js": "e6e56c1b252a86266e10a47f"
       },
-      "lastPush": "2026-10-07T17:36:28.488Z",
-      "lastVerify": "2026-10-07T17:36:28.488Z"
+      "lastPush": "2026-10-09T01:30:53.842Z",
+      "lastVerify": "2026-10-09T01:30:55.673Z"
     },
     "sound-out-04-play-an-instrument": {
       "projectId": "rmya59zfp",
       "name": "C&C F26 · Sound Out 04 · Play an Instrument",
-      "contentHash": "sha256:e30c2f518b569b27f7930c440100e9d96ea85d886fe155111ebd2777ff95a939",
+      "contentHash": "sha256:c00e43bb4e810b5b5e5a106a672886c85c7811b75c9f75176fb59177336da157",
       "fileIds": {
         "__root__": "d580122c49de58bdf9eb4734",
         "index.html": "b87885ef138f00774086534f",
         "sketch.js": "3d81c639f9aa822afac4dc32"
       },
-      "lastPush": "2026-10-07T17:36:29.094Z",
-      "lastVerify": "2026-10-07T17:36:29.094Z"
+      "lastPush": "2026-10-09T01:30:54.445Z",
+      "lastVerify": "2026-10-09T01:30:55.673Z"
     },
     "sound-out-05-say-something": {
       "projectId": "3vaXa6aUa",
       "name": "C&C F26 · Sound Out 05 · Say Something",
-      "contentHash": "sha256:9f21ed905af156fcc074d929130752efc25d83b63fc4f355d982e6b19b7f14f9",
+      "contentHash": "sha256:2374c1b75b6bb4b994dc9af1d2e54ec6fd3bba10b402e11466ce6e419eee5a75",
       "fileIds": {
         "__root__": "eb1094f99a759c3e6ee9f5ae",
         "index.html": "7ec0aad16661a636ad0e5263",
         "sketch.js": "faf5fda0a33b0a96a932c88d"
       },
-      "lastPush": "2026-10-06T18:35:28.498Z",
-      "lastVerify": "2026-10-06T18:35:29.057Z"
+      "lastPush": "2026-10-09T01:30:55.052Z",
+      "lastVerify": "2026-10-09T01:30:55.673Z"
     }
   }
 }

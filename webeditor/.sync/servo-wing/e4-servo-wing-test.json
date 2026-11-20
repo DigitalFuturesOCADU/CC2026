@@ -1,0 +1,36 @@
+{
+  "slug": "e4-servo-wing-test",
+  "title": "Servo Wing Test",
+  "name": "C&C F26 · Servo Wing Test",
+  "projectId": null,
+  "contentHash": "sha256:8e5e8852e3cf240d3db31d82c46851c7465f63a8269c72b015cb54b6575fc5c3",
+  "files": [
+    {
+      "name": "root",
+      "id": "71feea71b3b81fe462fdb9a7",
+      "_id": "71feea71b3b81fe462fdb9a7",
+      "fileType": "folder",
+      "children": [
+        "357c810c8527d4e067eb0043",
+        "4bc48080b9a6f2bffca843a1"
+      ]
+    },
+    {
+      "name": "index.html",
+      "content": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n  <title>Servo Wing Test</title>\n  <style>\n    body {\n      margin: 0;\n      padding: 0;\n      overflow: hidden;\n      background: #141414;\n    }\n  </style>\n\n  <!-- p5.js 2.x -->\n  <script src=\"https://cdn.jsdelivr.net/npm/p5@2.3.4/lib/p5.js\"></script>\n\n  <!-- p5.webserial: talks to the Feather over USB (Chrome or Edge only) -->\n  <script src=\"https://cdn.jsdelivr.net/npm/@gohai/p5.webserial@1.1.3/libraries/p5.webserial.js\"></script>\n</head>\n<body>\n  <script src=\"sketch.js\"></script>\n</body>\n</html>\n",
+      "id": "357c810c8527d4e067eb0043",
+      "_id": "357c810c8527d4e067eb0043",
+      "fileType": "file",
+      "children": []
+    },
+    {
+      "name": "sketch.js",
+      "content": "// Servo Wing Test\n// Drag the handle on each arc to set that servo's angle, from 0 to 180.\n// Every angle goes to the Feather as one line: 90,90,45,180,0,90,90,90\n// Works with the servoWingTest Arduino sketch. Use Chrome or Edge.\n\nlet port;                // the serial connection to the Feather\nlet connectButton;\nlet status = 'Not connected';\n\nlet angles = [90, 90, 90, 90, 90, 90, 90, 90]; // one angle per servo channel\nlet dragging = -1;       // which arc is being dragged (-1 = none)\n\nlet changed = true;      // true when the angles need sending\nlet lastSend = 0;        // when we last sent, in milliseconds\nlet sendEvery = 50;      // send at most every 50 ms (the Feather needs ~15 ms)\n\n// the size and place of each arc, set in placeArcs()\nlet arcs = [];\n\nfunction setup() {\n  createCanvas(windowWidth, windowHeight);\n  angleMode(DEGREES);\n  textFont('sans-serif');\n\n  connectButton = createButton('Connect');\n  connectButton.position(20, 20);\n  connectButton.mousePressed(connectOrDisconnect);\n\n  // Web Serial only exists in Chrome and Edge\n  if ('serial' in navigator) {\n    port = createSerial();\n  } else {\n    status = 'This browser has no Web Serial: open the page in Chrome or Edge';\n  }\n\n  placeArcs();\n}\n\nfunction draw() {\n  background(20);\n\n  for (let i = 0; i < arcs.length; i++) {\n    drawServo(i);\n  }\n\n  // the status line\n  noStroke();\n  fill(200);\n  textSize(16);\n  textAlign(LEFT, CENTER);\n  text(status, 120, 33);\n\n  if (port) {\n    readFromFeather();\n    sendAngles();\n  }\n}\n\n// ---- Serial ----\n\nfunction connectOrDisconnect() {\n  if (!port) {\n    return;\n  }\n  if (port.opened()) {\n    port.close();\n  } else {\n    port.open(115200); // opens Chrome's list of ports: pick the Feather\n  }\n}\n\nfunction sendAngles() {\n  if (!port.opened()) {\n    status = 'Not connected';\n    connectButton.html('Connect');\n    return;\n  }\n  connectButton.html('Disconnect');\n\n  // only send when something changed, and not more often than sendEvery\n  if (changed && millis() - lastSend >= sendEvery) {\n    let line = angles.join(',');  // [90, 45, 180] becomes \"90,45,180\"\n    port.print(line + '\\n');\n    status = 'Sent: ' + line;\n    lastSend = millis();\n    changed = false;\n  }\n}\n\n// show any message from the Feather, and send the angles again:\n// the Feather may have just restarted and missed them\nfunction readFromFeather() {\n  let message = port.readUntil('\\n');\n  if (message.length > 0) {\n    status = 'Feather: ' + message.trim();\n    changed = true;\n  }\n}\n\n// ---- The arcs ----\n\n// lay the 8 arcs out in 2 rows of 4, sized to the window\nfunction placeArcs() {\n  arcs = [];\n  let top = 70;                      // room for the button and status line\n  let cellW = width / 4;\n  let cellH = (height - top) / 2;\n  let radius = min(cellW * 0.4, cellH * 0.55);\n\n  for (let i = 0; i < 8; i++) {\n    let column = i % 4;\n    let row = floor(i / 4);\n    let x = cellW * column + cellW / 2;\n    let y = top + cellH * row + cellH * 0.5 + radius * 0.4;\n    arcs.push({ x: x, y: y, r: radius });\n  }\n}\n\nfunction drawServo(i) {\n  let a = arcs[i];\n\n  // the track: half a circle, 0 on the left, 90 at the top, 180 on the right\n  noFill();\n  stroke(70);\n  strokeWeight(10);\n  arc(a.x, a.y, a.r * 2, a.r * 2, 180, 360);\n\n  // the part of the track up to the current angle\n  stroke(80, 170, 255);\n  arc(a.x, a.y, a.r * 2, a.r * 2, 180, 180 + angles[i] + 0.1);\n\n  // the handle\n  let hx = a.x + cos(180 + angles[i]) * a.r;\n  let hy = a.y + sin(180 + angles[i]) * a.r;\n  strokeWeight(3);\n  stroke(255);\n  line(a.x, a.y, hx, hy);\n  noStroke();\n  if (dragging === i) {\n    fill(255, 220, 80);\n  } else {\n    fill(255);\n  }\n  circle(hx, hy, 28);\n\n  // the labels\n  fill(230);\n  textAlign(CENTER, CENTER);\n  textSize(28);\n  text(angles[i] + '°', a.x, a.y - a.r * 0.4);\n  fill(140);\n  textSize(14);\n  text('Servo ' + i, a.x, a.y + 24);\n}\n\n// ---- Dragging ----\n\nfunction mousePressed() {\n  // pick the arc under the mouse, if there is one\n  for (let i = 0; i < arcs.length; i++) {\n    let a = arcs[i];\n    if (dist(mouseX, mouseY, a.x, a.y) < a.r + 25 && mouseY < a.y + 30) {\n      dragging = i;\n      setAngleFromMouse(i);\n    }\n  }\n}\n\nfunction mouseDragged() {\n  if (dragging >= 0) {\n    setAngleFromMouse(dragging);\n  }\n}\n\nfunction mouseReleased() {\n  dragging = -1;\n}\n\n// turn the mouse position into an angle from 0 to 180 on arc i\nfunction setAngleFromMouse(i) {\n  let a = arcs[i];\n  // the direction from the arc's centre to the mouse:\n  // -180 on the left, -90 straight up, 0 on the right\n  let direction = atan2(mouseY - a.y, mouseX - a.x);\n\n  // below the arc: stick to whichever end is nearer\n  if (direction > 0) {\n    if (mouseX < a.x) {\n      direction = -180;\n    } else {\n      direction = 0;\n    }\n  }\n\n  let newAngle = round(direction + 180);\n  newAngle = constrain(newAngle, 0, 180);\n\n  if (newAngle !== angles[i]) {\n    angles[i] = newAngle;\n    changed = true;\n  }\n}\n\nfunction windowResized() {\n  resizeCanvas(windowWidth, windowHeight);\n  placeArcs();\n}\n",
+      "id": "4bc48080b9a6f2bffca843a1",
+      "_id": "4bc48080b9a6f2bffca843a1",
+      "fileType": "file",
+      "children": [],
+      "isSelectedFile": true
+    }
+  ]
+}

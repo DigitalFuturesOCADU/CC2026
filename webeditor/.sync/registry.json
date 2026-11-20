@@ -685,6 +685,28 @@
       },
       "lastPush": "2026-10-09T01:30:55.052Z",
       "lastVerify": "2026-10-09T01:30:55.673Z"
+    },
+    "e4-servo-wing-animate": {
+      "projectId": "KWzgGWDJy",
+      "name": "C&C F26 · Servo Wing Animate",
+      "contentHash": "sha256:495a4bdab4be4e71c4ae0a5e00fc90eeca44036f1cc63b764d749691011cdc71",
+      "fileIds": {
+        "__root__": "5d920e875a2fdf2917f16701",
+        "index.html": "041fd02015bfaa373ccdb032",
+        "sketch.js": "b45acdf40cca301a8ad6705a"
+      },
+      "lastPush": "2026-11-20T14:47:09.215Z"
+    },
+    "e4-servo-wing-test": {
+      "projectId": "g3LhZgwSHS",
+      "name": "C&C F26 · Servo Wing Test",
+      "contentHash": "sha256:8e5e8852e3cf240d3db31d82c46851c7465f63a8269c72b015cb54b6575fc5c3",
+      "fileIds": {
+        "__root__": "8425ea978364081c38299be8",
+        "index.html": "609eecdc4b54b3790b14a7c3",
+        "sketch.js": "5f17b559e91ce2c2c5573c42"
+      },
+      "lastPush": "2026-11-20T14:47:09.814Z"
     }
   }
 }

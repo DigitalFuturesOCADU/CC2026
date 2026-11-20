@@ -48,6 +48,18 @@ domain). The GIFs are from the Atelier 1 GIF library.
 07 and 08 listen to the room for two seconds when the microphone turns on. Stay quiet then:
 anything louder than that counts as sound.
 
+## Experiment 4 · Servo FeatherWing tests
+
+Two laptop sketches in `experiment-4/` that drive the 8 servo channels of the Servo FeatherWing
+over Web Serial (Chrome or Edge). Both talk to the same Arduino sketch, `servoWingTest` (on
+Canvas), which reads one line of 8 angles (0 to 180, or -1 for limp) at 115200 baud:
+`90,90,45,180,0,90,90,90`.
+
+| Example | What it does |
+| --- | --- |
+| [servo-wing-test](experiment-4/servo-wing-test/) | drag a handle on each arc to set that servo's angle |
+| [servo-wing-animate](experiment-4/servo-wing-animate/) | tick a box and that servo sweeps on its own, in a wave with the others |
+
 ## Reference examples
 
 Short examples, one idea each, short enough to type. Each folder matches a Canvas page. They are

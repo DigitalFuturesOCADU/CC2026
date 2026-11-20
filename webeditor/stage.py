@@ -37,6 +37,7 @@ SOURCES = {
     "sound-out": ["sound-out/*/"],
     "flashlight": ["flashlight/*/"],
     "connecting": ["connecting/*/"],
+    "servo-wing": ["experiment-4/*/"],
 }
 
 
@@ -44,6 +45,8 @@ def slug_for(folder: Path) -> str:
     rel = folder.relative_to(ROOT).parts
     if rel[0] == "experiment-2":
         rel = ("e2",) + rel[1:]
+    if rel[0] == "experiment-4":
+        rel = ("e4",) + rel[1:]
     return "-".join(rel)
 
 

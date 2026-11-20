@@ -91,6 +91,10 @@
       "connecting-03-threshold",
       "connecting-04-fade",
       "connecting-05-combine"
+    ],
+    "servo-wing": [
+      "e4-servo-wing-animate",
+      "e4-servo-wing-test"
     ]
   }
 }

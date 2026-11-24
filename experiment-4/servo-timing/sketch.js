@@ -2,7 +2,7 @@
 Servo Example 3: Timing and Motion
 Click to give both servos a new target: the mouse's X position sets servo 0's target,
 its Y position sets servo 1's. Each servo then moves smoothly to its target in the time
-set by servo0Speed / servo1Speed (in milliseconds), however far it has to go.
+set by servo0MoveTime / servo1MoveTime (in milliseconds), however far it has to go.
 
 A Servo class keeps track of each servo's current angle, its target and its timing.
 The pale line shows the target, the solid line where the servo is now.
@@ -12,7 +12,7 @@ Works with the servoWingTest Arduino sketch (on Canvas). Use Chrome or Edge.
 The message to the Feather is the two angles, then a newline: "90,45\n"
 
 How the movement works:
-- every movement takes exactly moveSpeed milliseconds
+- every movement takes exactly moveTime milliseconds
 - a new target can be set while a servo is still moving
 - lerp() works out the angle between the start and the target
 */
@@ -22,9 +22,11 @@ let connectButton;
 let status = 'Not connected';
 
 let servo0;              // the servo on header 0
-let servo0Speed = 1000;  // milliseconds for any movement of servo 0
+// how long each move takes, in milliseconds: bigger numbers move slower
+// (1000 = 1 second, whether the servo turns 10 degrees or 180)
+let servo0MoveTime = 1000;
 let servo1;              // the servo on header 1
-let servo1Speed = 1000;
+let servo1MoveTime = 1000;
 
 let lastLine = '';       // the last line sent, so we only send changes
 let lastSend = 0;        // when we last sent, in milliseconds
@@ -35,8 +37,8 @@ function setup() {
   angleMode(DEGREES);
 
   // both servos start at 90
-  servo0 = new Servo(90, servo0Speed);
-  servo1 = new Servo(90, servo1Speed);
+  servo0 = new Servo(90, servo0MoveTime);
+  servo1 = new Servo(90, servo1MoveTime);
 
   connectButton = createButton('Connect');
   connectButton.position(20, 20);
@@ -53,8 +55,8 @@ function setup() {
 function draw() {
   background(220);
 
-  servo0.moveSpeed = servo0Speed;
-  servo1.moveSpeed = servo1Speed;
+  servo0.moveTime = servo0MoveTime;
+  servo1.moveTime = servo1MoveTime;
   servo0.update();
   servo1.update();
 
@@ -70,10 +72,10 @@ function draw() {
 // ---- The Servo class ----
 
 class Servo {
-  constructor(startAngle, moveSpeed) {
+  constructor(startAngle, moveTime) {
     this.currentAngle = startAngle;   // where the servo is now
     this.targetAngle = startAngle;    // where it is going
-    this.moveSpeed = moveSpeed;       // milliseconds for any movement
+    this.moveTime = moveTime;         // milliseconds for any movement
     this.moveStartTime = 0;           // when the current movement began
     this.moveStartAngle = startAngle; // where the current movement began
     this.isMoving = false;            // whether the servo is moving
@@ -96,7 +98,7 @@ class Servo {
 
       // how far through the movement we are, from 0 to 1
       // 0 = just started, 0.5 = halfway, 1 = finished
-      let progress = min(elapsed / this.moveSpeed, 1);
+      let progress = min(elapsed / this.moveTime, 1);
 
       // lerp() finds the angle that far between the start and the target
       // for example, from 0 to 180 with progress 0.5: 0 + (180 - 0) * 0.5 = 90
@@ -217,8 +219,8 @@ function displayText() {
   text('Mouse X: ' + round(mouseX) + ' px', 20, 60);
   text('Mouse Y: ' + round(mouseY) + ' px', 20, 80);
   text('Click to set new servo positions', 20, 100);
-  text('Servo 0 speed: ' + servo0.moveSpeed + ' ms', 20, 120);
-  text('Servo 1 speed: ' + servo1.moveSpeed + ' ms', 20, 140);
+  text('Servo 0 move time: ' + servo0.moveTime + ' ms', 20, 120);
+  text('Servo 1 move time: ' + servo1.moveTime + ' ms', 20, 140);
 }
 
 function windowResized() {

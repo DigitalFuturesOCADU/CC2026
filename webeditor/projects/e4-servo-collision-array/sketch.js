@@ -38,6 +38,11 @@ let servo1Min = 30;
 let servo1Max = 150;
 let servo1Center;
 
+// how far through its wave each servo is (1 = one full wiggle). It only moves on
+// while that servo is wiggling, so a servo carries on from where it stopped
+let wavePos0 = 0;
+let wavePos1 = 0;
+
 // the boxes: each one moves one servo at its own speed
 let boxes = [];
 
@@ -112,21 +117,22 @@ function draw() {
     }
   }
 
-  // servo 0: wiggle at the box's speed, or wait in the middle, detached
+  // servo 0: wiggle at the box's speed, or wait where it stopped, detached
   if (activeBox0) {
-    servoAngle0 = getWaveAngle(activeBox0.speed, servo0Min, servo0Max, servo0Center);
+    // deltaTime is the milliseconds since the last frame
+    wavePos0 = wavePos0 + deltaTime / activeBox0.speed;
+    servoAngle0 = getWaveAngle(wavePos0, servo0Min, servo0Max, servo0Center);
     servoAttach0 = true;
   } else {
-    servoAngle0 = servo0Center;
     servoAttach0 = false;
   }
 
   // servo 1: the same
   if (activeBox1) {
-    servoAngle1 = getWaveAngle(activeBox1.speed, servo1Min, servo1Max, servo1Center);
+    wavePos1 = wavePos1 + deltaTime / activeBox1.speed;
+    servoAngle1 = getWaveAngle(wavePos1, servo1Min, servo1Max, servo1Center);
     servoAttach1 = true;
   } else {
-    servoAngle1 = servo1Center;
     servoAttach1 = false;
   }
 
@@ -140,9 +146,9 @@ function draw() {
   }
 }
 
-function getWaveAngle(speedMS, minAngle, maxAngle, centerAngle) {
+function getWaveAngle(wavePos, minAngle, maxAngle, centerAngle) {
   let amplitude = (maxAngle - minAngle) / 2;
-  let value = sin(360 * (millis() / speedMS)) * amplitude + centerAngle;
+  let value = sin(360 * wavePos) * amplitude + centerAngle;
   return round(constrain(value, minAngle, maxAngle));
 }
 

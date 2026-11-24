@@ -28,6 +28,11 @@ let servoAngle1 = 90;    // the angle for the servo on header 1
 let waveSpeed0 = 2000;   // one wiggle of servo 0, in milliseconds
 let waveSpeed1 = 2000;   // one wiggle of servo 1, in milliseconds
 
+// how far through its wave each servo is (1 = one full wiggle). It only moves on
+// while that servo is wiggling, so a servo carries on from where it stopped
+let wavePos0 = 0;
+let wavePos1 = 0;
+
 // servo 0's range
 let servo0Min = 45;
 let servo0Max = 135;
@@ -88,21 +93,20 @@ function draw() {
   let box1Active = collidePointRect(mouseX, mouseY, box1X, box1Y, box1W, box1H);
 
   if (box0Active) {
-    // box 0: servo 0 wiggles, servo 1 is detached
-    servoAngle0 = getWaveAngle(waveSpeed0, servo0Min, servo0Max, servo0Center);
-    servoAngle1 = servo1Center;
+    // box 0: servo 0 wiggles, servo 1 is detached where it stopped
+    // deltaTime is the milliseconds since the last frame
+    wavePos0 = wavePos0 + deltaTime / waveSpeed0;
+    servoAngle0 = getWaveAngle(wavePos0, servo0Min, servo0Max, servo0Center);
     servoAttach0 = true;
     servoAttach1 = false;
   } else if (box1Active) {
-    // box 1: servo 1 wiggles, servo 0 is detached
-    servoAngle0 = servo0Center;
-    servoAngle1 = getWaveAngle(waveSpeed1, servo1Min, servo1Max, servo1Center);
+    // box 1: servo 1 wiggles, servo 0 is detached where it stopped
+    wavePos1 = wavePos1 + deltaTime / waveSpeed1;
+    servoAngle1 = getWaveAngle(wavePos1, servo1Min, servo1Max, servo1Center);
     servoAttach0 = false;
     servoAttach1 = true;
   } else {
-    // no box: both servos wait in the middle, detached
-    servoAngle0 = servo0Center;
-    servoAngle1 = servo1Center;
+    // no box: both servos are detached where they stopped
     servoAttach0 = false;
     servoAttach1 = false;
   }
@@ -117,12 +121,13 @@ function draw() {
   }
 }
 
-function getWaveAngle(speedMS, minAngle, maxAngle, centerAngle) {
+function getWaveAngle(wavePos, minAngle, maxAngle, centerAngle) {
   // how far the wave swings either side of the centre
   let amplitude = (maxAngle - minAngle) / 2;
 
-  // a sine wave that goes from minAngle to maxAngle and back once every speedMS
-  let value = sin(360 * (millis() / speedMS)) * amplitude + centerAngle;
+  // a sine wave: one full wiggle (centre, max, centre, min, centre)
+  // each time wavePos goes up by 1
+  let value = sin(360 * wavePos) * amplitude + centerAngle;
 
   // keep it inside the limits
   return round(constrain(value, minAngle, maxAngle));

@@ -1,8 +1,8 @@
 /*
 Servo Example 2: Mouse X to Servo Wiggle
 The canvas is split in two. With the mouse on the left half, servo 0 wiggles back and
-forth and servo 1 waits in the middle of its range. On the right half it's the other way
-round.
+forth and servo 1 waits where it stopped. On the right half it's the other way round.
+When a servo starts again it carries on its wiggle from where it stopped, so it never jumps.
 
 The wiggle comes from a sine wave: sin() goes smoothly from -1 to 1 and back, so the
 angle goes smoothly from the servo's min to its max and back.
@@ -27,6 +27,11 @@ let servoAngle0 = 90;    // the angle for the servo on header 0
 let servoAngle1 = 90;    // the angle for the servo on header 1
 let waveSpeed0 = 2000;   // one wiggle of servo 0, in milliseconds
 let waveSpeed1 = 2000;   // one wiggle of servo 1, in milliseconds
+
+// how far through its wave each servo is (1 = one full wiggle). It only moves on
+// while that servo is wiggling, so a servo carries on from where it stopped
+let wavePos0 = 0;
+let wavePos1 = 0;
 
 // servo 0's range
 let servo0Min = 45;
@@ -69,16 +74,20 @@ function draw() {
   strokeWeight(1);
   line(width / 2, 0, width / 2, height);
 
-  let newAngle0, newAngle1;
+  // start from where the servos are now: the one that isn't wiggling stays there
+  let newAngle0 = servoAngle0;
+  let newAngle1 = servoAngle1;
+
   if (mouseX < width / 2) {
-    // left side: servo 0 wiggles, servo 1 waits in the middle
-    newAngle0 = getWaveAngle(waveSpeed0, servo0Min, servo0Max, servo0Center);
-    newAngle1 = servo1Center;
+    // left side: servo 0 wiggles, servo 1 waits where it stopped
+    // deltaTime is the milliseconds since the last frame
+    wavePos0 = wavePos0 + deltaTime / waveSpeed0;
+    newAngle0 = getWaveAngle(wavePos0, servo0Min, servo0Max, servo0Center);
     drawActiveZone(true);
   } else {
-    // right side: servo 1 wiggles, servo 0 waits in the middle
-    newAngle0 = servo0Center;
-    newAngle1 = getWaveAngle(waveSpeed1, servo1Min, servo1Max, servo1Center);
+    // right side: servo 1 wiggles, servo 0 waits where it stopped
+    wavePos1 = wavePos1 + deltaTime / waveSpeed1;
+    newAngle1 = getWaveAngle(wavePos1, servo1Min, servo1Max, servo1Center);
     drawActiveZone(false);
   }
 
@@ -97,12 +106,13 @@ function draw() {
   }
 }
 
-function getWaveAngle(speedMS, minAngle, maxAngle, centerAngle) {
+function getWaveAngle(wavePos, minAngle, maxAngle, centerAngle) {
   // how far the wave swings either side of the centre
   let amplitude = (maxAngle - minAngle) / 2;
 
-  // a sine wave that goes from minAngle to maxAngle and back once every speedMS
-  let value = sin(360 * (millis() / speedMS)) * amplitude + centerAngle;
+  // a sine wave: one full wiggle (centre, max, centre, min, centre)
+  // each time wavePos goes up by 1
+  let value = sin(360 * wavePos) * amplitude + centerAngle;
 
   // keep it inside the limits
   return round(constrain(value, minAngle, maxAngle));

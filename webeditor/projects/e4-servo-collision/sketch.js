@@ -130,8 +130,20 @@ function getWaveAngle(speedMS, minAngle, maxAngle, centerAngle) {
 
 // one number per servo: its angle when attached, -1 when detached
 function makeLine() {
-  let value0 = servoAttach0 ? servoAngle0 : -1;
-  let value1 = servoAttach1 ? servoAngle1 : -1;
+  let value0;
+  if (servoAttach0) {
+    value0 = servoAngle0;  // attached: send its angle
+  } else {
+    value0 = -1;           // detached: -1 makes it go limp
+  }
+
+  let value1;
+  if (servoAttach1) {
+    value1 = servoAngle1;
+  } else {
+    value1 = -1;
+  }
+
   return value0 + ',' + value1;  // for example "-1,72"
 }
 
@@ -264,8 +276,14 @@ function displayText() {
   textSize(16);
   text(status, 120, 37);
 
-  let status0 = servoAttach0 ? ' [ATTACHED - MOVING]' : ' [DETACHED - IDLE]';
-  let status1 = servoAttach1 ? ' [ATTACHED - MOVING]' : ' [DETACHED - IDLE]';
+  let status0 = ' [DETACHED - IDLE]';
+  if (servoAttach0) {
+    status0 = ' [ATTACHED - MOVING]';
+  }
+  let status1 = ' [DETACHED - IDLE]';
+  if (servoAttach1) {
+    status1 = ' [ATTACHED - MOVING]';
+  }
   text('Servo 0 angle: ' + servoAngle0 + '° (range: ' + servo0Min + '° - ' + servo0Max + '°)' + status0, 20, height - 60);
   text('Servo 1 angle: ' + servoAngle1 + '° (range: ' + servo1Min + '° - ' + servo1Max + '°)' + status1, 20, height - 40);
 

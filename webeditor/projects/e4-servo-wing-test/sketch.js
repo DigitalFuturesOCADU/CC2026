@@ -1,6 +1,7 @@
 // Servo Wing Test
 // Drag the handle on each arc to set that servo's angle, from 0 to 180.
-// Every angle goes to the Feather as one line: 90,90,45,180,0,90,90,90
+// Untick Attach and that servo goes limp: it gets -1 instead of an angle.
+// Every angle goes to the Feather as one line: 90,90,45,180,-1,90,90,90
 // Works with the servoWingTest Arduino sketch. Use Chrome or Edge.
 
 let port;                // the serial connection to the Feather
@@ -8,6 +9,7 @@ let connectButton;
 let status = 'Not connected';
 
 let angles = [90, 90, 90, 90, 90, 90, 90, 90]; // one angle per servo channel
+let attachBoxes = [];    // one Attach tickbox per servo
 let dragging = -1;       // which arc is being dragged (-1 = none)
 
 let changed = true;      // true when the angles need sending
@@ -25,6 +27,15 @@ function setup() {
   connectButton = createButton('Connect');
   connectButton.position(20, 20);
   connectButton.mousePressed(connectOrDisconnect);
+
+  // one Attach tickbox per servo, all ticked to start
+  for (let i = 0; i < 8; i++) {
+    let box = createCheckbox(' Attach servo ' + i, true);
+    box.style('color', '#ccc');
+    box.style('font-family', 'sans-serif');
+    box.changed(attachChanged);
+    attachBoxes.push(box);
+  }
 
   // Web Serial only exists in Chrome and Edge
   if ('serial' in navigator) {
@@ -79,12 +90,30 @@ function sendAngles() {
 
   // only send when something changed, and not more often than sendEvery
   if (changed && millis() - lastSend >= sendEvery) {
-    let line = angles.join(',');  // [90, 45, 180] becomes "90,45,180"
+    let line = makeLine();
     port.print(line + '\n');
     status = 'Sent: ' + line;
     lastSend = millis();
     changed = false;
   }
+}
+
+// one number per servo: its angle when attached, -1 when not
+function makeLine() {
+  let values = [];
+  for (let i = 0; i < 8; i++) {
+    if (attachBoxes[i].checked()) {
+      values.push(angles[i]);
+    } else {
+      values.push(-1);  // -1 tells the Feather to stop this servo's pulses
+    }
+  }
+  return values.join(',');  // [90, -1, 180] becomes "90,-1,180"
+}
+
+// a tickbox changed: send the line again
+function attachChanged() {
+  changed = true;
 }
 
 // show any message from the Feather, and send the angles again:
@@ -99,7 +128,8 @@ function readFromFeather() {
 
 // ---- The arcs ----
 
-// lay the 8 arcs out in 2 rows of 4, sized to the window
+// lay the 8 arcs out in 2 rows of 4, sized to the window,
+// with each Attach tickbox under its arc
 function placeArcs() {
   arcs = [];
   let top = 70;                      // room for the button and status line
@@ -113,6 +143,7 @@ function placeArcs() {
     let x = cellW * column + cellW / 2;
     let y = top + cellH * row + cellH * 0.5 + radius * 0.4;
     arcs.push({ x: x, y: y, r: radius });
+    attachBoxes[i].position(x - 60, y + 22);
   }
 }
 
@@ -125,8 +156,12 @@ function drawServo(i) {
   strokeWeight(10);
   arc(a.x, a.y, a.r * 2, a.r * 2, 180, 360);
 
-  // the part of the track up to the current angle
-  stroke(80, 170, 255);
+  // the part of the track up to the current angle: blue when attached
+  if (attachBoxes[i].checked()) {
+    stroke(80, 170, 255);
+  } else {
+    stroke(110);
+  }
   arc(a.x, a.y, a.r * 2, a.r * 2, 180, 180 + angles[i] + 0.1);
 
   // the handle
@@ -143,14 +178,15 @@ function drawServo(i) {
   }
   circle(hx, hy, 28);
 
-  // the labels
+  // the angle
   fill(230);
   textAlign(CENTER, CENTER);
   textSize(28);
-  text(angles[i] + '°', a.x, a.y - a.r * 0.4);
-  fill(140);
-  textSize(14);
-  text('Servo ' + i, a.x, a.y + 24);
+  if (attachBoxes[i].checked()) {
+    text(angles[i] + '°', a.x, a.y - a.r * 0.4);
+  } else {
+    text('limp', a.x, a.y - a.r * 0.4);
+  }
 }
 
 // ---- Dragging ----
@@ -159,7 +195,7 @@ function mousePressed() {
   // pick the arc under the mouse, if there is one
   for (let i = 0; i < arcs.length; i++) {
     let a = arcs[i];
-    if (dist(mouseX, mouseY, a.x, a.y) < a.r + 25 && mouseY < a.y + 30) {
+    if (dist(mouseX, mouseY, a.x, a.y) < a.r + 25 && mouseY < a.y + 12) {
       dragging = i;
       setAngleFromMouse(i);
     }

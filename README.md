@@ -57,7 +57,7 @@ Canvas), which reads one line of 8 angles (0 to 180, or -1 for limp) at 115200 b
 
 | Example | What it does |
 | --- | --- |
-| [servo-wing-test](experiment-4/servo-wing-test/) | drag a handle on each arc to set that servo's angle |
+| [servo-wing-test](experiment-4/servo-wing-test/) | drag a handle on each arc to set that servo's angle; untick Attach to let it go limp |
 | [servo-wing-animate](experiment-4/servo-wing-animate/) | tick a box and that servo sweeps on its own, in a wave with the others |
 
 ## Reference examples

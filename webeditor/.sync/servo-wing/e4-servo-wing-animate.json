@@ -2,32 +2,32 @@
   "slug": "e4-servo-wing-animate",
   "title": "Servo Wing Animate",
   "name": "C&C F26 · Servo Wing Animate",
-  "projectId": null,
+  "projectId": "KWzgGWDJy",
   "contentHash": "sha256:495a4bdab4be4e71c4ae0a5e00fc90eeca44036f1cc63b764d749691011cdc71",
   "files": [
     {
       "name": "root",
-      "id": "1bd45023b404d47ffb3cf5ba",
-      "_id": "1bd45023b404d47ffb3cf5ba",
+      "id": "5d920e875a2fdf2917f16701",
+      "_id": "5d920e875a2fdf2917f16701",
       "fileType": "folder",
       "children": [
-        "74458b9b8cd0cc75e3ae59f4",
-        "7930a3ed349093f28c3db14d"
+        "041fd02015bfaa373ccdb032",
+        "b45acdf40cca301a8ad6705a"
       ]
     },
     {
       "name": "index.html",
       "content": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n  <title>Servo Wing Animate</title>\n  <style>\n    body {\n      margin: 0;\n      padding: 0;\n      overflow: hidden;\n      background: #141414;\n    }\n  </style>\n\n  <!-- p5.js 2.x -->\n  <script src=\"https://cdn.jsdelivr.net/npm/p5@2.3.4/lib/p5.js\"></script>\n\n  <!-- p5.webserial: talks to the Feather over USB (Chrome or Edge only) -->\n  <script src=\"https://cdn.jsdelivr.net/npm/@gohai/p5.webserial@1.1.3/libraries/p5.webserial.js\"></script>\n</head>\n<body>\n  <script src=\"sketch.js\"></script>\n</body>\n</html>\n",
-      "id": "74458b9b8cd0cc75e3ae59f4",
-      "_id": "74458b9b8cd0cc75e3ae59f4",
+      "id": "041fd02015bfaa373ccdb032",
+      "_id": "041fd02015bfaa373ccdb032",
       "fileType": "file",
       "children": []
     },
     {
       "name": "sketch.js",
       "content": "// Servo Wing Animate\n// Tick a box and that servo sweeps back and forth on its own.\n// The 8 servos are offset in time, so together they move as a wave.\n// Untick a box and that servo stops where it is.\n// Works with the same servoWingTest Arduino sketch. Use Chrome or Edge.\n\nlet port;                // the serial connection to the Feather\nlet connectButton;\nlet status = 'Not connected';\n\nlet angles = [90, 90, 90, 90, 90, 90, 90, 90]; // one angle per servo channel\nlet boxes = [];          // one tickbox per servo\n\n// the movement\nlet speed = 90;          // degrees of the wave per second: one sweep every 4 seconds\nlet swing = 70;          // how far each servo moves either side of 90\nlet offset = 45;         // how far behind the previous servo each one runs\n\nlet changed = true;      // true when the angles need sending\nlet lastSend = 0;        // when we last sent, in milliseconds\nlet sendEvery = 30;      // send at most every 30 ms (the Feather needs ~15 ms)\n\n// the size and place of each arc, set in placeArcs()\nlet arcs = [];\n\nfunction setup() {\n  createCanvas(windowWidth, windowHeight);\n  angleMode(DEGREES);\n  textFont('sans-serif');\n\n  connectButton = createButton('Connect');\n  connectButton.position(20, 20);\n  connectButton.mousePressed(connectOrDisconnect);\n\n  // one tickbox per servo, all off to start\n  for (let i = 0; i < 8; i++) {\n    let box = createCheckbox(' Move servo ' + i, false);\n    box.style('color', '#ccc');\n    box.style('font-family', 'sans-serif');\n    boxes.push(box);\n  }\n\n  // Web Serial only exists in Chrome and Edge\n  if ('serial' in navigator) {\n    port = createSerial();\n  } else {\n    status = 'This browser has no Web Serial: open the page in Chrome or Edge';\n  }\n\n  placeArcs();\n}\n\nfunction draw() {\n  background(20);\n\n  moveServos();\n\n  for (let i = 0; i < arcs.length; i++) {\n    drawServo(i);\n  }\n\n  // the status line\n  noStroke();\n  fill(200);\n  textSize(16);\n  textAlign(LEFT, CENTER);\n  text(status, 120, 33);\n\n  if (port) {\n    readFromFeather();\n    sendAngles();\n  }\n}\n\n// ---- The movement ----\n\nfunction moveServos() {\n  let seconds = millis() / 1000;\n\n  for (let i = 0; i < 8; i++) {\n    if (boxes[i].checked()) {\n      // sin() goes smoothly from -1 to 1 and back again,\n      // so the angle goes from 90 - swing to 90 + swing and back\n      let wave = sin(seconds * speed - i * offset);\n      let newAngle = round(90 + wave * swing);\n\n      if (newAngle !== angles[i]) {\n        angles[i] = newAngle;\n        changed = true;\n      }\n    }\n    // not ticked: the angle stays as it is, so the servo holds still\n  }\n}\n\n// ---- Serial ----\n\nfunction connectOrDisconnect() {\n  if (!port) {\n    return;\n  }\n  if (port.opened()) {\n    port.close();\n  } else {\n    port.open(115200); // opens Chrome's list of ports: pick the Feather\n  }\n}\n\nfunction sendAngles() {\n  if (!port.opened()) {\n    status = 'Not connected';\n    connectButton.html('Connect');\n    return;\n  }\n  connectButton.html('Disconnect');\n\n  // only send when something changed, and not more often than sendEvery\n  if (changed && millis() - lastSend >= sendEvery) {\n    let line = angles.join(',');  // [90, 45, 180] becomes \"90,45,180\"\n    port.print(line + '\\n');\n    status = 'Sent: ' + line;\n    lastSend = millis();\n    changed = false;\n  }\n}\n\n// show any message from the Feather, and send the angles again:\n// the Feather may have just restarted and missed them\nfunction readFromFeather() {\n  let message = port.readUntil('\\n');\n  if (message.length > 0) {\n    status = 'Feather: ' + message.trim();\n    changed = true;\n  }\n}\n\n// ---- The arcs ----\n\n// lay the 8 arcs out in 2 rows of 4, sized to the window,\n// with each tickbox under its arc\nfunction placeArcs() {\n  arcs = [];\n  let top = 70;                      // room for the button and status line\n  let cellW = width / 4;\n  let cellH = (height - top) / 2;\n  let radius = min(cellW * 0.4, cellH * 0.5);\n\n  for (let i = 0; i < 8; i++) {\n    let column = i % 4;\n    let row = floor(i / 4);\n    let x = cellW * column + cellW / 2;\n    let y = top + cellH * row + cellH * 0.5 + radius * 0.3;\n    arcs.push({ x: x, y: y, r: radius });\n    boxes[i].position(x - 55, y + 16);\n  }\n}\n\nfunction drawServo(i) {\n  let a = arcs[i];\n\n  // the track: half a circle, 0 on the left, 90 at the top, 180 on the right\n  noFill();\n  stroke(70);\n  strokeWeight(10);\n  arc(a.x, a.y, a.r * 2, a.r * 2, 180, 360);\n\n  // the part of the track up to the current angle\n  if (boxes[i].checked()) {\n    stroke(80, 170, 255);\n  } else {\n    stroke(110);\n  }\n  arc(a.x, a.y, a.r * 2, a.r * 2, 180, 180 + angles[i] + 0.1);\n\n  // the pointer\n  let hx = a.x + cos(180 + angles[i]) * a.r;\n  let hy = a.y + sin(180 + angles[i]) * a.r;\n  strokeWeight(3);\n  stroke(255);\n  line(a.x, a.y, hx, hy);\n  noStroke();\n  fill(255);\n  circle(hx, hy, 20);\n\n  // the angle\n  fill(230);\n  textAlign(CENTER, CENTER);\n  textSize(28);\n  text(angles[i] + '°', a.x, a.y - a.r * 0.4);\n}\n\nfunction windowResized() {\n  resizeCanvas(windowWidth, windowHeight);\n  placeArcs();\n}\n",
-      "id": "7930a3ed349093f28c3db14d",
-      "_id": "7930a3ed349093f28c3db14d",
+      "id": "b45acdf40cca301a8ad6705a",
+      "_id": "b45acdf40cca301a8ad6705a",
       "fileType": "file",
       "children": [],
       "isSelectedFile": true

@@ -93,6 +93,12 @@
       "connecting-05-combine"
     ],
     "servo-wing": [
+      "e4-servo-collision",
+      "e4-servo-collision-array",
+      "e4-servo-mouse-xy",
+      "e4-servo-timing",
+      "e4-servo-wiggle",
+      "e4-servo-wiggle-detach",
       "e4-servo-wing-animate",
       "e4-servo-wing-test"
     ]

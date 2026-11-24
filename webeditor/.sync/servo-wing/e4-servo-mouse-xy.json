@@ -1,0 +1,36 @@
+{
+  "slug": "e4-servo-mouse-xy",
+  "title": "Servo Example 1: Mouse X Y",
+  "name": "C&C F26 · Servo Example 1: Mouse X Y",
+  "projectId": null,
+  "contentHash": "sha256:94d392af2ab5326d5853695917c9a3b2521e4e592d34276072e37b24e5a29164",
+  "files": [
+    {
+      "name": "root",
+      "id": "ed386b48486fca215f5a3c81",
+      "_id": "ed386b48486fca215f5a3c81",
+      "fileType": "folder",
+      "children": [
+        "79ceb7717d81c291f1fc33f6",
+        "6844ccdea8aa491c3d9a9274"
+      ]
+    },
+    {
+      "name": "index.html",
+      "content": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n  <title>Servo Example 1: Mouse X Y</title>\n  <style>\n    body {\n      margin: 0;\n      padding: 0;\n      overflow: hidden;\n      background: #dcdcdc;\n    }\n  </style>\n\n  <!-- p5.js 2.x -->\n  <script src=\"https://cdn.jsdelivr.net/npm/p5@2.3.4/lib/p5.js\"></script>\n\n  <!-- p5.webserial: talks to the Feather over USB (Chrome or Edge only) -->\n  <script src=\"https://cdn.jsdelivr.net/npm/@gohai/p5.webserial@1.1.3/libraries/p5.webserial.js\"></script>\n</head>\n<body>\n  <script src=\"sketch.js\"></script>\n</body>\n</html>\n",
+      "id": "79ceb7717d81c291f1fc33f6",
+      "_id": "79ceb7717d81c291f1fc33f6",
+      "fileType": "file",
+      "children": []
+    },
+    {
+      "name": "sketch.js",
+      "content": "/*\nServo Example 1: Mouse X Y to Servo Rotation\nTwo servos follow the mouse: the mouse's X position sets servo 0, its Y position sets\nservo 1. Each position is mapped to an angle from 0 to 180.\n\nThe servos plug into headers 0 and 1 of the Servo FeatherWing.\nWorks with the servoWingTest Arduino sketch (on Canvas). Use Chrome or Edge.\n\nThe message to the Feather is the two angles, then a newline: \"90,45\\n\"\nThe wing's other channels (2 to 7) stay as they are.\n\nKey functions:\n- updateServoValues(): maps the mouse position to angles from 0 to 180\n- sendAngles(): sends the angles when they change, at most every 30 ms\n- drawVisualElements(): crosshairs, and an arc and a line for each servo\n*/\n\nlet port;                // the serial connection to the Feather\nlet connectButton;\nlet status = 'Not connected';\n\nlet servoAngle0 = 90;    // the angle for the servo on header 0\nlet servoAngle1 = 90;    // the angle for the servo on header 1\n\nlet changed = true;      // true when the angles need sending\nlet lastSend = 0;        // when we last sent, in milliseconds\nlet sendEvery = 30;      // send at most every 30 ms (the Feather needs about 15 ms)\n\nfunction setup() {\n  createCanvas(windowWidth, windowHeight);\n  angleMode(DEGREES);\n\n  connectButton = createButton('Connect');\n  connectButton.position(20, 20);\n  connectButton.mousePressed(connectOrDisconnect);\n\n  // Web Serial only exists in Chrome and Edge\n  if ('serial' in navigator) {\n    port = createSerial();\n  } else {\n    status = 'This browser has no Web Serial: open the page in Chrome or Edge';\n  }\n}\n\nfunction draw() {\n  background(220);\n\n  updateServoValues();\n  drawVisualElements();\n  displayText();\n\n  if (port) {\n    readFromFeather();\n    sendAngles();\n  }\n}\n\nfunction updateServoValues() {\n  // X position controls servo 0, Y position controls servo 1\n  let newAngle0 = round(map(mouseX, 0, width, 0, 180));\n  let newAngle1 = round(map(mouseY, 0, height, 0, 180));\n\n  // keep the values inside the range a servo can turn\n  newAngle0 = constrain(newAngle0, 0, 180);\n  newAngle1 = constrain(newAngle1, 0, 180);\n\n  if (newAngle0 !== servoAngle0 || newAngle1 !== servoAngle1) {\n    servoAngle0 = newAngle0;\n    servoAngle1 = newAngle1;\n    changed = true;\n  }\n}\n\n// ---- Serial ----\n\nfunction connectOrDisconnect() {\n  if (!port) {\n    return;\n  }\n  if (port.opened()) {\n    port.close();\n  } else {\n    port.open(115200); // opens Chrome's list of ports: pick the Feather\n  }\n}\n\nfunction sendAngles() {\n  if (!port.opened()) {\n    status = 'Not connected';\n    connectButton.html('Connect');\n    return;\n  }\n  connectButton.html('Disconnect');\n\n  // only send when something changed, and not more often than sendEvery\n  if (changed && millis() - lastSend >= sendEvery) {\n    // comma-separated angles with a newline at the end, for example \"90,180\\n\"\n    let dataString = servoAngle0 + ',' + servoAngle1;\n    port.print(dataString + '\\n');\n    status = 'Sent: ' + dataString;\n    lastSend = millis();\n    changed = false;\n  }\n}\n\n// show any message from the Feather, and send the angles again:\n// the Feather may have just restarted and missed them\nfunction readFromFeather() {\n  let message = port.readUntil('\\n');\n  if (message.length > 0) {\n    status = 'Feather: ' + message.trim();\n    changed = true;\n  }\n}\n\n// ---- Drawing ----\n\nfunction drawVisualElements() {\n  // crosshairs that follow the mouse\n  stroke(0);\n  strokeWeight(1);\n  line(mouseX, 0, mouseX, height);\n  line(0, mouseY, width, mouseY);\n\n  let centerX = width / 2;\n  let centerY = height / 2;\n\n  drawServo(centerX - 100, centerY, servoAngle0, 'Servo 0', color(255, 0, 0));\n  drawServo(centerX + 100, centerY, servoAngle1, 'Servo 1', color(0, 0, 255));\n}\n\n// an arc for the angle, a line pointing at it, and the angle in degrees\nfunction drawServo(x, y, angle, label, c) {\n  stroke(c);\n  noFill();\n  arc(x, y, 100, 100, 0, angle + 0.1);\n\n  let endX = x + cos(angle) * 50;\n  let endY = y - sin(angle) * 50;\n  line(x, y, endX, endY);\n\n  noStroke();\n  fill(c);\n  textSize(14);\n  textAlign(CENTER);\n  text(label, x - 30, y - 60);\n  text(angle + '°', x + cos(angle) * 65, y - sin(angle) * 65 + 15);\n}\n\nfunction displayText() {\n  fill(0);\n  noStroke();\n  textAlign(LEFT, TOP);\n  textSize(16);\n  text(status, 120, 24);\n  text('Mouse X: ' + round(mouseX) + ' px', 20, 60);\n  text('Mouse Y: ' + round(mouseY) + ' px', 20, 80);\n}\n\nfunction windowResized() {\n  resizeCanvas(windowWidth, windowHeight);\n}\n",
+      "id": "6844ccdea8aa491c3d9a9274",
+      "_id": "6844ccdea8aa491c3d9a9274",
+      "fileType": "file",
+      "children": [],
+      "isSelectedFile": true
+    }
+  ]
+}

@@ -707,6 +707,72 @@
         "sketch.js": "5f17b559e91ce2c2c5573c42"
       },
       "lastPush": "2026-11-24T18:16:17.301Z"
+    },
+    "e4-servo-collision": {
+      "projectId": "dWF7cyFjX",
+      "name": "C&C F26 · Servo Example 5: Collision Detection",
+      "contentHash": "sha256:77dac6697404bb90cd4e12dbc36bf9bb4f09231b207c79c6106fe2c004ed5b14",
+      "fileIds": {
+        "__root__": "6d7ea8d27d1675680a1dc1b0",
+        "index.html": "1efb716aefe616b9e2acf621",
+        "sketch.js": "8708a21708aed78f990da24f"
+      },
+      "lastPush": "2026-11-24T20:44:08.186Z"
+    },
+    "e4-servo-collision-array": {
+      "projectId": "ePvB6whjB",
+      "name": "C&C F26 · Servo Example 5b: Collision Array",
+      "contentHash": "sha256:8988c55567081d4741f7d38cf66ed680a92adfd364a07c877f8580b648aa4fb8",
+      "fileIds": {
+        "__root__": "b1a8ea589dfa475652a6b007",
+        "index.html": "08514dc05f09fd976fd6049e",
+        "sketch.js": "7fc413ed80aba85b9fc9a9e8"
+      },
+      "lastPush": "2026-11-24T20:44:08.810Z"
+    },
+    "e4-servo-mouse-xy": {
+      "projectId": "YWMSagTwd",
+      "name": "C&C F26 · Servo Example 1: Mouse X Y",
+      "contentHash": "sha256:94d392af2ab5326d5853695917c9a3b2521e4e592d34276072e37b24e5a29164",
+      "fileIds": {
+        "__root__": "01bd3924c6e06bce4b1013b3",
+        "index.html": "a4112b416d3f965880ef65f9",
+        "sketch.js": "75940c294b7a51fb119c71e3"
+      },
+      "lastPush": "2026-11-24T20:44:09.460Z"
+    },
+    "e4-servo-timing": {
+      "projectId": "Y5MfvF-17",
+      "name": "C&C F26 · Servo Example 3: Timing and Motion",
+      "contentHash": "sha256:7146dcea0652cea01c871a524c5196d0fb900a22334b58145a857837f77b0f0b",
+      "fileIds": {
+        "__root__": "c8f14ecfedd431254006e5f4",
+        "index.html": "73c723072c989e30d8d60e54",
+        "sketch.js": "d72365724b580509785068c7"
+      },
+      "lastPush": "2026-11-24T20:44:10.093Z"
+    },
+    "e4-servo-wiggle": {
+      "projectId": "lAIPzu6P2",
+      "name": "C&C F26 · Servo Example 2: Wiggle",
+      "contentHash": "sha256:8f5f608685df0f7b46efbc7d02a1274852277955d1e873847799acebca46431a",
+      "fileIds": {
+        "__root__": "7ddd0c5049f74f535d9f9fe3",
+        "index.html": "feae6e192cef5e89722bfaab",
+        "sketch.js": "de6978f972954e20647f2a27"
+      },
+      "lastPush": "2026-11-24T20:44:10.707Z"
+    },
+    "e4-servo-wiggle-detach": {
+      "projectId": "0_AcKogYY",
+      "name": "C&C F26 · Servo Example 4: Wiggle with Attach and Detach",
+      "contentHash": "sha256:30d891dc28da78515fc36ae186a1bc9529a291c92bf2c0ae73ffbf577320a68b",
+      "fileIds": {
+        "__root__": "81bc9239e880b687805acfe8",
+        "index.html": "32e7de14c791a697c6757875",
+        "sketch.js": "f2a7c42142d85b5b14abc053"
+      },
+      "lastPush": "2026-11-24T20:44:11.319Z"
     }
   }
 }

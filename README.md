@@ -60,6 +60,21 @@ Canvas), which reads one line of 8 angles (0 to 180, or -1 for limp) at 115200 b
 | [servo-wing-test](experiment-4/servo-wing-test/) | drag a handle on each arc to set that servo's angle; untick Attach to let it go limp |
 | [servo-wing-animate](experiment-4/servo-wing-animate/) | tick a box and that servo sweeps on its own, in a wave with the others |
 
+### Servo examples
+
+Six examples, converted from the 2025 course to the Servo FeatherWing and p5.js 2.x. They use the
+same `servoWingTest` Arduino sketch, and move the servos on headers 0 and 1. Each sends the two
+angles as one line, `90,45`, and `-1` in place of an angle detaches that servo (it goes limp).
+
+| Example | What it does |
+| --- | --- |
+| [servo-mouse-xy](experiment-4/servo-mouse-xy/) | 1: the mouse's X sets servo 0, its Y sets servo 1 |
+| [servo-wiggle](experiment-4/servo-wiggle/) | 2: the half of the canvas the mouse is on chooses which servo wiggles |
+| [servo-timing](experiment-4/servo-timing/) | 3: click to set targets; each servo gets there in a set time (a Servo class) |
+| [servo-wiggle-detach](experiment-4/servo-wiggle-detach/) | 4: Example 2, with the idle servo detached |
+| [servo-collision](experiment-4/servo-collision/) | 5: hold the mouse over a box to wiggle its servo (p5.collide2D) |
+| [servo-collision-array](experiment-4/servo-collision-array/) | 5b: four boxes in an array, a slow and a fast one for each servo |
+
 ## Reference examples
 
 Short examples, one idea each, short enough to type. Each folder matches a Canvas page. They are

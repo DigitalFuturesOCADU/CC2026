@@ -5,11 +5,14 @@ its Y position sets servo 1's. Each servo then moves smoothly to its target in t
 set by servo0MoveTime / servo1MoveTime (in milliseconds), however far it has to go.
 
 A Servo class keeps track of each servo's current angle, its target and its timing.
-The pale line shows the target, the solid line where the servo is now.
+The ring shows the target, the pointer where the servo is now.
 
 The servos plug into headers 0 and 1 of the Servo FeatherWing.
 Works with the servoWingTest Arduino sketch (on Canvas). Use Chrome or Edge.
 The message to the Feather is the two angles, then a newline: "90,45\n"
+
+The bar along the top shows whether the Feather is connected, the last line sent to
+it, and the last message it sent back.
 
 How the movement works:
 - every movement takes exactly moveTime milliseconds
@@ -19,8 +22,10 @@ How the movement works:
 
 let port;                // the serial connection to the Feather
 let connectButton;
-let status = 'Not connected';
-
+let lastLine = '';       // the last line sent to the Feather
+let featherSays = '';    // the last message the Feather sent back
+let lastSend = 0;        // when we last sent, in milliseconds
+let sendEvery = 30;      // send at most every 30 ms (the Feather needs about 15 ms)
 let servo0;              // the servo on header 0
 // how long each move takes, in milliseconds: bigger numbers move slower
 // (1000 = 1 second, whether the servo turns 10 degrees or 180)
@@ -28,13 +33,10 @@ let servo0MoveTime = 1000;
 let servo1;              // the servo on header 1
 let servo1MoveTime = 1000;
 
-let lastLine = '';       // the last line sent, so we only send changes
-let lastSend = 0;        // when we last sent, in milliseconds
-let sendEvery = 30;      // send at most every 30 ms (the Feather needs about 15 ms)
-
 function setup() {
   createCanvas(windowWidth, windowHeight);
   angleMode(DEGREES);
+  textFont('sans-serif');
 
   // both servos start at 90
   servo0 = new Servo(90, servo0MoveTime);
@@ -47,26 +49,35 @@ function setup() {
   // Web Serial only exists in Chrome and Edge
   if ('serial' in navigator) {
     port = createSerial();
-  } else {
-    status = 'This browser has no Web Serial: open the page in Chrome or Edge';
   }
 }
 
 function draw() {
-  background(220);
+  background(245);
 
   servo0.moveTime = servo0MoveTime;
   servo1.moveTime = servo1MoveTime;
   servo0.update();
   servo1.update();
 
-  drawVisualElements();
-  displayText();
+  // crosshairs that follow the mouse
+  stroke(210);
+  strokeWeight(1);
+  line(mouseX, 0, mouseX, height);
+  line(0, mouseY, width, mouseY);
+
+  let y = height / 2 + 80;
+  drawTarget(width / 2 - 170, y, 110, servo0);
+  drawServo(width / 2 - 170, y, 110, 'Servo 0', servo0.getCurrentAngle(), true);
+  drawTarget(width / 2 + 170, y, 110, servo1);
+  drawServo(width / 2 + 170, y, 110, 'Servo 1', servo1.getCurrentAngle(), true);
 
   if (port) {
     readFromFeather();
     sendAngles();
   }
+
+  drawStatusBar('Click to set new targets: the mouse X for servo 0, the mouse Y for servo 1.');
 }
 
 // ---- The Servo class ----
@@ -120,15 +131,20 @@ class Servo {
   }
 }
 
-// a click sets new targets (not on the Connect button)
+// a click sets new targets (not on the status bar at the top)
 function mousePressed() {
-  if (mouseY < 60 && mouseX < 140) {
+  if (mouseY < 90) {
     return;
   }
   let targetX = map(mouseX, 0, width, 0, 180);
   let targetY = map(mouseY, 0, height, 0, 180);
-  servo0.setTarget(targetX);
-  servo1.setTarget(targetY);
+  servo0.setTarget(round(targetX));
+  servo1.setTarget(round(targetY));
+}
+
+// the two current angles with a comma between them, for example "90,45"
+function makeLine() {
+  return servo0.getCurrentAngle() + ',' + servo1.getCurrentAngle();
 }
 
 // ---- Serial ----
@@ -146,81 +162,127 @@ function connectOrDisconnect() {
 
 function sendAngles() {
   if (!port.opened()) {
-    status = 'Not connected';
     connectButton.html('Connect');
+    lastLine = '';       // so the angles are sent again after connecting
     return;
   }
   connectButton.html('Disconnect');
 
-  // comma-separated angles with a newline at the end, for example "90,180\n"
-  let dataString = servo0.getCurrentAngle() + ',' + servo1.getCurrentAngle();
-
-  // only send when the angles changed, and not more often than sendEvery
+  // only send when the line changed, and not more often than sendEvery
+  let dataString = makeLine();
   if (dataString !== lastLine && millis() - lastSend >= sendEvery) {
     port.print(dataString + '\n');
-    status = 'Sent: ' + dataString;
     lastLine = dataString;
     lastSend = millis();
   }
 }
 
-// show any message from the Feather, and send the angles again:
+// keep the Feather's last message, and send the angles again:
 // the Feather may have just restarted and missed them
 function readFromFeather() {
   let message = port.readUntil('\n');
   if (message.length > 0) {
-    status = 'Feather: ' + message.trim();
+    featherSays = message.trim();
     lastLine = '';
   }
 }
 
+// ---- The status bar ----
+
+// along the top: whether the Feather is connected, the last line sent to it,
+// the last message it sent back, and how to use this sketch
+function drawStatusBar(instructions) {
+  noStroke();
+  fill(255);
+  rect(0, 0, width, 90);
+
+  textSize(15);
+  textAlign(LEFT, CENTER);
+
+  // a green dot when connected, red when not
+  if (port && port.opened()) {
+    fill(40, 170, 80);
+    circle(132, 32, 14);
+    fill(40);
+    text('Connected', 146, 32);
+  } else {
+    fill(210, 60, 60);
+    circle(132, 32, 14);
+    fill(40);
+    if (port) {
+      text('Not connected: click Connect and choose the Feather', 146, 32);
+    } else {
+      text('No Web Serial: open this page in Chrome or Edge', 146, 32);
+    }
+  }
+
+  // what went to the Feather, and what came back
+  fill(120);
+  text('Sent:', 20, 66);
+  text('Feather:', 400, 66);
+  fill(40);
+  textFont('monospace');
+  text(lastLine, 70, 66);
+  text(featherSays, 470, 66);
+  textFont('sans-serif');
+
+  fill(110);
+  text(instructions, 20, 115);
+}
 // ---- Drawing ----
 
-function drawVisualElements() {
-  // crosshairs that follow the mouse
-  stroke(0, 100);
-  strokeWeight(1);
-  line(mouseX, 0, mouseX, height);
-  line(0, mouseY, width, mouseY);
+// one servo as a half circle: 0° on the left, 90° at the top, 180° on the right.
+// Attached: a blue pointer and its angle. Detached: a grey pointer and LIMP
+function drawServo(x, y, r, label, angle, attached) {
+  // the track
+  noFill();
+  stroke(225);
+  strokeWeight(12);
+  arc(x, y, r * 2, r * 2, 180, 360);
 
-  let centerX = width / 2;
-  let centerY = height / 2;
-  drawServo(centerX - 100, centerY, servo0, 'Servo 0', color(255, 0, 0));
-  drawServo(centerX + 100, centerY, servo1, 'Servo 1', color(0, 0, 255));
-}
+  // blue when attached, grey when limp
+  let c = color(170);
+  if (attached) {
+    c = color(30, 120, 220);
+  }
 
-// the target as a pale line, the current angle as a solid one
-function drawServo(x, y, servo, label, c) {
-  let target = servo.getTargetAngle();
-  let current = servo.getCurrentAngle();
-
-  stroke(red(c), green(c), blue(c), 100);
-  line(x, y, x + cos(target) * 50, y - sin(target) * 50);
-
+  // the pointer, from the centre out to the angle
+  let px = x + cos(180 + angle) * r;
+  let py = y + sin(180 + angle) * r;
   stroke(c);
-  line(x, y, x + cos(current) * 50, y - sin(current) * 50);
-
+  strokeWeight(4);
+  line(x, y, px, py);
   noStroke();
   fill(c);
-  textSize(14);
-  textAlign(CENTER);
-  text(label, x - 30, y - 60);
-  text('Current: ' + current + '°', x + cos(current) * 65, y - sin(current) * 65 + 15);
-  fill(red(c), green(c), blue(c), 100);
-  text('Target: ' + target + '°', x + cos(target) * 65, y - sin(target) * 65 + 30);
-}
+  circle(px, py, 24);
+  circle(x, y, 10);
 
-function displayText() {
-  fill(0);
-  noStroke();
-  textAlign(LEFT, TOP);
+  // the name above, the angle (or LIMP) below
+  textAlign(CENTER, CENTER);
+  fill(40);
   textSize(16);
-  text(status, 120, 24);
-  text('Mouse X: ' + round(mouseX) + ' px', 20, 60);
-  text('Mouse Y: ' + round(mouseY) + ' px', 20, 80);
-  text('Click to set new servo positions', 20, 100);
-  text('Servo 0 move time: ' + servo0.moveTime + ' ms', 20, 120);
-  text('Servo 1 move time: ' + servo1.moveTime + ' ms', 20, 140);
+  text(label, x, y - r - 40);
+  textSize(28);
+  if (attached) {
+    text(angle + '°', x, y + 30);
+  } else {
+    fill(150);
+    text('LIMP', x, y + 30);
+  }
+}
+// a ring where the servo is heading, and its target and move time under it
+function drawTarget(x, y, r, servo) {
+  let target = servo.getTargetAngle();
+  noFill();
+  stroke(30, 120, 220, 110);
+  strokeWeight(3);
+  circle(x + cos(180 + target) * r, y + sin(180 + target) * r, 36);
+
+  noStroke();
+  fill(110);
+  textSize(14);
+  textAlign(CENTER, CENTER);
+  text('target ' + target + '°, moves in ' + servo.moveTime + ' ms', x, y + 64);
 }
 
 function windowResized() {

@@ -52,19 +52,19 @@ anything louder than that counts as sound.
 
 Two laptop sketches in `experiment-4/` that drive the 8 servo channels of the Servo FeatherWing
 over Web Serial (Chrome or Edge). Both talk to the same Arduino sketch, `servoWingTest` (on
-Canvas), which reads one line of 8 angles (0 to 180, or -1 for limp) at 115200 baud:
+Canvas), which reads one line of 8 angles (0 to 180, or -1 to let it turn freely) at 115200 baud:
 `90,90,45,180,0,90,90,90`.
 
 | Example | What it does |
 | --- | --- |
-| [servo-wing-test](experiment-4/servo-wing-test/) | drag a handle on each arc to set that servo's angle; untick Attach to let it go limp |
+| [servo-wing-test](experiment-4/servo-wing-test/) | drag the pointer on each half circle to set that servo's angle; untick Attach to let it go free |
 | [servo-wing-animate](experiment-4/servo-wing-animate/) | tick a box and that servo sweeps on its own, in a wave with the others |
 
 ### Servo examples
 
 Six examples, converted from the 2025 course to the Servo FeatherWing and p5.js 2.x. They use the
 same `servoWingTest` Arduino sketch, and move the servos on headers 0 and 1. Each sends the two
-angles as one line, `90,45`, and `-1` in place of an angle detaches that servo (it goes limp).
+angles as one line, `90,45`, and `-1` in place of an angle detaches that servo (it goes free).
 
 | Example | What it does |
 | --- | --- |

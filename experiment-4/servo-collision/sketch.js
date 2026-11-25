@@ -1,14 +1,14 @@
 /*
 Servo Example 5: Collision Detection
 Two boxes on the canvas. Hold the mouse over the Servo 0 box and servo 0 wiggles; over
-the Servo 1 box, servo 1 wiggles. A servo that isn't wiggling is detached (limp).
+the Servo 1 box, servo 1 wiggles. A servo that isn't wiggling is detached (free).
 Outside both boxes, both servos are detached.
 
 collidePointRect() comes from the p5.collide2D library (loaded in index.html):
 it is true when a point (the mouse) is inside a rectangle (a box).
 https://github.com/bmoren/p5.collide2D
 
-Detaching: send -1 in place of that servo's angle. "-1,90\n" makes servo 0 limp and
+Detaching: send -1 in place of that servo's angle. "-1,90\n" frees servo 0 and
 moves servo 1 to 90.
 
 The servos plug into headers 0 and 1 of the Servo FeatherWing.
@@ -120,7 +120,7 @@ function draw() {
     sendAngles();
   }
 
-  drawStatusBar('Hold the mouse over a box to wiggle that servo. Servos with no box under the mouse go limp.');
+  drawStatusBar('Hold the mouse over a box to wiggle that servo. Servos with no box under the mouse go free.');
 }
 
 function getWaveAngle(wavePos, minAngle, maxAngle, centerAngle) {
@@ -141,7 +141,7 @@ function makeLine() {
   if (servoAttach0) {
     value0 = servoAngle0;  // attached: send its angle
   } else {
-    value0 = -1;           // detached: -1 makes it go limp
+    value0 = -1;           // detached: -1 makes it go free
   }
 
   let value1;
@@ -266,7 +266,7 @@ function drawServos() {
 }
 
 // one servo as a half circle: 0° on the left, 90° at the top, 180° on the right.
-// Attached: a blue pointer and its angle. Detached: a grey pointer and LIMP
+// Attached: a blue pointer and its angle. Detached: a grey pointer and FREE
 function drawServo(x, y, r, label, angle, attached) {
   // the track
   noFill();
@@ -274,7 +274,7 @@ function drawServo(x, y, r, label, angle, attached) {
   strokeWeight(12);
   arc(x, y, r * 2, r * 2, 180, 360);
 
-  // blue when attached, grey when limp
+  // blue when attached, grey when free
   let c = color(170);
   if (attached) {
     c = color(30, 120, 220);
@@ -291,7 +291,7 @@ function drawServo(x, y, r, label, angle, attached) {
   circle(px, py, 24);
   circle(x, y, 10);
 
-  // the name above, the angle (or LIMP) below
+  // the name above, the angle (or FREE) below
   textAlign(CENTER, CENTER);
   fill(40);
   textSize(16);
@@ -301,7 +301,7 @@ function drawServo(x, y, r, label, angle, attached) {
     text(angle + '°', x, y + 30);
   } else {
     fill(150);
-    text('LIMP', x, y + 30);
+    text('FREE', x, y + 30);
   }
 }
 // a thin arc just outside the half circle: the range a servo moves through

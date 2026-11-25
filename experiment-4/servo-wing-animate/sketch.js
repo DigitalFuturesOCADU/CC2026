@@ -173,7 +173,7 @@ function drawStatusBar(instructions) {
 // ---- Drawing ----
 
 // one servo as a half circle: 0° on the left, 90° at the top, 180° on the right.
-// Attached: a blue pointer and its angle. Detached: a grey pointer and LIMP
+// Attached: a blue pointer and its angle. Detached: a grey pointer and FREE
 function drawServo(x, y, r, label, angle, attached) {
   // the track
   noFill();
@@ -181,7 +181,7 @@ function drawServo(x, y, r, label, angle, attached) {
   strokeWeight(12);
   arc(x, y, r * 2, r * 2, 180, 360);
 
-  // blue when attached, grey when limp
+  // blue when attached, grey when free
   let c = color(170);
   if (attached) {
     c = color(30, 120, 220);
@@ -198,7 +198,7 @@ function drawServo(x, y, r, label, angle, attached) {
   circle(px, py, 24);
   circle(x, y, 10);
 
-  // the name above, the angle (or LIMP) below
+  // the name above, the angle (or FREE) below
   textAlign(CENTER, CENTER);
   fill(40);
   textSize(16);
@@ -208,7 +208,7 @@ function drawServo(x, y, r, label, angle, attached) {
     text(angle + '°', x, y + 30);
   } else {
     fill(150);
-    text('LIMP', x, y + 30);
+    text('FREE', x, y + 30);
   }
 }
 // lay the 8 servos out in 2 rows of 4, sized to the window,
